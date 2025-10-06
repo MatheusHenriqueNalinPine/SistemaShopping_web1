@@ -1,3 +1,12 @@
+<?php
+session_start();
+$usuario_logado = $_SESSION['usuario'] ?? null;
+
+if(!$usuario_logado) {
+    header('Location: login.php?erro=deslogado');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,13 +14,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo - SchweizerPine</title>
-    <link rel="stylesheet" href="css/administrativo.css">
+    <link rel="stylesheet" href="../../css/administrativo.css">
 </head>
 
 <body>
     <header class="topbar">
         <div class="logo-header">
-            <img src="img/logoShopping.png" alt="Logo Shopping">
+            <img src="../../img/logoShopping.png" alt="Logo Shopping">
         </div>
         <h1>Administrativo</h1>
         <div class="usuario-info">
@@ -21,11 +30,12 @@
 
     <aside class="sidebar">
         <ul>
-            <a href="index.html">Inicio</a>
-            <a href="src/view/loja-dashboard.php">Lojas</a>
+            <a href="../../index.html">Inicio</a>
+            <a href="loja-dashboard.php">Lojas</a>
             <a href="#">Anúncios</a>
             <a href="#">Cinema</a>
             <a href="#">Funcionários</a>
+            <a href="../controller/autenticacao/logout.php">Sair</a>
         </ul>
     </aside>
 
@@ -33,7 +43,7 @@
         <h2>Gerenciadores</h2>
 
         <div class="cards-container">
-            <a href="src/view/loja-dashboard.php" class="card">
+            <a href="loja-dashboard.php" class="card">
                 <div class="icon">🛒</div>
                 <span>Lojas/Restaurantes</span>
             </a>

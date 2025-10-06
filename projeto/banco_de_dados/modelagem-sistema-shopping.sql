@@ -76,4 +76,4 @@ create table tbAnuncio(
     constraint fkAnuncioServico foreign key(id) references tbServico(id)
 );
 
-insert into tbUsuario (nome, email, senha, cpf, cargo) values('Dono do shopping', 'admin@exemplo.com', md5('12345'), '11111111111', 'Admin');
+insert into tbUsuario (nome, email, senha, cpf, cargo) values('Dono do shopping', 'admin@exemplo.com', '$2y$10$n7avFbK6dB6joBDXa2hVIe4QOyxLc6VobFjqErUj57aqcb14tDYMe', '11111111111', 'administrador');

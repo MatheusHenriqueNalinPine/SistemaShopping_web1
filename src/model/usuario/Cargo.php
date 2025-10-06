@@ -1,9 +1,9 @@
 <?php
 
-enum Cargo
+enum Cargo : string
 {
-    case Administrador;
-    case Lojista;
-    case Gerenciador_eventos;
-    case Funcionario_cinema;
+    case Administrador = 'administrador';
+    case Lojista = 'lojista';
+    case Gerenciador_eventos  = 'gerenciador_eventos';
+    case Funcionario_cinema  = 'funcionario_cinema';
 }

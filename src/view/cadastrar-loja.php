@@ -14,18 +14,18 @@ if(!$usuario_logado) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Loja - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="css/cadastrar.css">
-    <link rel="stylesheet" href="css/cadastrar-loja.css">
+    <link rel="stylesheet" href="/css/cadastrar.css">
+    <link rel="stylesheet" href="/css/cadastrar-loja.css">
 </head>
 
 <body>
 
     <header>
         <div class="logo">
-            <img src="img/logoShopping.png" alt="Logo SchweizerPine Shopping">
+            <img src="/img/logoShopping.png" alt="Logo SchweizerPine Shopping">
         </div>
         <nav>
-            <a href="index.html">Início</a>
+            <a href="/index.html">Início</a>
             <a href="#">Novidades</a>
             <a href="#">Cinema</a>
             <a href="#">Lojas</a>

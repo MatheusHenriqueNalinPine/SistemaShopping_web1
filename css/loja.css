@@ -1,127 +1,126 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
 }
 
 body {
-  background: #fff;
-  color: #0c2a52;
-  display: flex;
-  flex-direction: column;
+    background: #fff;
+    color: #0c2a52;
+    display: flex;
+    flex-direction: column;
 }
 
 
 .topbar {
-  background: #006478;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
+    background: #006478;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
 }
 
 .logo-header img {
-  height: 40px;
-  border-radius: 30px;
+    height: 40px;
+    border-radius: 30px;
 }
 
 
 .sidebar {
-  background: #004d5d;
-  padding: 20px;
-  width: 200px;
-  min-height: 100vh;
-  position: fixed;
-  top: 70px;
-  left: 0;
-  display: flex;
-  flex-direction: column;
+    background: #004d5d;
+    padding: 20px;
+    width: 200px;
+    min-height: 100vh;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .sidebar a {
-  color: white;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background 0.3s;
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s;
 }
 
 .sidebar a:hover,
 .sidebar a.ativo {
-  background: #006478;
+    background: #006478;
 }
 
-
 .conteudo {
-  margin-left: 240px;
-  padding: 30px;
+    margin-left: 240px;
+    padding: 30px;
 }
 
 h2 {
-  color: #0c2a52;
-  margin-bottom: 20px;
+    color: #0c2a52;
+    margin-bottom: 20px;
 }
 
 
 .acoes {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin: 20px 0;
 }
 
 .btn-cadastrar,
 .btn-relatorio {
-  background: #0069d9;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s ease;
+    background: #0069d9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease;
 }
 
 .btn-cadastrar:hover,
 .btn-relatorio:hover {
-  background: #0053aa;
+    background: #0053aa;
 }
 
 
 .tabela-lojas {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  overflow: hidden;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .tabela-lojas th,
 .tabela-lojas td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 .tabela-lojas th {
-  background: #006478;
-  color: white;
+    background: #006478;
+    color: white;
 }
 
 .sem-dados {
-  text-align: center;
-  color: #777;
-  padding: 20px;
+    text-align: center;
+    color: #777;
+    padding: 20px;
 }
