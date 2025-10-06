@@ -5,10 +5,6 @@ class Anuncio extends Servico
     private FormatoAnuncio $formato_anuncio;
     private string $categoria_anuncio;
 
-    /**
-     * @param FormatoAnuncio $formato_anuncio
-     * @param string $categoria_anuncio
-     */
     public function __construct(string $nome, string $descricao, string $imagem, string $tipo_imagem,
                                 DateTime $data_registro, FormatoAnuncio $formato_anuncio, string $categoria_anuncio)
     {

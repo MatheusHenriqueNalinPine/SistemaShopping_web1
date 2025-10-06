@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo - SchweizerPine</title>
-    <link rel="stylesheet" href="Administrativo.css">
+    <link rel="stylesheet" href="css/administrativo.css">
 </head>
 
 <body>
@@ -21,8 +21,8 @@
 
     <aside class="sidebar">
         <ul>
-            <a href="Inicio.html">Inicio</a>
-            <a href="Loja.html">Lojas</a>
+            <a href="index.html">Inicio</a>
+            <a href="src/view/loja-dashboard.php">Lojas</a>
             <a href="#">Anúncios</a>
             <a href="#">Cinema</a>
             <a href="#">Funcionários</a>
@@ -33,7 +33,7 @@
         <h2>Gerenciadores</h2>
 
         <div class="cards-container">
-            <a href="Loja.html" class="card">
+            <a href="src/view/loja-dashboard.php" class="card">
                 <div class="icon">🛒</div>
                 <span>Lojas/Restaurantes</span>
             </a>

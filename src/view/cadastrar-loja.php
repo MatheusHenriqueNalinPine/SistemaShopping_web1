@@ -1,3 +1,12 @@
+<?php
+session_start();
+$usuario_logado = $_SESSION['usuario'] ?? null;
+
+if(!$usuario_logado) {
+    header('Location: login.php?erro=deslogado');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,7 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Loja - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="CadastrarLoja.css">
+    <link rel="stylesheet" href="css/cadastrar.css">
+    <link rel="stylesheet" href="css/cadastrar-loja.css">
 </head>
 
 <body>
@@ -15,7 +25,7 @@
             <img src="img/logoShopping.png" alt="Logo SchweizerPine Shopping">
         </div>
         <nav>
-            <a href="Inicio.html">Início</a>
+            <a href="index.html">Início</a>
             <a href="#">Novidades</a>
             <a href="#">Cinema</a>
             <a href="#">Lojas</a>
@@ -23,7 +33,7 @@
             <a href="#">Mapa</a>
             <a href="#">Fale Conosco</a>
         </nav>
-        <a href="Login.html" class="btn-login">Login</a>
+        <a href="src/view/login.php" class="btn-login">Login</a>
     </header>
 
     <main>
@@ -61,7 +71,7 @@
                     <input type="text" id="horario" placeholder="Ex: 10h às 22h" required>
 
 
-                    <a href="Loja.html" class="btn-cadastrarLoja">Cadastrar Loja</a>
+                    <a href="src/view/loja-dashboard.php" class="btn-cadastrarLoja">Cadastrar Loja</a>
 
                 </form>
             </div>

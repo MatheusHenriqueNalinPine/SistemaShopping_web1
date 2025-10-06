@@ -6,10 +6,6 @@ class Evento extends Servico
     private DateTime $data_final;
     private HorarioFuncionamento $horario_funcionamento;
 
-    /**
-     * @param DateTime $data_inicial
-     * @param DateTime $data_final
-     */
     public function __construct(string   $nome, string $descricao, string $imagem, string $tipo_imagem,
                                 Datetime $data_registro, DateTime $data_inicial, DateTime $data_final,
                                 HorarioFuncionamento $horario_funcionamento)

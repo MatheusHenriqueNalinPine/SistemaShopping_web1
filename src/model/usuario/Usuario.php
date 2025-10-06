@@ -9,15 +9,9 @@ class Usuario
     private string $cpf;
     private Cargo $cargo;
 
-    /**
-     * @param string $nome
-     * @param string $email
-     * @param string $senha
-     * @param string $cpf
-     * @param Cargo $cargo
-     */
-    public function __construct(string $nome, string $email, string $senha, string $cpf, Cargo $cargo)
+    public function __construct(int $id, string $nome, string $email, string $senha, string $cpf, Cargo $cargo)
     {
+        $this->id = $id;
         $this->nome = $nome;
         $this->email = $email;
         $this->senha = $senha;

@@ -7,12 +7,6 @@ class HorarioExibicaoFilme
     private FormatoFilme $formato_filme;
     private string $modo_exibicao;
 
-    /**
-     * @param DateTime $data_hora
-     * @param int $sala
-     * @param FormatoFilme $formato_filme
-     * @param string $modo_exibicao
-     */
     public function __construct(DateTime $data_hora, int $sala, FormatoFilme $formato_filme, string $modo_exibicao)
     {
         $this->data_hora = $data_hora;

@@ -9,13 +9,6 @@ abstract class Servico
     protected string $tipo_imagem;
     protected DateTime $data_registro;
 
-    /**
-     * @param string $nome
-     * @param string $descricao
-     * @param string $imagem
-     * @param string $tipo_imagem
-     * @param DateTime $data_registro
-     */
     public function __construct(string $nome, string $descricao, string $imagem, string $tipo_imagem, DateTime $data_registro)
     {
         $this->nome = $nome;

@@ -5,10 +5,6 @@ class Filme extends Servico
     private string $genero;
     private array $horario_exibicao_filme = [];
 
-    /**
-     * @param string $genero
-     * @param array $horario_exibicao_filme
-     */
     public function __construct(string $nome, string $descricao, string $imagem, string $tipo_imagem,
                                 Datetime $data_registro, string $genero, array $horario_exibicao_filme)
     {

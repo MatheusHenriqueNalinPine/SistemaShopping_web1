@@ -1,3 +1,12 @@
+<?php
+session_start();
+$usuario_logado = $_SESSION['usuario'] ?? null;
+
+if(!$usuario_logado) {
+    header('Location: login.php?erro=deslogado');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Lojas - Administrativo</title>
-    <link rel="stylesheet" href="loja.css">
+    <link rel="stylesheet" href="css/loja.css">
 </head>
 
 <body>
@@ -21,8 +30,8 @@
 
     <aside class="sidebar">
         <ul>
-            <a href="Administrativo.html">Administrativo</a>
-            <a href="Loja.html" class="ativo">Lojas</a>
+            <a href="administrativo.php">Administrativo</a>
+            <a href="loja-dashboard.html" class="ativo">Lojas</a>
             <a href="#">Anúncios</a>
             <a href="#">Cinema</a>
             <a href="#">Funcionários</a>
@@ -33,7 +42,7 @@
         <h2>Gerenciamento de Lojas</h2>
 
         <div class="acoes">
-            <a href="CadastrarLoja.html" class="btn-cadastrar">Cadastrar loja</a>
+            <a href="cadastrar-loja.php" class="btn-cadastrar">Cadastrar loja</a>
             <button class="btn-relatorio">Baixar relatório</button>
         </div>
 

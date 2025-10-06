@@ -8,12 +8,6 @@ class Loja extends Servico
     private TipoLoja $tipoLoja;
     private HorarioFuncionamento $horarioFuncionamento;
 
-    /**
-     * @param string $posicao
-     * @param string $telefone_contato
-     * @param string $cnpj
-     * @param TipoLoja $tipoLoja
-     */
     public function __construct(string   $nome, string $descricao, string $imagem, string $tipo_imagem,
                                 DateTime $data_registro, string $posicao, string $telefone_contato, string $cnpj,
                                 TipoLoja $tipoLoja, HorarioFuncionamento $horarioFuncionamento)

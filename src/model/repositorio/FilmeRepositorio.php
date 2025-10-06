@@ -1,6 +1,6 @@
 <?php
 
-namespace repositorio;
+namespace model\repositorio;
 
 class FilmeRepositorio
 {

@@ -9,7 +9,7 @@ create table tbUsuario(
     nome varchar(50) not null,
     email varchar(255) unique not null,
     senha varchar(100) not null,
-    cpf char(11) not null,
+    cpf char(11) unique not null,
     cargo varchar(30),
     constraint pkUsuario primary key(id)
 );

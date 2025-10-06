@@ -6,11 +6,6 @@ class HorarioFuncionamento
     private string $horario_inicial;
     private string $horario_final;
 
-    /**
-     * @param string $dia_semana
-     * @param string $horario_inicial
-     * @param string $horario_final
-     */
     public function __construct(string $dia_semana, string $horario_inicial, string $horario_final)
     {
         $this->dia_semana = $dia_semana;
