@@ -31,6 +31,7 @@ header nav a {
   color: white;
   margin: 0 10px;
   text-decoration: none;
+  font-weight: 500;
 }
 
 header nav a:hover {
@@ -44,47 +45,25 @@ header nav a:hover {
   padding: 5px 15px;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-login:hover {
+  background: #e6e6e6;
 }
 
 
-.login-container {
+.cadastro-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 40px auto;
-  max-width: 900px;
+  max-width: 650px;
   background: #006478;
   border-radius: 20px;
-  box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 30px;
-  gap: 20px;
-}
-
-
-.logo-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-circle {
-  width: 160px;
-  height: auto;
-  border-radius: 50%;
-  background: white;
-  padding: 10px;
-}
-
-.btn-cadastrar {
-  margin-top: 40px;
-  background: white;
-  color: #006478;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 10px;
-  cursor: pointer;
 }
 
 
@@ -93,12 +72,15 @@ header nav a:hover {
   background: white;
   border-radius: 20px;
   padding: 30px;
-  box-shadow: inset 2px 2px 6px rgba(0,0,0,0.2);
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .form-box h2 {
   margin-bottom: 20px;
+  text-align: center;
+  color: #00384d;
 }
+
 
 form {
   display: flex;
@@ -107,24 +89,30 @@ form {
 
 label {
   margin: 10px 0 5px;
+  font-weight: bold;
+  color: #0c2a52;
 }
 
-input {
+
+
+select,
+textarea {
   padding: 10px;
   border-radius: 20px;
   border: none;
   background: #d9d9d9;
   margin-bottom: 10px;
-}
-
-.forgot {
   font-size: 14px;
-  color: #0069d9;
-  text-decoration: none;
-  margin-bottom: 15px;
+  color: #333;
 }
 
-.btn-enviar {
+textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+
+.btn-cadastrarLoja {
   background: #0069d9;
   color: white;
   padding: 12px;
@@ -136,9 +124,8 @@ input {
   transition: background 0.3s, transform 0.1s;
 }
 
-.btn-enviar:hover {
+.btn-cadastrarLoja:hover {
   background: #0053aa;
   transform: scale(1.02);
 }
-
 

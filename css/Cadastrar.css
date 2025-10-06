@@ -94,7 +94,7 @@ input:focus, select:focus {
   box-shadow: 0 0 5px #006478;
 }
 
-.btn-enviar {
+.btn-cadastrar {
   background: #0069d9;
   color: white;
   padding: 12px;
@@ -103,8 +103,10 @@ input:focus, select:focus {
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
+  transition: background 0.3s, transform 0.1s;
 }
 
 .btn-enviar:hover {
   background: #0053aa;
+  transform: scale(1.02);
 }
