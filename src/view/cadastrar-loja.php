@@ -1,10 +1,21 @@
 <?php
+use model\repositorio\UsuarioRepositorio;
+
+require_once __DIR__ . "/../model/repositorio/UsuarioRepositorio.php";
+require_once __DIR__ . "/../model/usuario/Usuario.php";
+require_once __DIR__ . "/../controller/conexao-bd.php";
+
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
 if(!$usuario_logado) {
     header('Location: login.php?erro=deslogado');
+    exit;
 }
+
+$repositorio = new UsuarioRepositorio($pdo);
+$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
+
 ?>
 
 <!DOCTYPE html>
@@ -14,18 +25,18 @@ if(!$usuario_logado) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Loja - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="/css/cadastrar.css">
-    <link rel="stylesheet" href="/css/cadastrar-loja.css">
+    <link rel="stylesheet" href="../../css/cadastrar.css">
+    <link rel="stylesheet" href="../../css/cadastrar-loja.css">
 </head>
 
 <body>
 
     <header>
         <div class="logo">
-            <img src="/img/logoShopping.png" alt="Logo SchweizerPine Shopping">
+            <img src="../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
         </div>
         <nav>
-            <a href="/index.html">Início</a>
+            <a href="../../index.html">Início</a>
             <a href="#">Novidades</a>
             <a href="#">Cinema</a>
             <a href="#">Lojas</a>
@@ -33,7 +44,11 @@ if(!$usuario_logado) {
             <a href="#">Mapa</a>
             <a href="#">Fale Conosco</a>
         </nav>
-        <a href="src/view/login.php" class="btn-login">Login</a>
+        <?php if ($usuario_logado) : ?>
+            <span><?php echo htmlspecialchars($usuario->getNome()) ?></span>
+        <?php else: ?>
+            <a href="login.php" class="btn-login">Login</a>
+        <?php endif; ?>
     </header>
 
     <main>
@@ -67,11 +82,13 @@ if(!$usuario_logado) {
                     <label for="descricao">Descrição</label>
                     <textarea id="descricao" placeholder="Descreva sua loja..." rows="4"></textarea>
 
-                    <label for="horario">Horário de Funcionamento</label>
-                    <input type="text" id="horario" placeholder="Ex: 10h às 22h" required>
+                    <label for="horario">Horário Inicial de Funcionamento</label>
+                    <input type="text" id="horario" placeholder="Ex: 10h" required>
 
+                    <label for="horario">Horário Final de Funcionamento</label>
+                    <input type="text" id="horario" placeholder="Ex: 22h" required>
 
-                    <a href="src/view/loja-dashboard.php" class="btn-cadastrarLoja">Cadastrar Loja</a>
+                    <a href="loja-dashboard.php" class="btn-cadastrarLoja">Cadastrar Loja</a>
 
                 </form>
             </div>

@@ -1,112 +1,112 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
 }
 
 body {
-  background: #fff;
-  color: #0c2a52;
+    background: #fff;
+    color: #0c2a52;
 }
 
 header {
-  background: #006478;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
+    background: #006478;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
 }
 
 header .logo img {
-  height: 40px;
-  width: 70px;
-  border-radius: 30px;
+    height: 40px;
+    width: 70px;
+    border-radius: 30px;
 }
 
 header nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
 }
 
 header nav a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .btn-login {
-  background: white;
-  color: #006478;
-  border: none;
-  padding: 5px 15px;
-  border-radius: 8px;
-  cursor: pointer;
+    background: white;
+    color: #006478;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .cadastro-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px auto;
-  max-width: 600px;
-  background: #006478;
-  border-radius: 20px;
-  box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
-  padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    max-width: 600px;
+    background: #006478;
+    border-radius: 20px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
 }
 
 .form-box {
-  flex: 1;
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: inset 2px 2px 6px rgba(0,0,0,0.2);
+    flex: 1;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .form-box h2 {
-  margin-bottom: 20px;
-  text-align: center;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-  margin: 10px 0 5px;
+    margin: 10px 0 5px;
 }
 
 input, select {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  background: #d9d9d9;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #333;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background: #d9d9d9;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
 }
 
 
 input:focus, select:focus {
-  outline: none;
-  box-shadow: 0 0 5px #006478;
+    outline: none;
+    box-shadow: 0 0 5px #006478;
 }
 
 .btn-cadastrar {
-  background: #0069d9;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  transition: background 0.3s, transform 0.1s;
+    background: #0069d9;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.1s;
 }
 
-.btn-enviar:hover {
-  background: #0053aa;
-  transform: scale(1.02);
+.btn-cadastrar:hover {
+    background: #0053aa;
+    transform: scale(1.02);
 }

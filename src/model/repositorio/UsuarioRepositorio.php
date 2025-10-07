@@ -6,6 +6,7 @@ use Cargo;
 use PDO;
 use Usuario;
 
+require_once __DIR__ . '/../usuario/Usuario.php';
 require_once __DIR__ . "/../usuario/Cargo.php";
 
 class UsuarioRepositorio

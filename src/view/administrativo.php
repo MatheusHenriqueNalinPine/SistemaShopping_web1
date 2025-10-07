@@ -1,10 +1,18 @@
 <?php
+
+require_once __DIR__ . '/../model/repositorio/UsuarioRepositorio.php';
+
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
 if(!$usuario_logado) {
     header('Location: login.php?erro=deslogado');
+    exit;
 }
+
+require_once __DIR__ . '/../controller/conexao-bd.php';
+
+$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($usuario_logado);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +32,7 @@ if(!$usuario_logado) {
         </div>
         <h1>Administrativo</h1>
         <div class="usuario-info">
-            <span>Nome do administrador</span>
+            <span><?php echo htmlspecialchars($usuario->getNome()); ?></span>
         </div>
     </header>
 

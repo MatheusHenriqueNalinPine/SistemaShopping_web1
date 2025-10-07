@@ -43,11 +43,10 @@ create table tbEvento(
 );
 
 create table tbHorarioFuncionamento(
-	dia_semana varchar(12),
     horario_inicial time,
     horario_final time,
     id_servico int, -- Pode ser usado por loja ou evento
-    constraint pkHorario primary key(dia_semana, horario_inicial, horario_final),
+    constraint pkHorario primary key(horario_inicial, horario_final, id_servico),
     constraint fkHorarioServico foreign key(id_servico) references tbServico(id)
 );
 

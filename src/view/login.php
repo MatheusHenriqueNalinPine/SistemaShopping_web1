@@ -5,6 +5,7 @@ $erro = $_GET['erro'] ?? '';
 
 if($usuario_logado) {
     header('Location: administrativo.php');
+    exit;
 }
 ?>
 
@@ -41,10 +42,10 @@ if($usuario_logado) {
         <section class="login-container">
             <div class="logo-box">
                 <img src="../../img/logoShopping.png" alt="Logo Shopping" class="logo-circle">
-                <a href="cadastrar.html" class="btn-cadastrar">Cadastrar funcionario</a>
+                <a href="cadastrar.php" class="btn-cadastrar">Cadastrar funcionario</a>
             </div>
             <div class="form-box">
-                <h2>Bem vindo funcionario</h2>
+                <h2>Bem vindo funcionário</h2>
                 <form action="../controller/autenticacao/autenticar.php" method="post">
                     <label for="email">E-mail</label>
                     <input type="text" id="email" name="email" placeholder="Digite seu e-mail">
