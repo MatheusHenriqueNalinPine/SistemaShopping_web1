@@ -62,8 +62,6 @@ $loja = $repositorio->buscarPorId($idLoja);
             <div class="form-box">
                 <?php if (isset($_GET['erro']) &&   $_GET['erro'] === 'campos-vazios'): ?>
                     <p class="mensagem-erro">Não deixe os campos vazios.</p>
-                <?php elseif (isset($_GET['erro']) &&   $_GET['erro'] === 'cnpj-repetido'): ?>
-                    <p class="mensagem-erro">CNPJ Repetido, tente novamente.</p>
                 <?php endif; ?>
                 <h2>Editar Loja</h2>
                 <form action="../controller/cadastro/editar_loja_controller.php" method="post">

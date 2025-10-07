@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" value="dfca3026-f305-4baa-832c-ab9d901f5d3b" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/4a5b730b-0659-47b0-b26f-823bb9e91a54/console.sql" value="4a5b730b-0659-47b0-b26f-823bb9e91a54" />
+    <file url="file://$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" value="4a5b730b-0659-47b0-b26f-823bb9e91a54" />
   </component>
 </project>
