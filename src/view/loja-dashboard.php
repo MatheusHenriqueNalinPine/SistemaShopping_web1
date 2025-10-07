@@ -1,18 +1,23 @@
 <?php
 
+use model\repositorio\LojaRepositorio;
+
 require_once __DIR__ . '/../model/repositorio/UsuarioRepositorio.php';
+require_once __DIR__ . '/../model/repositorio/LojaRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
-if(!$usuario_logado) {
+if (!$usuario_logado) {
     header('Location: login.php?erro=deslogado');
     exit;
 }
 
 require_once __DIR__ . '/../controller/conexao-bd.php';
 
-$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($usuario_logado);
+$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
+$repositorio = new LojaRepositorio($pdo);
+$lojas = $repositorio->buscarLojas();
 ?>
 
 
@@ -27,52 +32,63 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($u
 </head>
 
 <body>
-    <header class="topbar">
-        <div class="logo-header">
-            <img src="../../img/logoShopping.png" alt="Logo Shopping">
-        </div>
-        <h1>Administrativo</h1>
-        <div class="usuario-info">
-            <span><?php echo htmlspecialchars($usuario->getNome()); ?></span>
-        </div>
-    </header>
+<header class="topbar">
+    <div class="logo-header">
+        <img src="../../img/logoShopping.png" alt="Logo Shopping">
+    </div>
+    <h1>Administrativo</h1>
+    <div class="usuario-info">
+        <span><?php echo htmlspecialchars($usuario->getNome()); ?></span>
+    </div>
+</header>
 
-    <aside class="sidebar">
-        <ul>
-            <a href="administrativo.php">Administrativo</a>
-            <a href="./loja-dashboard.php" class="ativo">Lojas</a>
-            <a href="#">Anúncios</a>
-            <a href="#">Cinema</a>
-            <a href="#">Funcionários</a>
-            <a href="../controller/autenticacao/logout.php">Sair</a>
-        </ul>
-    </aside>
+<aside class="sidebar">
+    <ul>
+        <a href="administrativo.php">Administrativo</a>
+        <a href="./loja-dashboard.php" class="ativo">Lojas</a>
+        <a href="#">Anúncios</a>
+        <a href="#">Cinema</a>
+        <a href="#">Funcionários</a>
+        <a href="../controller/autenticacao/logout.php">Sair</a>
+    </ul>
+</aside>
 
-    <main class="conteudo">
-        <h2>Gerenciamento de Lojas</h2>
+<main class="conteudo">
+    <h2>Gerenciamento de Lojas</h2>
 
-        <div class="acoes">
-            <a href="cadastrar-loja.php" class="btn-cadastrar">Cadastrar loja</a>
-            <button class="btn-relatorio">Baixar relatório</button>
-        </div>
+    <div class="acoes">
+        <a href="cadastrar-loja.php" class="btn-cadastrar">Cadastrar loja</a>
+        <button class="btn-relatorio">Baixar relatório</button>
+    </div>
 
-        <table class="tabela-lojas">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Descrição</th>
-                    <th>Localização</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="5" class="sem-dados">Nenhuma loja cadastrada</td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
+    <table class="tabela-lojas">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Localização</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (count($lojas) == 0) : ?>
+        <tr>
+            <td colspan="5" class="sem-dados">Nenhuma loja cadastrada</td>
+        </tr>
+        <?php else: ?>
+        <?php foreach ($lojas as $loja) : ?>
+        <tr>
+            <td><?php htmlspecialchars($loja->getNome()) ?></td>
+            <td><?php htmlspecialchars($loja->getCategoria()) ?></td>
+            <td><?php htmlspecialchars($loja->getDescricao()) ?></td>
+            <td><?php htmlspecialchars($loja->getPosicao()) ?></td>
+        </tr>
+        <?php endforeach; ?>
+        <?php endif; ?>
+        </tbody>
+    </table>
+</main>
 </body>
 
 </html>

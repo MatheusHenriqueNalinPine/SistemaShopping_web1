@@ -1,5 +1,9 @@
 <?php
 
+use model\servico\Servico;
+
+require_once __DIR__ . "/../Servico.php";
+
 class Loja extends Servico
 {
     private string $posicao;
@@ -8,11 +12,10 @@ class Loja extends Servico
     private TipoLoja $tipoLoja;
     private HorarioFuncionamento $horarioFuncionamento;
 
-    public function __construct(string   $nome, string $descricao, string $imagem, string $tipo_imagem,
-                                DateTime $data_registro, string $posicao, string $telefone_contato, string $cnpj,
+    public function __construct(int $id, string   $nome, string $descricao, string $imagem, string $tipo_imagem, string $posicao, string $telefone_contato, string $cnpj,
                                 TipoLoja $tipoLoja, HorarioFuncionamento $horarioFuncionamento)
     {
-        parent::__construct($nome, $descricao, $imagem, $tipo_imagem, $data_registro);
+        parent::__construct($id, $nome, $descricao, $imagem, $tipo_imagem);
         $this->posicao = $posicao;
         $this->telefone_contato = $telefone_contato;
         $this->cnpj = $cnpj;

@@ -1,5 +1,7 @@
 <?php
 
+namespace model\servico;
+
 abstract class Servico
 {
     protected int $id;
@@ -9,13 +11,13 @@ abstract class Servico
     protected string $tipo_imagem;
     protected DateTime $data_registro;
 
-    public function __construct(string $nome, string $descricao, string $imagem, string $tipo_imagem, DateTime $data_registro)
+    public function __construct(int $id, string $nome, string $descricao, string $imagem, string $tipo_imagem)
     {
+        $this->id = $id;
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->imagem = $imagem;
         $this->tipo_imagem = $tipo_imagem;
-        $this->data_registro = $data_registro;
     }
 
     public function getId(): int

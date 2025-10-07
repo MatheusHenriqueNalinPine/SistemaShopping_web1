@@ -18,17 +18,19 @@ class UsuarioRepositorio
         $this->pdo = $pdo;
     }
 
-    private function formarObjeto(array $dados): Usuario {
+    private function formarObjeto(array $dados): Usuario
+    {
         return new Usuario(
             $dados["id"] ?? null,
             $dados["nome"] ?? '',
             $dados["email"] ?? '',
             $dados["senha"] ?? '',
             $dados["cpf"] ?? '',
-                Cargo::from($dados["cargo"]) ?? null);
+            Cargo::from($dados["cargo"]) ?? null);
     }
 
-    public function buscarPorEmail($email): ?Usuario {
+    public function buscarPorEmail($email): ?Usuario
+    {
         $stmt = $this->pdo->prepare("select tbUsuario.id, tbUsuario.nome, tbUsuario.email, tbUsuario.senha, 
             tbUsuario.cpf, tbUsuario.cargo from tbUsuario where email = :email limit 1");
         $stmt->bindParam(':email', $email);
@@ -37,21 +39,24 @@ class UsuarioRepositorio
         return $dados ? $this->formarObjeto($dados) : null;
     }
 
-    public function autenticar($email, $senha): bool {
+    public function autenticar($email, $senha): bool
+    {
         $usuario = $this->buscarPorEmail($email);
         return $usuario && password_verify($senha, $usuario->getSenha());
     }
 
-    public function salvar(Usuario $usuario) {
+    public function salvar(Usuario $usuario)
+    {
         $sql = "insert into tbUsuario (nome, email, senha, cpf, cargo) values (?, ?, ?, ?, ?)";
         $stmt = $this->setarDadosStatement($sql, $usuario);
         $stmt->execute();
     }
 
-    public function atualizar(Usuario $usuario) {
+    public function atualizar(Usuario $usuario)
+    {
         $senha = $usuario->getSenha();
 
-        if(!preg_match('/^\$2y\$/', $senha)) {
+        if (!preg_match('/^\$2y\$/', $senha)) {
             $senha = password_hash($senha, PASSWORD_DEFAULT);
         }
 
@@ -61,7 +66,8 @@ class UsuarioRepositorio
         $stmt->execute();
     }
 
-    public function excluir(int $id) : bool{
+    public function excluir(int $id): bool
+    {
         $sql = "delete from tbUsuario where id = ?";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$id]);

@@ -1,7 +1,7 @@
 <?php
 
-enum TipoLoja
+enum TipoLoja : string
 {
-    case Loja;
-    case Restaurante;
+    case Loja = "loja";
+    case Restaurante = "restaurante";
 }

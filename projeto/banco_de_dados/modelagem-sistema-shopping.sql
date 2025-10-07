@@ -26,6 +26,7 @@ create table tbServico(
 
 create table tbLoja(
 	id int not null,
+    categoria varchar(30),
     posicao char(5) not null,
     telefone_contato char(11),
     cnpj char(14),
