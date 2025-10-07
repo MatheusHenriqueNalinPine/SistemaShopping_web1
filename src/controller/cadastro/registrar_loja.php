@@ -31,7 +31,7 @@ $horario_inicial = trim($_POST['horario_inicial'] ?? '');
 $horario_final = trim($_POST['horario_final'] ?? '');
 
 if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
-    header("Location: ../../view/cadastrar.php?erro=campos");
+    header("Location: ../../view/cadastrar.php?erro=campos-vazios");
     exit;
 }
 

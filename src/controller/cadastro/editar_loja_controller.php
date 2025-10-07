@@ -32,6 +32,18 @@ $horario_final = trim($_POST['horario_final'] ?? '');
 
 $tipoLoja = TipoLoja::from($tipo_loja);
 
+
+if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
+    header("Location: ../../view/cadastrar.php?erro=campos-vazios");
+    exit;
+}
+
+if($repositorio->cnpjExists($cnpj)) {
+    header("Location: ../../view/cadastrar-loja.php?erro=cnpj-repetido");
+    exit;
+}
+
+
 $repositorio->alterarLoja(new Loja($id, $nome, $descricao, $imagem, $tipo_imagem, $posicao, $telefone, $cnpj, $categoria,
     $tipoLoja, new HorarioFuncionamento($horario_inicial, $horario_final)));
 
