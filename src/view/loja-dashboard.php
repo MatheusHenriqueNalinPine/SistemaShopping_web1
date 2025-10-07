@@ -68,7 +68,8 @@ $lojas = $repositorio->buscarLojas();
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Localização</th>
-            <th>Ação</th>
+            <th>Remover</th>
+            <th>Editar</th>
         </tr>
         </thead>
         <tbody>
@@ -79,10 +80,20 @@ $lojas = $repositorio->buscarLojas();
         <?php else: ?>
         <?php foreach ($lojas as $loja) : ?>
         <tr>
-            <td><?php htmlspecialchars($loja->getNome()) ?></td>
-            <td><?php htmlspecialchars($loja->getCategoria()) ?></td>
-            <td><?php htmlspecialchars($loja->getDescricao()) ?></td>
-            <td><?php htmlspecialchars($loja->getPosicao()) ?></td>
+            <td><?php echo htmlspecialchars($loja->getNome()) ?></td>
+            <td><?php echo htmlspecialchars($loja->getCategoria()) ?></td>
+            <td><?php echo htmlspecialchars($loja->getDescricao()) ?></td>
+            <td><?php echo htmlspecialchars($loja->getPosicao()) ?></td>
+            <td>
+                <form action="../controller/exclusao/excluir-loja.php" method="post">
+                    <input type="hidden" name="id" value="<?= $loja->getId() ?>">
+                    <input type="submit" class="botao-excluir" value="Excluir">
+                </form>
+            </td>
+            <td><form action="editar-loja.php" method="get">
+                    <input type="hidden" name="id" value="<?= $loja->getId() ?>">
+                    <input type="submit" class="btn-cadastrar" value="Editar">
+                </form></td>
         </tr>
         <?php endforeach; ?>
         <?php endif; ?>

@@ -124,3 +124,28 @@ h2 {
     color: #777;
     padding: 20px;
 }
+
+.botao-excluir {
+    color: white;
+    background-color: darkred;
+    border-radius: 10px;
+    border: none;
+    width: 80px;
+    height: 35px;
+    font-size: medium;
+    transition: background 0.5s ease;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.botao-excluir:hover {
+    color: #d5d5d5;
+    background-color: #4d0101;
+    border-radius: 10px;
+    border: none;
+    width: 80px;
+    height: 35px;
+    font-size: medium;
+    transition: background 0.5s ease;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+

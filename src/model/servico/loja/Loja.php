@@ -9,16 +9,18 @@ class Loja extends Servico
     private string $posicao;
     private string $telefone_contato;
     private string $cnpj;
+    private string $categoria;
     private TipoLoja $tipoLoja;
     private HorarioFuncionamento $horarioFuncionamento;
 
-    public function __construct(int $id, string   $nome, string $descricao, string $imagem, string $tipo_imagem, string $posicao, string $telefone_contato, string $cnpj,
+    public function __construct(int $id, string   $nome, string $descricao, string $imagem, string $tipo_imagem, string $posicao, string $telefone_contato, string $cnpj, string $categoria,
                                 TipoLoja $tipoLoja, HorarioFuncionamento $horarioFuncionamento)
     {
         parent::__construct($id, $nome, $descricao, $imagem, $tipo_imagem);
         $this->posicao = $posicao;
         $this->telefone_contato = $telefone_contato;
         $this->cnpj = $cnpj;
+        $this->categoria = $categoria;
         $this->tipoLoja = $tipoLoja;
         $this->horarioFuncionamento = $horarioFuncionamento;
     }
@@ -51,6 +53,16 @@ class Loja extends Servico
     public function setCnpj(string $cnpj): void
     {
         $this->cnpj = $cnpj;
+    }
+
+    public function getCategoria(): string
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(string $categoria): void
+    {
+        $this->categoria = $categoria;
     }
 
     public function getTipoLoja(): TipoLoja
