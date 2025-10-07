@@ -110,3 +110,12 @@ input:focus, select:focus {
     background: #0053aa;
     transform: scale(1.02);
 }
+
+.mensagem-erro {
+    color: #4d0101;
+    font-weight: bold;
+    padding: 20px 10px;
+    border-radius: 20px;
+    border: 5px solid #4d0101;
+    margin-bottom: 10px;
+}

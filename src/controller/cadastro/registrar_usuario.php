@@ -19,10 +19,26 @@ $senha = $_POST['senha'] ?? '';
 $cpf = $_POST['cpf'] ?? '';
 $cargo = $_POST['cargo'] ?? '';
 
-$id = $repositorio->buscarPorEmail($email)->getId();
+$usuarioExistente = $repositorio->buscarPorEmail($email);
+
+if (!$usuarioExistente) {
+    $id = null;
+} else {
+    $id = $usuarioExistente->getId();
+}
 
 if ($nome === '' || $email === '' || $senha === '') {
-    header("Location: ../../view/cadastrar.php?erro=campos");
+    header("Location: ../../view/cadastrar.php?erro=campos-vazios");
+    exit;
+}
+
+if ($repositorio->cpfExists($cpf)) {
+    header("Location: ../../view/cadastrar.php?erro=cpf-repetido");
+    exit;
+}
+
+if ($repositorio->emailExists($email)) {
+    header("Location: ../../view/cadastrar.php?erro=email-repetido");
     exit;
 }
 

@@ -35,6 +35,11 @@ if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $catego
     exit;
 }
 
+if($repositorio->cnpjExists($cnpj)) {
+    header("Location: ../../view/cadastrar-loja.php?erro=cnpj-repetido");
+    exit;
+}
+
 $repositorio->salvar(new Loja(0, $nome, $descricao, $imagem, $tipo_imagem, $posicao, $telefone, $cnpj, $categoria,
     TipoLoja::from($tipo_loja), new HorarioFuncionamento($horario_inicial, $horario_final)));
 

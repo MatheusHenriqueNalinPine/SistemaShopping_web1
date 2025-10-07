@@ -92,5 +92,16 @@ class UsuarioRepositorio
         return $stmt;
     }
 
+    public function cpfExists(string $cpf): bool {
+        $stmt = $this->pdo->prepare("select cpf from tbusuario where cpf = ?");
+        $stmt->execute([$cpf]);
+        return $stmt->fetchColumn() > 0;
+    }
 
+    public function emailExists(string $email): bool {
+        $sql = "select email from tbusuario where email = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetchColumn() > 0;
+    }
 }

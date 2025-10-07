@@ -157,4 +157,12 @@ class LojaRepositorio
 
         return $this->formarObjeto($result);
     }
+
+    public function cnpjExists(string $cnpj): bool {
+        $sql = "select cnpj from tbLoja where cnpj = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $cnpj);
+        $stmt->execute();
+        return (bool) $stmt->fetchColumn();
+    }
 }

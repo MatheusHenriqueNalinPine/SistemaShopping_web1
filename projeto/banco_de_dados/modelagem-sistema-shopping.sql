@@ -29,7 +29,7 @@ create table tbLoja(
     categoria varchar(30),
     posicao char(5) not null,
     telefone_contato char(11),
-    cnpj char(14),
+    cnpj char(14) unique,
     loja_restaurante varchar(11) not null,
     constraint pkLoja primary key(cnpj),
     constraint fkLojaServico foreign key(id) references tbServico(id)
