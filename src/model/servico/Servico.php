@@ -1,4 +1,8 @@
 <?php
+/*Referências:
+
+Imagens com MySQL: https://www.devmedia.com.br/armazenando-imagens-no-mysql/32104
+Adicionar imagens do BD em PHP com string e tipo_imagem: chatGPT*/
 
 namespace model\servico;
 

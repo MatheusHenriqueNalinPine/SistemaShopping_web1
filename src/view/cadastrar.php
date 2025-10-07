@@ -51,12 +51,14 @@ $erro = $_GET['erro'] ?? null;
 <main>
     <section class="cadastro-container">
         <div class="form-box">
-            <?php if (isset($_GET['erro']) &&   $_GET['erro'] === 'campos-vazios'): ?>
+            <?php if (isset($_GET['erro']) && $_GET['erro'] === 'campos-vazios'): ?>
                 <p class="mensagem-erro">Não deixe os campos vazios.</p>
-            <?php elseif (isset($_GET['erro']) &&   $_GET['erro'] === 'cpf-repetido'): ?>
-            <p class="mensagem-erro">CPF Repetido, tente novamente.</p>
-            <?php elseif (isset($_GET['erro']) &&   $_GET['erro'] === 'email-repetido'): ?>
-            <p class="mensagem-erro">E-mail Repetido, tente novamente.</p>
+            <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'cpf-repetido'): ?>
+                <p class="mensagem-erro">CPF Repetido, tente novamente.</p>
+            <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'email-repetido'): ?>
+                <p class="mensagem-erro">E-mail Repetido, tente novamente.</p>
+            <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'cpf-invalido'): ?>
+                <p class="mensagem-erro">Apenas números (11) no CPF, tente novamente.</p>
             <?php endif; ?>
             <h2>Cadastro</h2>
             <form action="../controller/cadastro/registrar_usuario.php" method="post">
@@ -67,7 +69,7 @@ $erro = $_GET['erro'] ?? null;
                 <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF (apenas números)" required>
 
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
@@ -79,7 +81,7 @@ $erro = $_GET['erro'] ?? null;
                 <label for="tipo">Tipo de Funcionário</label>
                 <select id="tipo" name="cargo" required>
                     <option value="" disabled selected>Selecione o tipo</option>
-                    <option value="administradorGeral">Administrador Geral</option>
+                    <option value="administrador">Administrador Geral</option>
                     <option value="lojista">Lojista</option>
                     <option value="gerenciadorDeEventos">Gerenciador de eventos</option>
                     <option value="cinema">Cinema</option>

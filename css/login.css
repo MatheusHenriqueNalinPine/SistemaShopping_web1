@@ -141,4 +141,12 @@ input {
   transform: scale(1.02);
 }
 
+.cadastro-sucedido {
+    color: darkgreen;
+    font-weight: bold;
+    padding: 20px 10px;
+    border-radius: 20px;
+    border: 5px solid darkgreen;
+    margin-bottom: 10px;
+}
 

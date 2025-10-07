@@ -40,6 +40,12 @@ if($repositorio->cnpjExists($cnpj)) {
     exit;
 }
 
+if (strlen($cnpj) != 14) {
+    header("Location: ../../view/cadastrar-loja.php?erro=cnpj-invalido");
+    exit;
+}
+
+
 $repositorio->salvar(new Loja(0, $nome, $descricao, $imagem, $tipo_imagem, $posicao, $telefone, $cnpj, $categoria,
     TipoLoja::from($tipo_loja), new HorarioFuncionamento($horario_inicial, $horario_final)));
 

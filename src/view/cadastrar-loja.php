@@ -59,6 +59,8 @@ $erro = $_GET['erro'] ?? null;
                     <p class="mensagem-erro">Não deixe os campos vazios.</p>
                 <?php elseif (isset($_GET['erro']) &&   $_GET['erro'] === 'cnpj-repetido'): ?>
                     <p class="mensagem-erro">CNPJ Repetido, tente novamente.</p>
+                <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'cnpj-invalido'): ?>
+                    <p class="mensagem-erro">Apenas números (14) no CNPJ, tente novamente.</p>
                 <?php endif; ?>
                 <h2>Cadastro de Loja</h2>
                 <form action="../controller/cadastro/registrar_loja.php" method="post">
@@ -66,7 +68,7 @@ $erro = $_GET['erro'] ?? null;
                     <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required>
+                    <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ (apenas números)" required>
 
                     <label for="emailLoja">E-mail da Loja</label>
                     <input type="email" id="emailLoja" name="email" placeholder="Digite o e-mail da loja" required>

@@ -7,6 +7,8 @@ if($usuario_logado) {
     header('Location: administrativo.php');
     exit;
 }
+
+$sucesso_cadastro = $_GET['sucess'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +47,9 @@ if($usuario_logado) {
                 <a href="cadastrar.php" class="btn-cadastrar">Cadastrar funcionario</a>
             </div>
             <div class="form-box">
+                <?php if($sucesso_cadastro) :?>
+                    <p class="cadastro-sucedido">Cadastro sucedido, efetue o Login.</p>
+                <?php endif; ?>
                 <h2>Bem vindo funcionário</h2>
                 <form action="../controller/autenticacao/autenticar.php" method="post">
                     <label for="email">E-mail</label>

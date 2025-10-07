@@ -45,10 +45,15 @@ class UsuarioRepositorio
         return $usuario && password_verify($senha, $usuario->getSenha());
     }
 
-    public function salvar(Usuario $usuario)
+    public function salvar(string $nome, string $email, string $senha, string $cpf, string $cargo)
     {
         $sql = "insert into tbUsuario (nome, email, senha, cpf, cargo) values (?, ?, ?, ?, ?)";
-        $stmt = $this->setarDadosStatement($sql, $usuario);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $nome);
+        $stmt->bindValue(2, $email);
+        $stmt->bindValue(3, password_hash($senha, PASSWORD_DEFAULT));
+        $stmt->bindValue(4, $cpf);
+        $stmt->bindValue(5, $cargo);
         $stmt->execute();
     }
 
@@ -75,8 +80,8 @@ class UsuarioRepositorio
 
     public function buscarTodos(): array
     {
-        $sql = "select tbUsuario.id, tbUsuario.nome, tbUsuario.email, tbUsuario.senha, 
-            tbUsuario.cpf, tbUsuario.cargo from usuarios order by email";
+        $sql = "select tbUsuario.id, tbUsuario.nome, tbUsuario.email, tbUsuario.senha," .
+            "tbUsuario.cpf, tbUsuario.cargo from usuarios order by email";
         $result_set = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }

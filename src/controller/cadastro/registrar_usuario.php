@@ -1,5 +1,8 @@
 <?php
 
+/*Refs:
+strlen(): https://www.php.net/manual/pt_BR/function.strlen.php*/
+
 use model\repositorio\UsuarioRepositorio;
 
 require_once __DIR__ . "/../../model/repositorio/UsuarioRepositorio.php";
@@ -22,7 +25,7 @@ $cargo = $_POST['cargo'] ?? '';
 $usuarioExistente = $repositorio->buscarPorEmail($email);
 
 if (!$usuarioExistente) {
-    $id = null;
+    $id = 0;
 } else {
     $id = $usuarioExistente->getId();
 }
@@ -42,7 +45,12 @@ if ($repositorio->emailExists($email)) {
     exit;
 }
 
-$repositorio->salvar(new Usuario($id, $nome, $email, $senha, $cpf, $cargo));
+if (strlen($cpf) != 11) {
+    header("Location: ../../view/cadastrar.php?erro=cpf-invalido");
+    exit;
+}
 
-header("Location: ../../view/login.php");
+$repositorio->salvar($nome, $email, $senha, $cpf, $cargo);
+
+header("Location: ../../view/login.php?sucess=true");
 exit;

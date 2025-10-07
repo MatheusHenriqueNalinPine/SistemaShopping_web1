@@ -1,5 +1,11 @@
 <?php
 
+/*Referências:
+ * Transaction: Conhecimento prévio no uso de java com hibernate, adaptando
+ * para a sintaxe do PHP com base em: https://neon.com/postgresql/postgresql-php/transaction
+ * (try-beginTransaction-commit-catch-rollback)
+ * */
+
 namespace model\repositorio;
 
 use Exception;
@@ -36,13 +42,14 @@ class LojaRepositorio
 
             $idServico = $this->pdo->lastInsertId();
 
-            $sql = "insert into tbloja (id, posicao, telefone_contato, cnpj, loja_restaurante) values (?, ?, ?, ?, ?);                                                                  ";
+            $sql = "insert into tbloja (id, categoria ,posicao, telefone_contato, cnpj, loja_restaurante) values (?, ?, ?, ?, ?, ?);                                                                  ";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $idServico);
-            $stmt->bindValue(2, $loja->getPosicao());
-            $stmt->bindValue(3, $loja->getTelefoneContato());
-            $stmt->bindValue(4, $loja->getCnpj());
-            $stmt->bindValue(5, $loja->getTipoLoja()->value);
+            $stmt->bindValue(2, $loja->getCategoria());
+            $stmt->bindValue(3, $loja->getPosicao());
+            $stmt->bindValue(4, $loja->getTelefoneContato());
+            $stmt->bindValue(5, $loja->getCnpj());
+            $stmt->bindValue(6, $loja->getTipoLoja()->value);
             $stmt->execute();
 
             $sql = "insert into tbhorariofuncionamento values (?, ?, ?)";
@@ -71,13 +78,14 @@ class LojaRepositorio
         $stmt->bindValue(5, $loja->getId());
         $stmt->execute();
 
-        $sql = "update tbloja set posicao = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;                                                                  ";
+        $sql = "update tbloja set posicao = ?, categoria = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;                                                                  ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $loja->getPosicao());
-        $stmt->bindValue(2, $loja->getTelefoneContato());
-        $stmt->bindValue(3, $loja->getCnpj());
-        $stmt->bindValue(4, $loja->getTipoLoja()->value);
-        $stmt->bindValue(5, $loja->getId());
+        $stmt->bindValue(2, $loja->getCategoria());
+        $stmt->bindValue(3, $loja->getTelefoneContato());
+        $stmt->bindValue(4, $loja->getCnpj());
+        $stmt->bindValue(5, $loja->getTipoLoja()->value);
+        $stmt->bindValue(6, $loja->getId());
         $stmt->execute();
 
         $sql = "update tbhorariofuncionamento set horario_inicial = ?, horario_final = ?, id_servico = ? where " .
