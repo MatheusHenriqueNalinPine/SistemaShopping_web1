@@ -62,9 +62,6 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))->buscarPorEmail($us
                     <label for="cnpj">CNPJ</label>
                     <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required>
 
-                    <label for="emailLoja">E-mail da Loja</label>
-                    <input type="email" id="emailLoja" name="email" placeholder="Digite o e-mail da loja" required>
-
                     <label for="telefone">Telefone</label>
                     <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
 
@@ -98,10 +95,10 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))->buscarPorEmail($us
                     <input type="hidden" id="tipo-imagem" name="tipo-imagem" value="image/png">
 
                     <label for="horario">Horário Inicial de Funcionamento</label>
-                    <input type="text" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10h" required>
+                    <input type="text" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10:30:00" required>
 
                     <label for="horario">Horário Final de Funcionamento</label>
-                    <input type="text" id="horario_final" name="horario_final" placeholder="Ex: 22h" required>
+                    <input type="text" id="horario_final" name="horario_final" placeholder="Ex: 22:00:00" required>
 
                     <input type="submit" value="Cadastrar"/>
                 </form>

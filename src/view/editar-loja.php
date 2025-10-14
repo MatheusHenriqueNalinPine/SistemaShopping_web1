@@ -63,16 +63,16 @@ $loja = $repositorio->buscarPorId($idLoja);
                 <h2>Editar Loja</h2>
                 <form action="../controller/cadastro/editar_loja_controller.php" method="post">
                     <label for="nomeLoja">Nome da Loja</label>
-                    <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
+                    <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required
+                           value=<?php echo htmlspecialchars($loja->getNome())?>>
 
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required>
-
-                    <label for="emailLoja">E-mail da Loja</label>
-                    <input type="email" id="emailLoja" name="email" placeholder="Digite o e-mail da loja" required>
+                    <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required
+                           value=<?php echo htmlspecialchars($loja->getCnpj())?>>
 
                     <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required
+                           value=<?php echo htmlspecialchars($loja->getTelefoneContato())?>>
 
                     <label for="categoria">Categoria</label>
                     <select id="categoria" name="categoria" required>
@@ -93,21 +93,23 @@ $loja = $repositorio->buscarPorId($idLoja);
                     </select>
 
                     <label for="descricao">Descrição</label>
-                    <textarea id="descricao" name="descricao" placeholder="Descreva sua loja..." rows="4"></textarea>
+                    <textarea id="descricao" name="descricao" placeholder="Descreva sua loja..." rows="4"><?php echo htmlspecialchars($loja->getDescricao())?></textarea>
 
                     <label for="posicao">Posição</label>
-                    <input type="text" id="posicao" name="posicao" placeholder="Ex.: P3L32"></input>
+                    <input type="text" id="posicao" name="posicao" placeholder="Ex.: P3L32" value=<?php echo htmlspecialchars($loja->getPosicao())?> >
 
                     <label for="imagem">Imagem (.png)</label>
                     <input type="file" id="imagem" name="imagem" accept="image/png">
 
-                    <input type="hidden" id="tipo-imagem" name="tipo-imagem" value="image/png">
+                    <input type="hidden" id="tipo-imagem" name="tipo-imagem" value="image/png" >
 
                     <label for="horario">Horário Inicial de Funcionamento</label>
-                    <input type="text" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10h" required>
+                    <input type="text" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10:30:00" required
+                           value=<?php echo htmlspecialchars($loja->getHorarioFuncionamento()->getHorarioInicial())?>>
 
                     <label for="horario">Horário Final de Funcionamento</label>
-                    <input type="text" id="horario_final" name="horario_final" placeholder="Ex: 22h" required>
+                    <input type="text" id="horario_final" name="horario_final" placeholder="Ex: 22:00:00" required
+                           value=<?php echo htmlspecialchars($loja->getHorarioFuncionamento()->getHorarioFinal())?>>
 
                     <input type="hidden" name="id" value="<?= $loja->getId() ?>">
 
