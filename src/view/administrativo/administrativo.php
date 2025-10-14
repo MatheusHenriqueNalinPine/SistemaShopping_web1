@@ -22,13 +22,13 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($u
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo - SchweizerPine</title>
-    <link rel="stylesheet" href="../../css/administrativo.css">
+    <link rel="stylesheet" href="../../../css/administrativo.css">
 </head>
 
 <body>
     <header class="topbar">
         <div class="logo-header">
-            <img src="../../img/logoShopping.png" alt="Logo Shopping">
+            <img src="../../../img/logoShopping.png" alt="Logo Shopping">
         </div>
         <h1>Administrativo</h1>
         <div class="usuario-info">
@@ -38,12 +38,12 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($u
 
     <aside class="sidebar">
         <ul>
-            <a href="../../index.html">Inicio</a>
-            <a href="loja-dashboard.php">Lojas</a>
+            <a href="../../../index.html">Inicio</a>
+            <a href="../loja-dashboard.php">Lojas</a>
             <a href="#">Anúncios</a>
             <a href="#">Cinema</a>
             <a href="#">Funcionários</a>
-            <a href="../controller/autenticacao/logout.php">Sair</a>
+            <a href="../../controller/autenticacao/logout.php">Sair</a>
         </ul>
     </aside>
 

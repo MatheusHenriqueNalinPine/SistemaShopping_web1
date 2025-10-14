@@ -31,18 +31,18 @@ $loja = $repositorio->buscarPorId($idLoja);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Loja - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="../../css/cadastrar.css">
-    <link rel="stylesheet" href="../../css/cadastrar-loja.css">
+    <link rel="stylesheet" href="../../../css/cadastrar.css">
+    <link rel="stylesheet" href="../../../css/cadastrar-loja.css">
 </head>
 
 <body>
 
     <header>
         <div class="logo">
-            <img src="../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
+            <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
         </div>
         <nav>
-            <a href="../../index.html">Início</a>
+            <a href="../../../index.html">Início</a>
             <a href="#">Novidades</a>
             <a href="#">Cinema</a>
             <a href="#">Lojas</a>
@@ -53,7 +53,7 @@ $loja = $repositorio->buscarPorId($idLoja);
         <?php if ($usuario_logado) : ?>
             <span><?php echo htmlspecialchars($usuario->getNome()) ?></span>
         <?php else: ?>
-            <a href="login.php" class="btn-login">Login</a>
+            <a href="../sessoes/login.php" class="btn-login">Login</a>
         <?php endif; ?>
     </header>
 
@@ -64,7 +64,7 @@ $loja = $repositorio->buscarPorId($idLoja);
                     <p class="mensagem-erro">Não deixe os campos vazios.</p>
                 <?php endif; ?>
                 <h2>Editar Loja</h2>
-                <form action="../controller/cadastro/editar_loja_controller.php" method="post">
+                <form action="../../controller/cadastro/editar_loja_controller.php" method="post">
                     <label for="nomeLoja">Nome da Loja</label>
                     <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 

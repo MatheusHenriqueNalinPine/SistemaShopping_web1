@@ -18,7 +18,7 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../../css/login.css">
 </head>
 
 <body>
@@ -26,10 +26,10 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
 
 <header>
     <div class="logo">
-        <img src="../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
+        <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
     </div>
     <nav>
-        <a href="../../index.html">Início</a>
+        <a href="../../../index.html">Início</a>
         <a href="#">Novidades</a>
         <a href="#">Cinema</a>
         <a href="#">Lojas</a>
@@ -43,7 +43,7 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
 <main>
         <section class="login-container">
             <div class="logo-box">
-                <img src="../../img/logoShopping.png" alt="Logo Shopping" class="logo-circle">
+                <img src="../../../img/logoShopping.png" alt="Logo Shopping" class="logo-circle">
                 <a href="cadastrar.php" class="btn-cadastrar">Cadastrar funcionario</a>
             </div>
             <div class="form-box">
@@ -51,7 +51,7 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
                     <p class="cadastro-sucedido">Cadastro sucedido, efetue o Login.</p>
                 <?php endif; ?>
                 <h2>Bem vindo funcionário</h2>
-                <form action="../controller/autenticacao/autenticar.php" method="post">
+                <form action="../../controller/autenticacao/autenticar.php" method="post">
                     <label for="email">E-mail</label>
                     <input type="text" id="email" name="email" placeholder="Digite seu e-mail">
 

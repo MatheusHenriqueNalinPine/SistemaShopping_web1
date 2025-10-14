@@ -26,18 +26,18 @@ $erro = $_GET['erro'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Loja - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="../../css/cadastrar.css">
-    <link rel="stylesheet" href="../../css/cadastrar-loja.css">
+    <link rel="stylesheet" href="../../../css/cadastrar.css">
+    <link rel="stylesheet" href="../../../css/cadastrar-loja.css">
 </head>
 
 <body>
 
     <header>
         <div class="logo">
-            <img src="../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
+            <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
         </div>
         <nav>
-            <a href="../../index.html">Início</a>
+            <a href="../../../index.html">Início</a>
             <a href="#">Novidades</a>
             <a href="#">Cinema</a>
             <a href="#">Lojas</a>
@@ -48,7 +48,7 @@ $erro = $_GET['erro'] ?? null;
         <?php if ($usuario_logado) : ?>
             <span><?php echo htmlspecialchars($usuario->getNome()) ?></span>
         <?php else: ?>
-            <a href="login.php" class="btn-login">Login</a>
+            <a href="../sessoes/login.php" class="btn-login">Login</a>
         <?php endif; ?>
     </header>
 
@@ -63,7 +63,7 @@ $erro = $_GET['erro'] ?? null;
                     <p class="mensagem-erro">Apenas números (14) no CNPJ, tente novamente.</p>
                 <?php endif; ?>
                 <h2>Cadastro de Loja</h2>
-                <form action="../controller/cadastro/registrar_loja.php" method="post">
+                <form action="../../controller/cadastro/registrar_loja.php" method="post">
                     <label for="nomeLoja">Nome da Loja</label>
                     <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 

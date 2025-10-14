@@ -28,13 +28,13 @@ $lojas = $repositorio->buscarLojas();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Lojas - Administrativo</title>
-    <link rel="stylesheet" href="../../css/loja.css">
+    <link rel="stylesheet" href="../../../css/loja.css">
 </head>
 
 <body>
 <header class="topbar">
     <div class="logo-header">
-        <img src="../../img/logoShopping.png" alt="Logo Shopping">
+        <img src="../../../img/logoShopping.png" alt="Logo Shopping">
     </div>
     <h1>Administrativo</h1>
     <div class="usuario-info">
@@ -45,11 +45,11 @@ $lojas = $repositorio->buscarLojas();
 <aside class="sidebar">
     <ul>
         <a href="administrativo.php">Administrativo</a>
-        <a href="./loja-dashboard.php" class="ativo">Lojas</a>
+        <a href="loja-dashboard.php" class="ativo">Lojas</a>
         <a href="#">Anúncios</a>
         <a href="#">Cinema</a>
         <a href="#">Funcionários</a>
-        <a href="../controller/autenticacao/logout.php">Sair</a>
+        <a href="../../controller/autenticacao/logout.php">Sair</a>
     </ul>
 </aside>
 
@@ -85,7 +85,7 @@ $lojas = $repositorio->buscarLojas();
             <td><?php echo htmlspecialchars($loja->getDescricao()) ?></td>
             <td><?php echo htmlspecialchars($loja->getPosicao()) ?></td>
             <td>
-                <form action="../controller/exclusao/excluir-loja.php" method="post">
+                <form action="../../controller/exclusao/excluir-loja.php" method="post">
                     <input type="hidden" name="id" value="<?= $loja->getId() ?>">
                     <input type="submit" class="botao-excluir" value="Excluir">
                 </form>

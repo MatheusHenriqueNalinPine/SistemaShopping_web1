@@ -23,17 +23,17 @@ $erro = $_GET['erro'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="../../css/cadastrar.css">
+    <link rel="stylesheet" href="../../../css/cadastrar.css">
 </head>
 
 <body>
 
 <header>
     <div class="logo">
-        <img src="../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
+        <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
     </div>
     <nav>
-        <a href="../../index.html">Início</a>
+        <a href="../../../index.html">Início</a>
         <a href="#">Novidades</a>
         <a href="#">Cinema</a>
         <a href="#">Lojas</a>
@@ -61,7 +61,7 @@ $erro = $_GET['erro'] ?? null;
                 <p class="mensagem-erro">Apenas números (11) no CPF, tente novamente.</p>
             <?php endif; ?>
             <h2>Cadastro</h2>
-            <form action="../controller/cadastro/registrar_usuario.php" method="post">
+            <form action="../../controller/cadastro/registrar_usuario.php" method="post">
                 <label for="nome">Nome Completo</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 
