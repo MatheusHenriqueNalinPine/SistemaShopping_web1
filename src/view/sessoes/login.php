@@ -4,7 +4,7 @@ $usuario_logado = $_SESSION['usuario'] ?? null;
 $erro = $_GET['erro'] ?? '';
 
 if($usuario_logado) {
-    header('Location: administrativo.php');
+    header('Location: ../administrativo/administrativo.php');
     exit;
 }
 
@@ -23,22 +23,7 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
 
 <body>
 
-
-<header>
-    <div class="logo">
-        <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
-    </div>
-    <nav>
-        <a href="../../../index.html">Início</a>
-        <a href="#">Novidades</a>
-        <a href="#">Cinema</a>
-        <a href="#">Lojas</a>
-        <a href="#">Gastronomia</a>
-        <a href="#">Mapa</a>
-        <a href="#">Fale Conosco</a>
-    </nav>
-</header>
-
+<?php include ('header.html') ?>
 
 <main>
         <section class="login-container">
@@ -65,8 +50,6 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
             </div>
         </section>
 </main>
-
-
 </body>
 
 </html>

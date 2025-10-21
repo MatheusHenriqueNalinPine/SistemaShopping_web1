@@ -3,11 +3,11 @@
 use model\repositorio\LojaRepositorio;
 use model\repositorio\UsuarioRepositorio;
 
-require_once __DIR__ . "/../model/repositorio/LojaRepositorio.php";
-require_once __DIR__ . "/../model/servico/loja/Loja.php";
-require_once __DIR__ . "/../model/repositorio/UsuarioRepositorio.php";
-require_once __DIR__ . "/../model/usuario/Usuario.php";
-require_once __DIR__ . "/../controller/conexao-bd.php";
+require_once __DIR__ . "/../../model/repositorio/LojaRepositorio.php";
+require_once __DIR__ . "/../../model/servico/loja/Loja.php";
+require_once __DIR__ . "/../../model/repositorio/UsuarioRepositorio.php";
+require_once __DIR__ . "/../../model/usuario/Usuario.php";
+require_once __DIR__ . "/../../controller/conexao-bd.php";
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
@@ -18,7 +18,7 @@ if(!$usuario_logado) {
 }
 
 $repositorio = new LojaRepositorio($pdo);
-$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
+$usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 
 $idLoja = $_GET['id'] ?? null;
 $loja = $repositorio->buscarPorId($idLoja);
@@ -42,7 +42,7 @@ $loja = $repositorio->buscarPorId($idLoja);
             <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
         </div>
         <nav>
-            <a href="../../../index.html">Início</a>
+            <a href="../../../index.php">Início</a>
             <a href="#">Novidades</a>
             <a href="#">Cinema</a>
             <a href="#">Lojas</a>
@@ -64,7 +64,7 @@ $loja = $repositorio->buscarPorId($idLoja);
                     <p class="mensagem-erro">Não deixe os campos vazios.</p>
                 <?php endif; ?>
                 <h2>Editar Loja</h2>
-                <form action="../../controller/cadastro/editar_loja_controller.php" method="post">
+                <form action="../../controller/cadastro/registrar_loja.php" method="post">
                     <label for="nomeLoja">Nome da Loja</label>
                     <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 

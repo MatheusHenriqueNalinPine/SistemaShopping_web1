@@ -2,9 +2,9 @@
 
 use model\repositorio\UsuarioRepositorio;
 
-require_once __DIR__ . "/../model/repositorio/UsuarioRepositorio.php";
-require_once __DIR__ . "/../model/usuario/Usuario.php";
-require_once __DIR__ . "/../controller/conexao-bd.php";
+require_once __DIR__ . "/../../model/repositorio/UsuarioRepositorio.php";
+require_once __DIR__ . "/../../model/usuario/Usuario.php";
+require_once __DIR__ . "/../../controller/conexao-bd.php";
 
 session_start();
 
@@ -28,30 +28,17 @@ $erro = $_GET['erro'] ?? null;
 
 <body>
 
-<header>
-    <div class="logo">
-        <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
-    </div>
-    <nav>
-        <a href="../../../index.html">Início</a>
-        <a href="#">Novidades</a>
-        <a href="#">Cinema</a>
-        <a href="#">Lojas</a>
-        <a href="#">Gastronomia</a>
-        <a href="#">Mapa</a>
-        <a href="#">Fale Conosco</a>
-    </nav>
-    <?php if ($usuario_logado) : ?>
-        <span><?php echo htmlspecialchars($usuario->getNome()) ?></span>
-    <?php else: ?>
-        <a href="login.php" class="btn-login">Login</a>
-    <?php endif; ?>
-</header>
+<?php include('header.html'); ?>
 
 <main>
     <section class="cadastro-container">
         <div class="form-box">
-            <?php if (isset($_GET['erro']) && $_GET['erro'] === 'campos-vazios'): ?>
+            <?php if ($usuario_logado) : ?>
+                <span><?php echo htmlspecialchars($usuario->getNome()) ?></span>
+            <?php else: ?>
+                <a href="login.php" class="btn-login">❮ Login</a>
+            <?php endif;
+            if (isset($_GET['erro']) && $_GET['erro'] === 'campos-vazios'): ?>
                 <p class="mensagem-erro">Não deixe os campos vazios.</p>
             <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'cpf-repetido'): ?>
                 <p class="mensagem-erro">CPF Repetido, tente novamente.</p>

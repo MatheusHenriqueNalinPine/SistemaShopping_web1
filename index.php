@@ -5,30 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
 </head>
 
 <body>
 
-<header class="header">
-    <img src="img/logoShopping.png" alt="Logo Shopping" class="logo">
-    <nav>
-        <ul class="menu">
-            <li><a href="#">Novidades</a></li>
-            <li><a href="#">Cinema</a></li>
-            <li><a href="#">Lojas</a></li>
-            <li><a href="#">Gastronomia</a></li>
-            <li><a href="#">Mapa</a></li>
-            <li><a href="#">Fale Conosco</a></li>
-        </ul>
-    </nav>
-
-</header>
-
+<?php include ('src/view/sessoes/header.html')?>
 
 <section class="carrossel">
     <div class="slide ativo">
-        <img src="img/carrosel.jpg" alt="Anúncio 1">
+        <img src="/SistemaShopping_web1/img/carrosel.jpg" alt="Anúncio 1">
         <div class="texto">
             <h2>Anúncio</h2>
             <p>Venha conhecer nosso carrosel 🎠</p>
@@ -36,7 +22,7 @@
         </div>
     </div>
     <div class="slide">
-        <img src="img/kart.jpeg" alt="Anúncio 2">
+        <img src="/SistemaShopping_web1/img/kart.jpeg" alt="Anúncio 2">
         <div class="texto">
             <h2>Anúncio</h2>
             <p>Venha acelerar seu coração com o nosso kart 🏎️</p>
@@ -71,25 +57,25 @@
     </div>
     <div class="grid-noticias">
         <div class="noticia">
-            <img src="img/noticias.png" alt="Notícia">
+            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
             <h3>Título anúncio</h3>
             <p>Detalhes do anúncio</p>
             <span>dd/MM/yyyy - Assunto</span>
         </div>
         <div class="noticia">
-            <img src="img/noticias.png" alt="Notícia">
+            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
             <h3>Título anúncio</h3>
             <p>Detalhes do anúncio</p>
             <span>dd/MM/yyyy - Assunto</span>
         </div>
         <div class="noticia">
-            <img src="img/noticias.png" alt="Notícia">
+            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
             <h3>Título anúncio</h3>
             <p>Detalhes do anúncio</p>
             <span>dd/MM/yyyy - Assunto</span>
         </div>
         <div class="noticia">
-            <img src="img/noticias.png" alt="Notícia">
+            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
             <h3>Título anúncio</h3>
             <p>Detalhes do anúncio</p>
             <span>dd/MM/yyyy - Assunto</span>
@@ -97,16 +83,17 @@
     </div>
 </section>
 
-
 <section class="lojas">
     <h2>Algumas de nossas lojas</h2>
     <div class="carrossel-lojas">
         <span class="seta">❮</span>
+
         <div class="logos">
             <div class="logo-box">Logo 1</div>
             <div class="logo-box">Logo 2</div>
             <div class="logo-box">Logo 3</div>
         </div>
+
         <span class="seta">❯</span>
     </div>
     <a href="#" class="ver-mais">VER MAIS</a>
@@ -116,7 +103,7 @@
 <section class="entretenimento">
     <h2>Entretenimento</h2>
     <div class="bloco">
-        <img src="img/cinema.jpg" alt="Cinema">
+        <img src="/SistemaShopping_web1/img/cinema.jpg" alt="Cinema">
         <div class="texto">
             <h3>Cinema</h3>
             <p>Viva a emoção das telonas com o que há de melhor em imagem e som.
@@ -130,18 +117,11 @@
             <p>Espetáculos que encantam todas as idades. O teatro do shopping oferece uma programação cultural
                 diversificada...</p>
         </div>
-        <img src="img/teatro.webp" alt="Teatro">
+        <img src="/SistemaShopping_web1/img/teatro.webp" alt="Teatro">
     </div>
 </section>
 
-<footer>
-    <div>
-        <img src="img/logoShopping.png" alt="Logo Shopping" class="logo-footer">
-        <p>Apenas funcionarios</p>
-    </div>
-    <a href="src/view/sessoes/login.php" class="btn-admin">Área Administrativa 🔒</a>
-</footer>
+<?php include ('./src/view/sessoes/footer.html')?>
 
 </body>
-
 </html>

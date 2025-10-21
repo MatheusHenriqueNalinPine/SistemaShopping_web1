@@ -1,9 +1,10 @@
 <?php
 
 use model\repositorio\LojaRepositorio;
+use model\repositorio\UsuarioRepositorio;
 
-require_once __DIR__ . '/../model/repositorio/UsuarioRepositorio.php';
-require_once __DIR__ . '/../model/repositorio/LojaRepositorio.php';
+require_once __DIR__ . '/../../model/repositorio/UsuarioRepositorio.php';
+require_once __DIR__ . '/../../model/repositorio/LojaRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
@@ -13,9 +14,9 @@ if (!$usuario_logado) {
     exit;
 }
 
-require_once __DIR__ . '/../controller/conexao-bd.php';
+require_once __DIR__ . '/../../controller/conexao-bd.php';
 
-$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
+$usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 $repositorio = new LojaRepositorio($pdo);
 $lojas = $repositorio->buscarLojas();
 ?>
@@ -28,30 +29,12 @@ $lojas = $repositorio->buscarLojas();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Lojas - Administrativo</title>
-    <link rel="stylesheet" href="../../../css/loja.css">
+    <link rel="stylesheet" href="../../../css/crud.css">
 </head>
 
 <body>
-<header class="topbar">
-    <div class="logo-header">
-        <img src="../../../img/logoShopping.png" alt="Logo Shopping">
-    </div>
-    <h1>Administrativo</h1>
-    <div class="usuario-info">
-        <span><?php echo htmlspecialchars($usuario->getNome()); ?></span>
-    </div>
-</header>
 
-<aside class="sidebar">
-    <ul>
-        <a href="administrativo.php">Administrativo</a>
-        <a href="loja-dashboard.php" class="ativo">Lojas</a>
-        <a href="#">Anúncios</a>
-        <a href="#">Cinema</a>
-        <a href="#">Funcionários</a>
-        <a href="../../controller/autenticacao/logout.php">Sair</a>
-    </ul>
-</aside>
+<?php include ('menu_sidebar.php') ?>
 
 <main class="conteudo">
     <h2>Gerenciamento de Lojas</h2>
@@ -61,7 +44,7 @@ $lojas = $repositorio->buscarLojas();
         <button class="btn-relatorio">Baixar relatório</button>
     </div>
 
-    <table class="tabela-lojas">
+    <table class="tabela">
         <thead>
         <tr>
             <th>Nome</th>

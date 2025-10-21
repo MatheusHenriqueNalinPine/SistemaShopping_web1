@@ -1,6 +1,5 @@
 <?php
 
-use model\servico\Servico;
 use model\repositorio\LojaRepositorio;
 
 require_once __DIR__ . "/../../model/repositorio/LojaRepositorio.php";
@@ -13,10 +12,11 @@ require_once __DIR__ . "/../../model/servico/loja/TipoLoja.php";
 $repositorio = new LojaRepositorio($pdo);
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: /../../view/login.php");
+    header("Location: ../../view/login.php");
     exit;
 }
 
+$id = $_POST['id'];
 $nome = trim($_POST['nome'] ?? '');
 $cnpj = trim($_POST['cnpj'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -29,25 +29,24 @@ $imagem = trim($_POST['imagem'] ?? '');
 $tipo_imagem = trim($_POST['tipo_imagem'] ?? '');
 $horario_inicial = trim($_POST['horario_inicial'] ?? '');
 $horario_final = trim($_POST['horario_final'] ?? '');
+$tipoLoja = TipoLoja::from($tipo_loja);
 
-if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
-    header("Location: ../../view/cadastrar.php?erro=campos-vazios");
-    exit;
+if ($id == 0) {
+    if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
+        header("Location: ../../view/administrativo/cadastrar-loja.php?erro=campos-vazios");
+        exit;
+    }
+    $repositorio->salvar(new Loja(0, $nome, $descricao, $imagem, $tipo_imagem, $posicao, $telefone, $cnpj, $categoria,
+        TipoLoja::from($tipo_loja), new HorarioFuncionamento($horario_inicial, $horario_final)));
+
+} else {
+    if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
+        header("Location: ../../view/administrativo/editar-loja.php?erro=campos-vazios");
+        exit;
+    }
+    $repositorio->alterarLoja(new Loja($id, $nome, $descricao, $imagem, $tipo_imagem, $posicao, $telefone, $cnpj, $categoria,
+        $tipoLoja, new HorarioFuncionamento($horario_inicial, $horario_final)));
 }
-
-if($repositorio->cnpjExists($cnpj)) {
-    header("Location: ../../view/cadastrar-loja.php?erro=cnpj-repetido");
-    exit;
-}
-
-if (strlen($cnpj) != 14) {
-    header("Location: ../../view/cadastrar-loja.php?erro=cnpj-invalido");
-    exit;
-}
-
-
-$repositorio->salvar(new Loja(0, $nome, $descricao, $imagem, $tipo_imagem, $posicao, $telefone, $cnpj, $categoria,
-    TipoLoja::from($tipo_loja), new HorarioFuncionamento($horario_inicial, $horario_final)));
 
 header("Location: ../../view/loja-dashboard.php");
 exit;

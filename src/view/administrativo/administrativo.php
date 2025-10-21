@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../model/repositorio/UsuarioRepositorio.php';
+use model\repositorio\UsuarioRepositorio;
+
+require_once __DIR__ . '/../../model/repositorio/UsuarioRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
@@ -10,9 +12,9 @@ if(!$usuario_logado) {
     exit;
 }
 
-require_once __DIR__ . '/../controller/conexao-bd.php';
+require_once __DIR__ . '/../../controller/conexao-bd.php';
 
-$usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($usuario_logado);
+$usuario = (new UsuarioRepositorio($pdo))-> buscarPorEmail($usuario_logado);
 ?>
 
 <!DOCTYPE html>
@@ -26,26 +28,7 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($u
 </head>
 
 <body>
-    <header class="topbar">
-        <div class="logo-header">
-            <img src="../../../img/logoShopping.png" alt="Logo Shopping">
-        </div>
-        <h1>Administrativo</h1>
-        <div class="usuario-info">
-            <span><?php echo htmlspecialchars($usuario->getNome()); ?></span>
-        </div>
-    </header>
-
-    <aside class="sidebar">
-        <ul>
-            <a href="../../../index.html">Inicio</a>
-            <a href="../loja-dashboard.php">Lojas</a>
-            <a href="#">Anúncios</a>
-            <a href="#">Cinema</a>
-            <a href="#">Funcionários</a>
-            <a href="../../controller/autenticacao/logout.php">Sair</a>
-        </ul>
-    </aside>
+    <?php include ('menu_sidebar.php')?>
 
     <main class="conteudo">
         <h2>Gerenciadores</h2>
@@ -56,7 +39,7 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($u
                 <span>Lojas/Restaurantes</span>
             </a>
 
-            <a href="#" class="card">
+            <a href="usuarios-dashboard.php" class="card">
                 <div class="icon">👥</div>
                 <span>Funcionários</span>
             </a>
@@ -64,11 +47,6 @@ $usuario = (new \model\repositorio\UsuarioRepositorio($pdo))-> buscarPorEmail($u
             <a href="#" class="card">
                 <div class="icon">🎬</div>
                 <span>Cinema</span>
-            </a>
-
-            <a href="#" class="card">
-                <div class="icon">👤</div>
-                <span>Clientes</span>
             </a>
 
             <a href="#" class="card">
