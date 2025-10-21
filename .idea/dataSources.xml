@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="dbShopping@localhost" uuid="4a5b730b-0659-47b0-b26f-823bb9e91a54">
-      <driver-ref>mysql_aurora.aws_wrapper</driver-ref>
+    <data-source source="LOCAL" name="dbshopping@localhost" uuid="383ef06e-7eba-4fd8-ae64-dca259a574fe">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>software.amazon.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:aws-wrapper:mysql://localhost:3306/dbShopping</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/dbshopping</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
