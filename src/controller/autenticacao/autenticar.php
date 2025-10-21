@@ -17,7 +17,7 @@ $email = trim($_POST['email'] ?? '');
 $senha = $_POST['senha'] ?? '';
 
 if ($email === '' || $senha === '') {
-    header('Location: ../../view/login.php?erro=campos-vazios');
+    header('Location: ../../view/sessoes/login.php?erro=campos-vazios');
     exit;
 }
 
@@ -28,9 +28,9 @@ $usuario = $repo->buscarPorEmail($email);
 if ($repo->autenticar($email, $senha)) {
     session_regenerate_id(true);
     $_SESSION['usuario'] = $email;
-    header('Location: ../../view/administrativo.php');
+    header('Location: ../../view/administrativo/administrativo.php');
     exit;
 }
 
-header('Location: login.php?erro=dados-incorretos');
+header('Location: ../../view/sessoes/login.php?erro=dados-incorretos');
 exit;

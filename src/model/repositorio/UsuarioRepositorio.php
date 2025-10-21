@@ -81,7 +81,7 @@ class UsuarioRepositorio
     public function buscarTodos(): array
     {
         $sql = "select tbUsuario.id, tbUsuario.nome, tbUsuario.email, tbUsuario.senha," .
-            "tbUsuario.cpf, tbUsuario.cargo from usuarios order by email";
+            "tbUsuario.cpf, tbUsuario.cargo from tbUsuario order by email";
         $result_set = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
