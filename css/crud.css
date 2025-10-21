@@ -98,7 +98,7 @@ h2 {
 }
 
 
-.tabela-lojas {
+.tabela {
     width: 100%;
     border-collapse: collapse;
     background: white;
@@ -107,14 +107,14 @@ h2 {
     overflow: hidden;
 }
 
-.tabela-lojas th,
-.tabela-lojas td {
+.tabela th,
+.tabela td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.tabela-lojas th {
+.tabela th {
     background: #006478;
     color: white;
 }
