@@ -48,7 +48,7 @@ $erro = $_GET['erro'] ?? null;
                 <p class="mensagem-erro">Apenas números (11) no CPF, tente novamente.</p>
             <?php endif; ?>
             <h2>Cadastro</h2>
-            <form action="../../controller/cadastro/registrar_usuario.php" method="post">
+            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_usuario.php" method="post">
                 <label for="nome">Nome Completo</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 

@@ -9,7 +9,7 @@ require_once __DIR__ . "/../../model/usuario/Usuario.php";
 require_once __DIR__ . "/../../model/repositorio/UsuarioRepositorio.php";
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../../index.php');
+    header('Location: /SistemaShopping_web1/index.php');
     exit();
 }
 
@@ -17,7 +17,7 @@ $email = trim($_POST['email'] ?? '');
 $senha = $_POST['senha'] ?? '';
 
 if ($email === '' || $senha === '') {
-    header('Location: ../../view/sessoes/login.php?erro=campos-vazios');
+    header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=campos-vazios');
     exit;
 }
 
@@ -28,9 +28,9 @@ $usuario = $repo->buscarPorEmail($email);
 if ($repo->autenticar($email, $senha)) {
     session_regenerate_id(true);
     $_SESSION['usuario'] = $email;
-    header('Location: ../../view/administrativo/administrativo.php');
+    header('Location: /SistemaShopping_web1/src/view/administrativo/administrativo.php');
     exit;
 }
 
-header('Location: ../../view/sessoes/login.php?erro=dados-incorretos');
+header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=dados-incorretos');
 exit;

@@ -9,10 +9,18 @@ require_once __DIR__ . "/../../model/repositorio/UsuarioRepositorio.php";
 require_once __DIR__ . "/../../model/usuario/Usuario.php";
 require_once __DIR__ . "/../../controller/conexao-bd.php";
 
+session_start();
+$usuario_logado = $_SESSION['usuario'] ?? null;
+
+if (!$usuario_logado) {
+    header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=deslogado');
+    exit;
+}
+
 $repositorio = new UsuarioRepositorio($pdo);
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: /../../view/login.php");
+    header("Location: /SistemaShopping_web1/src/view/sessoes/login.php");
     exit;
 }
 
@@ -31,26 +39,26 @@ if (!$usuarioExistente) {
 }
 
 if ($nome === '' || $email === '' || $senha === '') {
-    header("Location: ../../view/cadastrar.php?erro=campos-vazios");
+    header("Location: /SistemaShopping_web1/src/view/sessoes/cadastrar.php?erro=campos-vazios");
     exit;
 }
 
 if ($repositorio->cpfExists($cpf)) {
-    header("Location: ../../view/cadastrar.php?erro=cpf-repetido");
+    header("Location: /SistemaShopping_web1/src/view/sessoes/cadastrar.php?erro=cpf-repetido");
     exit;
 }
 
 if ($repositorio->emailExists($email)) {
-    header("Location: ../../view/cadastrar.php?erro=email-repetido");
+    header("Location: /SistemaShopping_web1/src/view/sessoes/cadastrar.php?erro=email-repetido");
     exit;
 }
 
 if (strlen($cpf) != 11) {
-    header("Location: ../../view/cadastrar.php?erro=cpf-invalido");
+    header("Location: /SistemaShopping_web1/src/view/sessoes/cadastrar.php?erro=cpf-invalido");
     exit;
 }
 
 $repositorio->salvar($nome, $email, $senha, $cpf, $cargo);
 
-header("Location: ../../view/login.php?sucess=true");
+header("Location:  /SistemaShopping_web1/src/view/sessoes/view/login.php?sucess=true");
 exit;
