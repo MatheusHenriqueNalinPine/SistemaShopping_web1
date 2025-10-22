@@ -1,8 +1,10 @@
 <?php
 
-enum FormatoAnuncio
+namespace model\servico\anuncio;
+
+enum FormatoAnuncio: string
 {
-    case NoticiaCompleta;
-    case Horizontal;
-    case Quadrado;
+    case NoticiaCompleta = 'Noticia_completa';
+    case Horizontal = 'Horizontal';
+    case Quadrado = 'Quadrado';
 }

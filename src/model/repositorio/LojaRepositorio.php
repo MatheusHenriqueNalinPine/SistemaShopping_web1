@@ -14,6 +14,8 @@ use Loja;
 use PDO;
 use TipoLoja;
 
+use DateTime;
+
 require_once __DIR__ . "/../servico/loja/Loja.php";
 require_once __DIR__ . "/../servico/loja/TipoLoja.php";
 require_once __DIR__ . "/../servico/HorarioFuncionamento.php";
@@ -27,17 +29,16 @@ class LojaRepositorio
         $this->pdo = $pdo;
     }
 
-       public function salvar(Loja $loja)
+    public function salvar(Loja $loja)
     {
         try {
             $this->pdo->beginTransaction();
 
-            $sql = "insert into tbservico (nome, descricao, imagem, data_registro, tipo_imagem) values (?, ?, ?, default, ?)";
+            $sql = "insert into tbservico (nome, descricao, imagem, data_registro) values (?, ?, ?, default)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $loja->getNome());
             $stmt->bindValue(2, $loja->getDescricao());
             $stmt->bindValue(3, $loja->getImagem());
-            $stmt->bindValue(4, $loja->getTipoImagem());
             $stmt->execute();
 
             $idServico = $this->pdo->lastInsertId();
@@ -69,13 +70,12 @@ class LojaRepositorio
     public
     function alterarLoja(Loja $loja)
     {
-        $sql = "UPDATE tbservico SET nome = ?, descricao = ?, imagem = ?, tipo_imagem = ? WHERE id = ?";
+        $sql = "UPDATE tbservico SET nome = ?, descricao = ?, imagem = ? WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $loja->getNome());
         $stmt->bindValue(2, $loja->getDescricao());
         $stmt->bindValue(3, $loja->getImagem());
-        $stmt->bindValue(4, $loja->getTipoImagem());
-        $stmt->bindValue(5, $loja->getId());
+        $stmt->bindValue(4, $loja->getId());
         $stmt->execute();
 
         $sql = "update tbloja set posicao = ?, categoria = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;                                                                  ";
@@ -136,7 +136,7 @@ class LojaRepositorio
             $result['nome'] ?? null,
             $result['descricao'] ?? null,
             $result['imagem'] ?? null,
-            $result['tipo-imagem'] ?? 'image/png',
+            new DateTime($result['data_registro'] ?? 'now'),
             $result['posicao'] ?? null,
             $result['telefone_contato'] ?? null,
             $result['cnpj'] ?? null,
@@ -166,11 +166,12 @@ class LojaRepositorio
         return $this->formarObjeto($result);
     }
 
-    public function cnpjExists(string $cnpj): bool {
+    public function cnpjExists(string $cnpj): bool
+    {
         $sql = "select cnpj from tbLoja where cnpj = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $cnpj);
         $stmt->execute();
-        return (bool) $stmt->fetchColumn();
+        return (bool)$stmt->fetchColumn();
     }
 }

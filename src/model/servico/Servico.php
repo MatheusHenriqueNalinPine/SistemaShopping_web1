@@ -6,22 +6,23 @@ Adicionar imagens do BD em PHP com string e tipo_imagem: chatGPT*/
 
 namespace model\servico;
 
+use DateTime;
+
 abstract class Servico
 {
     protected int $id;
     protected string $nome;
     protected string $descricao;
     protected string $imagem;
-    protected string $tipo_imagem;
     protected DateTime $data_registro;
 
-    public function __construct(int $id, string $nome, string $descricao, string $imagem, string $tipo_imagem)
+    public function __construct(int $id, string $nome, string $descricao, string $imagem, DateTime $data_registro)
     {
         $this->id = $id;
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->imagem = $imagem;
-        $this->tipo_imagem = $tipo_imagem;
+        $this->data_registro = $data_registro;
     }
 
     public function getId(): int
@@ -62,16 +63,6 @@ abstract class Servico
     public function setImagem(string $imagem): void
     {
         $this->imagem = $imagem;
-    }
-
-    public function getTipoImagem(): string
-    {
-        return $this->tipo_imagem;
-    }
-
-    public function setTipoImagem(string $tipo_imagem): void
-    {
-        $this->tipo_imagem = $tipo_imagem;
     }
 
     public function getDataRegistro(): DateTime
