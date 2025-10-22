@@ -3,18 +3,18 @@
 use model\repositorio\LojaRepositorio;
 use model\repositorio\UsuarioRepositorio;
 
-require_once __DIR__ . '/../../model/repositorio/UsuarioRepositorio.php';
-require_once __DIR__ . '/../../model/repositorio/LojaRepositorio.php';
+require_once __DIR__ . '/../../../model/repositorio/UsuarioRepositorio.php';
+require_once __DIR__ . '/../../../model/repositorio/LojaRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
 if (!$usuario_logado) {
-    header('Location: login.php?erro=deslogado');
+    header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=deslogado');
     exit;
 }
 
-require_once __DIR__ . '/../../controller/conexao-bd.php';
+require_once __DIR__ . '/../../../controller/conexao-bd.php';
 
 $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 $repositorio = new LojaRepositorio($pdo);
@@ -29,12 +29,13 @@ $lojas = $repositorio->buscarLojas();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Lojas - Administrativo</title>
-    <link rel="stylesheet" href="../../../css/crud.css">
+    <link rel="stylesheet" href="/SistemaShopping_web1/css/crud-tabela.css">
 </head>
 
 <body>
 
-<?php include ('menu_sidebar.php') ?>
+<?php include('../menu.php') ?>
+<?php include('../sidebar.php') ?>
 
 <main class="conteudo">
     <h2>Gerenciamento de Lojas</h2>
@@ -68,7 +69,7 @@ $lojas = $repositorio->buscarLojas();
             <td><?php echo htmlspecialchars($loja->getDescricao()) ?></td>
             <td><?php echo htmlspecialchars($loja->getPosicao()) ?></td>
             <td>
-                <form action="../../controller/exclusao/excluir-loja.php" method="post">
+                <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-loja.php" method="post">
                     <input type="hidden" name="id" value="<?= $loja->getId() ?>">
                     <input type="submit" class="botao-excluir" value="Excluir">
                 </form>

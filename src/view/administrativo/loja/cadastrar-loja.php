@@ -2,15 +2,15 @@
 
 use model\repositorio\UsuarioRepositorio;
 
-require_once __DIR__ . "/../../model/repositorio/UsuarioRepositorio.php";
-require_once __DIR__ . "/../../model/usuario/Usuario.php";
-require_once __DIR__ . "/../../controller/conexao-bd.php";
+require_once __DIR__ . "/../../../model/repositorio/UsuarioRepositorio.php";
+require_once __DIR__ . "/../../../model/usuario/Usuario.php";
+require_once __DIR__ . "/../../../controller/conexao-bd.php";
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
 if (!$usuario_logado) {
-    header('Location: login.php?erro=deslogado');
+    header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=deslogado');
     exit;
 }
 
@@ -27,32 +27,11 @@ $erro = $_GET['erro'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Loja - SchweizerPine Shopping</title>
-    <link rel="stylesheet" href="../../../css/cadastrar.css">
-    <link rel="stylesheet" href="../../../css/cadastrar-loja.css">
+    <link rel="stylesheet" href="/SistemaShopping_web1/css/cadastrar.css">
 </head>
 
 <body>
-
-<header>
-    <div class="logo">
-        <img src="../../../img/logoShopping.png" alt="Logo SchweizerPine Shopping">
-    </div>
-    <nav>
-        <a href="../../../index.php">Início</a>
-        <a href="#">Novidades</a>
-        <a href="#">Cinema</a>
-        <a href="#">Lojas</a>
-        <a href="#">Gastronomia</a>
-        <a href="#">Mapa</a>
-        <a href="#">Fale Conosco</a>
-    </nav>
-    <?php if ($usuario_logado) : ?>
-        <span><?php echo htmlspecialchars($usuario->getNome()) ?></span>
-    <?php else: ?>
-        <a href="../sessoes/login.php" class="btn-login">Login</a>
-    <?php endif; ?>
-</header>
-
+<?php include('../menu.php') ?>
 <main>
     <section class="cadastro-container">
         <div class="form-box">
@@ -64,7 +43,7 @@ $erro = $_GET['erro'] ?? null;
                 <p class="mensagem-erro">Apenas números (14) no CNPJ, tente novamente.</p>
             <?php endif; ?>
             <h2>Cadastro de Loja</h2>
-            <form action="../../controller/cadastro/registrar_loja.php" method="post">
+            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_loja.php" method="post">
                 <label for="nomeLoja">Nome da Loja</label>
                 <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 
@@ -103,8 +82,6 @@ $erro = $_GET['erro'] ?? null;
 
                 <label for="imagem">Imagem (.png)</label>
                 <input type="file" id="imagem" name="imagem" accept="image/png">
-
-                <input type="hidden" id="tipo-imagem" name="tipo-imagem" value="image/png">
 
                 <label for="horario">Horário Inicial de Funcionamento</label>
                 <input type="text" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10h" required>
