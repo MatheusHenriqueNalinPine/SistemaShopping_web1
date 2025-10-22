@@ -2,17 +2,17 @@
 
 use model\repositorio\UsuarioRepositorio;
 
-require_once __DIR__ . '/../../model/repositorio/UsuarioRepositorio.php';
+require_once __DIR__ . '/../../../model/repositorio/UsuarioRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
 if (!$usuario_logado) {
-    header('Location: login.php?erro=deslogado');
+    header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=deslogado');
     exit;
 }
 
-require_once __DIR__ . '/../../controller/conexao-bd.php';
+require_once __DIR__ . '/../../../controller/conexao-bd.php';
 
 $repositorio = new UsuarioRepositorio($pdo);
 $usuario = ($repositorio->buscarPorEmail($usuario_logado));
@@ -26,22 +26,25 @@ $usuarios = $repositorio->buscarTodos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Lojas - Administrativo</title>
-    <link rel="stylesheet" href="../../../css/crud.css">
+    <title>Gerenciar Funcionários - Administrativo</title>
+    <link rel="stylesheet" href="/SistemaShopping_web1/css/crud-tabela.css">
 </head>
 
 <body>
 
-<?php include('menu_sidebar.php') ?>
+<?php include('../menu.php') ?>
+<?php include('../sidebar.php') ?>
 
 <main class="conteudo">
     <h2>Gerenciamento de Funcionários</h2>
 
     <div class="acoes">
-        <a href="../sessoes/cadastrar.php" class="btn-cadastrar">Cadastrar loja</a>
+        <a href="../../sessoes/cadastrar.php" class="btn-cadastrar">Cadastrar funcionário</a>
         <button class="btn-relatorio">Baixar relatório</button>
     </div>
-
+    <?php if (isset($_GET['erro']) && $_GET['erro'] === 'exclusao'): ?>
+        <p class="mensagem-erro">Você não pode excluir a si mesmo.</p>
+    <?php endif; ?>
     <table class="tabela">
         <thead>
         <tr>
@@ -56,7 +59,7 @@ $usuarios = $repositorio->buscarTodos();
         <tbody>
         <?php if (count($usuarios) == 0) : ?>
             <tr>
-                <td colspan="5" class="sem-dados">Nenhuma loja cadastrada</td>
+                <td colspan="5" class="sem-dados">Nenhum usuário cadastrado</td>
             </tr>
         <?php else: ?>
             <?php foreach ($usuarios as $tabela_usuario) : ?>
@@ -66,7 +69,7 @@ $usuarios = $repositorio->buscarTodos();
                     <td><?php echo htmlspecialchars($tabela_usuario->getCPF()) ?></td>
                     <td><?php echo htmlspecialchars($tabela_usuario->getEmail()) ?></td>
                     <td>
-                        <form action="../../controller/exclusao/excluir-usuario.php" method="post">
+                        <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-usuario.php" method="post">
                             <input type="hidden" name="id" value="<?= $tabela_usuario->getId() ?>">
                             <input type="submit" class="botao-excluir" value="Excluir">
                         </form>
