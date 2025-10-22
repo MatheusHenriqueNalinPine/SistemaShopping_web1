@@ -10,7 +10,7 @@
 
 <body>
 
-<?php include ('src/view/sessoes/header.html')?>
+<?php include('src/view/sessoes/header.html') ?>
 
 <section class="carrossel">
     <div class="slide ativo">
@@ -49,37 +49,14 @@
     </div>
 </section>
 
-
 <section class="noticias">
     <div class="cabecalho">
         <h2>Notícias</h2>
         <a href="#">VER MAIS</a>
     </div>
     <div class="grid-noticias">
-        <div class="noticia">
-            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
-            <h3>Título anúncio</h3>
-            <p>Detalhes do anúncio</p>
-            <span>dd/MM/yyyy - Assunto</span>
-        </div>
-        <div class="noticia">
-            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
-            <h3>Título anúncio</h3>
-            <p>Detalhes do anúncio</p>
-            <span>dd/MM/yyyy - Assunto</span>
-        </div>
-        <div class="noticia">
-            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
-            <h3>Título anúncio</h3>
-            <p>Detalhes do anúncio</p>
-            <span>dd/MM/yyyy - Assunto</span>
-        </div>
-        <div class="noticia">
-            <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
-            <h3>Título anúncio</h3>
-            <p>Detalhes do anúncio</p>
-            <span>dd/MM/yyyy - Assunto</span>
-        </div>
+        <?php $limite_anuncios = 4;
+        include('src/view/sessoes/anuncios/anuncio-minimizado.php') ?>
     </div>
 </section>
 
@@ -121,7 +98,7 @@
     </div>
 </section>
 
-<?php include ('./src/view/sessoes/footer.html')?>
+<?php include('./src/view/sessoes/footer.html') ?>
 
 </body>
 </html>
