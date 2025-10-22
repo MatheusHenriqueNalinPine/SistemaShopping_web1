@@ -1,3 +1,5 @@
+/*limitar texto https://dev.to/geovrodri/dica-css-limitar-tamanho-de-um-texto-32m9*/
+
 * {
     margin: 0;
     padding: 0;
@@ -151,6 +153,26 @@ body {
     padding: 15px;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 300px;
+}
+
+.noticia h3 {
+    color: #1E3A8A;
+}
+
+.noticia p, .noticia h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4em;
+    height: 2.8em;
+}
+
+.noticia span, .noticia p {
+    color: #2194F3;
 }
 
 .noticia img {
@@ -175,7 +197,7 @@ body {
 
 .logos {
     display: flex;
-    flex-direction: row; /* Força a linha */
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 20px;
