@@ -44,6 +44,8 @@ $erro = $_GET['erro'] ?? null;
                 <p class="mensagem-erro">CPF Repetido, tente novamente.</p>
             <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'email-repetido'): ?>
                 <p class="mensagem-erro">E-mail Repetido, tente novamente.</p>
+            <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'senhas-diferentes'): ?>
+                <p class="mensagem-erro">As senhas não correspondem.</p>
             <?php elseif (isset($_GET['erro']) && $_GET['erro'] === 'cpf-invalido'): ?>
                 <p class="mensagem-erro">Apenas números (11) no CPF, tente novamente.</p>
             <?php endif; ?>
@@ -62,7 +64,7 @@ $erro = $_GET['erro'] ?? null;
                 <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
 
                 <label for="confirmar">Confirmar Senha</label>
-                <input type="password" id="confirmar" placeholder="Repita sua senha" required>
+                <input type="password" id="confirmar" name="confirmar" placeholder="Repita sua senha" required>
 
 
                 <label for="tipo">Tipo de Funcionário</label>

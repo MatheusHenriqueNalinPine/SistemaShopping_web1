@@ -3,7 +3,7 @@
 /*Referências:
  * Transaction: Conhecimento prévio no uso de java com hibernate, adaptando
  * para a sintaxe do PHP com base em: https://neon.com/postgresql/postgresql-php/transaction
- * (try-beginTransaction-commit-catch-rollback)
+ * (try-beginTransaction-czommit-catch-rollback)
  * */
 
 namespace model\repositorio;
@@ -43,7 +43,7 @@ class LojaRepositorio
 
             $idServico = $this->pdo->lastInsertId();
 
-            $sql = "insert into tbloja (id, categoria ,posicao, telefone_contato, cnpj, loja_restaurante) values (?, ?, ?, ?, ?, ?);                                                                  ";
+            $sql = "insert into tbloja (id, id_categoria ,posicao, telefone_contato, cnpj, loja_restaurante) values (?, ?, ?, ?, ?, ?);                                                                  ";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $idServico);
             $stmt->bindValue(2, $loja->getCategoria());
@@ -53,12 +53,26 @@ class LojaRepositorio
             $stmt->bindValue(6, $loja->getTipoLoja()->value);
             $stmt->execute();
 
-            $sql = "insert into tbhorariofuncionamento values (?, ?, ?)";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(1, $loja->getHorarioFuncionamento()->getHorarioInicial());
-            $stmt->bindValue(2, $loja->getHorarioFuncionamento()->getHorarioFinal());
-            $stmt->bindValue(3, $idServico);
-            $stmt->execute();
+            $horarioRepositorio = new HorarioFuncionamentoRepositorio($this->pdo);
+
+            foreach ($loja->getHorarioFuncionamento() as $horario) {
+                if (!$horarioRepositorio->verificarExistencia($horario)) {
+                    $sql = "insert into tbhorariofuncionamento values (?, ?, ?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $horario->getHorarioInicial());
+                    $stmt->bindValue(2, $horario->getHorarioFinal());
+                    $stmt->bindValue(3, $horario->getDiaSemana());
+                    $stmt->execute();
+
+                    $sql = "insert into tbhorarioservico (horario_inicial, horario_final, dia_semana, id_servico) values (?, ?, ?, ?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $horario->getHorarioInicial());
+                    $stmt->bindValue(2, $horario->getHorarioFinal());
+                    $stmt->bindValue(3, $horario->getDiaSemana());
+                    $stmt->bindValue(4, $idServico);
+                    $stmt->execute();
+                }
+            }
 
             $this->pdo->commit();
         } catch (Exception $e) {
@@ -67,47 +81,66 @@ class LojaRepositorio
         }
     }
 
-    public
-    function alterarLoja(Loja $loja)
+    public function alterarLoja(Loja $loja)
     {
-        $sql = "UPDATE tbservico SET nome = ?, descricao = ?, imagem = ? WHERE id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $loja->getNome());
-        $stmt->bindValue(2, $loja->getDescricao());
-        $stmt->bindValue(3, $loja->getImagem());
-        $stmt->bindValue(4, $loja->getId());
-        $stmt->execute();
+        try {
+            $this->pdo->beginTransaction();
 
-        $sql = "update tbloja set posicao = ?, categoria = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;                                                                  ";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $loja->getPosicao());
-        $stmt->bindValue(2, $loja->getCategoria());
-        $stmt->bindValue(3, $loja->getTelefoneContato());
-        $stmt->bindValue(4, $loja->getCnpj());
-        $stmt->bindValue(5, $loja->getTipoLoja()->value);
-        $stmt->bindValue(6, $loja->getId());
-        $stmt->execute();
+            $sql = "update tbservico set nome = ?, descricao = ?, imagem = ? where id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $loja->getNome());
+            $stmt->bindValue(2, $loja->getDescricao());
+            $stmt->bindValue(3, $loja->getImagem());
+            $stmt->bindValue(4, $loja->getId());
+            $stmt->execute();
 
-        $sql = "update tbhorariofuncionamento set horario_inicial = ?, horario_final = ?, id_servico = ? where " .
-            "horario_inicial = ? and horario_final = ? and id_servico = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $loja->getHorarioFuncionamento()->getHorarioInicial());
-        $stmt->bindValue(2, $loja->getHorarioFuncionamento()->getHorarioFinal());
-        $stmt->bindValue(3, $loja->getId());
-        $stmt->bindValue(4, $loja->getHorarioFuncionamento()->getHorarioInicial());
-        $stmt->bindValue(5, $loja->getHorarioFuncionamento()->getHorarioFinal());
-        $stmt->bindValue(6, $loja->getId());
-        $stmt->execute();
+            $sql = "update tbloja set posicao = ?, id_categoria = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $loja->getPosicao());
+            $stmt->bindValue(2, $loja->getCategoria());
+            $stmt->bindValue(3, $loja->getTelefoneContato());
+            $stmt->bindValue(4, $loja->getCnpj());
+            $stmt->bindValue(5, $loja->getTipoLoja()->value);
+            $stmt->bindValue(6, $loja->getId());
+            $stmt->execute();
+
+            $horarioRepositorio = new HorarioFuncionamentoRepositorio($this->pdo);
+
+            $sql = "delete from tbhorarioservico where id_servico = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $loja->getId());
+            $stmt->execute();
+
+            foreach ($loja->getHorarioFuncionamento() as $horario) {
+                if (!$horarioRepositorio->verificarExistencia($horario)) {
+                    $sql = "insert into tbhorariofuncionamento (horario_inicial, horario_final, dia_semana) values (?, ?, ?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $horario->getHorarioInicial());
+                    $stmt->bindValue(2, $horario->getHorarioFinal());
+                    $stmt->bindValue(3, $horario->getDiaSemana());
+                    $stmt->execute();
+                }
+
+                $sql = "insert into tbhorarioservico (horario_inicial, horario_final, dia_semana, id_servico) values (?, ?, ?, ?)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(1, $horario->getHorarioInicial());
+                $stmt->bindValue(2, $horario->getHorarioFinal());
+                $stmt->bindValue(3, $horario->getDiaSemana());
+                $stmt->bindValue(4, $loja->getId());
+                $stmt->execute();
+            }
+
+            $this->pdo->commit();
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            throw $e;
+        }
     }
+
 
     public
     function excluirLoja(int $id): void
     {
-        $sql = "delete from tbhorariofuncionamento where id_servico = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $id);
-        $stmt->execute();
-
         $sql = "delete from tbLoja where id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);

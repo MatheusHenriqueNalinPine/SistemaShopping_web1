@@ -61,7 +61,7 @@ class AnuncioRepositorio
             $stmt->execute();
 
             $id = $this->pdo->lastInsertId();
-            $sql = "insert into tbanuncio (id, formato_anuncio, categoria_anuncio) values (?, ?, ?)";
+            $sql = "insert into tbanuncio (id, formato_anuncio, id_categoria_anuncio) values (?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $id);
             $stmt->bindValue(2, $formato_anuncio->value);
@@ -78,7 +78,7 @@ class AnuncioRepositorio
     {
         try {
             $this->pdo->beginTransaction();
-            $sql = "update tbanuncio set formato_anuncio = ?, categoria_anuncio = ? where id = ?";
+            $sql = "update tbanuncio set formato_anuncio = ?, id_categoria_anuncio = ? where id = ?";
             $stmt = $this->setarDadosStatement($sql, $anuncio);
             $stmt->bindValue(3, $anuncio->getId());
             $stmt->execute();
@@ -118,7 +118,7 @@ class AnuncioRepositorio
     function buscarTodos(): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             order by s.data_registro desc";
@@ -138,7 +138,7 @@ class AnuncioRepositorio
     public function buscarAnunciosMinimizados(int $limite): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Quadrado'
@@ -156,7 +156,7 @@ class AnuncioRepositorio
     public function buscarAnunciosHorizontais(int $limite): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Horizontal'
