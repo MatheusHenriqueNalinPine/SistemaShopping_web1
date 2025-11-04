@@ -20,6 +20,8 @@ create table tbServico(
     descricao text,
     imagem longblob not null,
     tipo_imagem varchar(50) default('image/png'),
+    nome_imagem varchar(255),
+    url_imagem longtext,
     data_registro date default(curdate()),
     constraint pkServico primary key(id)
 );

@@ -14,14 +14,20 @@ abstract class Servico
     protected string $nome;
     protected string $descricao;
     protected string $imagem;
+    protected string $tipoImagem;
+    protected string $nomeImagem;
+    protected string $urlImagem;
     protected DateTime $data_registro;
 
-    public function __construct(int $id, string $nome, string $descricao, string $imagem, DateTime $data_registro)
+    public function __construct(int $id, string $nome, string $descricao, string $imagem, string $tipoImagem, string $nomeImagem, string $urlImagem, DateTime $data_registro)
     {
         $this->id = $id;
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->imagem = $imagem;
+        $this->tipoImagem = $tipoImagem;
+        $this->nomeImagem = $nomeImagem;
+        $this->urlImagem = $urlImagem;
         $this->data_registro = $data_registro;
     }
 
@@ -73,5 +79,35 @@ abstract class Servico
     public function setDataRegistro(DateTime $data_registro): void
     {
         $this->data_registro = $data_registro;
+    }
+
+    public function getTipoImagem(): string
+    {
+        return $this->tipoImagem;
+    }
+
+    public function setTipoImagem(string $tipoImagem): void
+    {
+        $this->tipoImagem = $tipoImagem;
+    }
+
+    public function getNomeImagem(): string
+    {
+        return $this->nomeImagem;
+    }
+
+    public function setNomeImagem(string $nomeImagem): void
+    {
+        $this->nomeImagem = $nomeImagem;
+    }
+
+    public function getUrlImagem(): string
+    {
+        return $this->urlImagem;
+    }
+
+    public function setUrlImagem(string $urlImagem): void
+    {
+        $this->urlImagem = $urlImagem;
     }
 }

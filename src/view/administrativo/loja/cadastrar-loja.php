@@ -43,7 +43,7 @@ $erro = $_GET['erro'] ?? null;
                 <p class="mensagem-erro">Apenas números (14) no CNPJ, tente novamente.</p>
             <?php endif; ?>
             <h2>Cadastro de Loja</h2>
-            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_loja.php" method="post">
+            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_loja.php" method="post" enctype="multipart/form-data">
                 <label for="nomeLoja">Nome da Loja</label>
                 <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 

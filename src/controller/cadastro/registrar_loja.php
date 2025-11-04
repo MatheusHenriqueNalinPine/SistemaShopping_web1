@@ -33,18 +33,53 @@ $categoria = trim($_POST['categoria'] ?? '');
 $tipo_loja = trim($_POST['tipo-loja'] ?? '');
 $descricao = trim($_POST['descricao'] ?? '');
 $posicao = trim($_POST['posicao'] ?? '');
-$imagem = trim($_POST['imagem'] ?? '');
 $data_registro = trim($_POST['data_registro'] ?? '');
 $horario_inicial = trim($_POST['horario_inicial'] ?? '');
 $horario_final = trim($_POST['horario_final'] ?? '');
 $tipoLoja = TipoLoja::from($tipo_loja);
 
+
+$imagem = '';
+$tipoImagem = 'image/png';
+$nomeImagem = '';
+$urlImagem = '';
+// Salva arquivo fisicamente em img/lojas e armazena caminho curto em url_imagem
+if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+    $tmpPath = $_FILES['imagem']['tmp_name'];
+    $originalName = $_FILES['imagem']['name'];
+    $ext = pathinfo($originalName, PATHINFO_EXTENSION);
+    $newFilename = uniqid('loja_') . ($ext ? '.' . $ext : '');
+    $uploadDir = __DIR__ . '/../../../img/lojas/';
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+    $destPath = $uploadDir . $newFilename;
+
+    if (move_uploaded_file($tmpPath, $destPath)) {
+        // conteúdo binário salvo no campo imagem (armazenamos em base64 na entidade)
+        $fileContents = file_get_contents($destPath);
+        if ($fileContents !== false) {
+            $imagem = base64_encode($fileContents);
+        }
+        $tipoImagem = mime_content_type($destPath) ?: $tipoImagem;
+        $nomeImagem = $originalName;
+        // caminho relativo curto para evitar problemas de tamanho na coluna
+        $urlImagem = 'img/lojas/' . $newFilename;
+    }
+}
+
+
 if ($id == 0) {
     if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/cadastrar-anuncio.php?erro=campos-vazios");
+        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/cadastrar-loja.php?erro=campos-vazios");
         exit;
     }
-    $repositorio->salvar(new Loja(0, $nome, $descricao, $imagem, new DateTime($data_registro ?? 'now'), $posicao, $telefone, $cnpj, $categoria,
+    // Verifica se CNPJ já existe
+    if ($repositorio->cnpjExists($cnpj)) {
+        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/cadastrar-loja.php?erro=cnpj-repetido");
+        exit;
+    }
+    $novoId = $repositorio->salvar(new Loja(0, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $posicao, $telefone, $cnpj, $categoria,
         TipoLoja::from($tipo_loja), new HorarioFuncionamento($horario_inicial, $horario_final)));
 
 } else {
@@ -52,9 +87,12 @@ if ($id == 0) {
         header("Location: /SistemaShopping_web1/src/view/administrativo/loja/editar-anuncio.php?erro=campos-vazios");
         exit;
     }
-    $repositorio->alterarLoja(new Loja($id, $nome, $descricao, $imagem, new DateTime($data_registro ?? 'now'), $posicao, $telefone, $cnpj, $categoria,
+    $repositorio->alterarLoja(new Loja($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $posicao, $telefone, $cnpj, $categoria,
         $tipoLoja, new HorarioFuncionamento($horario_inicial, $horario_final)));
+    // redireciona para a página da loja recém-criada
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/telaDeLoja.php?id=" . urlencode($novoId));
+    exit;
 }
 
-header("Location: /SistemaShopping_web1/src/view/administrativo/loja/anuncio-dashboard.php");
+header("Location: /SistemaShopping_web1/src/view/administrativo/loja/loja-dashboard.php");
 exit;
