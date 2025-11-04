@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $id = $_POST['id'];
 $nome = trim($_POST['nome'] ?? '');
 $cnpj = trim($_POST['cnpj'] ?? '');
-$email = trim($_POST['email'] ?? '');
 $telefone = trim($_POST['telefone'] ?? '');
 $categoria = trim($_POST['categoria'] ?? '');
 $tipo_loja = trim($_POST['tipo-loja'] ?? '');
