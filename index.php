@@ -37,16 +37,8 @@
 
 
 <section class="anuncios-horizontais">
-    <div class="anuncio">
-        <h3>Anúncio</h3>
-        <p>Esse é um exemplo de anúncio horizontal</p>
-        <p>Usado para eventos ou atrações fixas</p>
-    </div>
-    <div class="anuncio">
-        <h3>Anúncio</h3>
-        <p>Esse é um exemplo de anúncio horizontal</p>
-        <p>Usado para eventos ou atrações fixas</p>
-    </div>
+    <?php $limite_anuncios = 4;
+    include('src/view/sessoes/anuncios/anuncio_horizontal.php') ?>
 </section>
 
 <section class="noticias">

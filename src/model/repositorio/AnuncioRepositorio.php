@@ -30,6 +30,9 @@ class AnuncioRepositorio
             $dados["nome"] ?? '',
             $dados["descricao"] ?? '',
             $dados["imagem"] ?? '',
+            $dados["imagem"] ?? '',
+            $dados["nome_imagem"] ?? '',
+            $dados["url_imagem"] ?? '',
             new DateTime($dados['data_registro'] ?? 'now'),
             FormatoAnuncio::from($dados['formato_anuncio'] ?? $dados['formato'] ?? 'quadrado'),
             $dados['categoria'] ?? '');
@@ -52,6 +55,7 @@ class AnuncioRepositorio
         try {
             $this->pdo->beginTransaction();
 
+
             $sql = "insert into tbservico (nome, descricao, imagem, data_registro) values (?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $nome);
@@ -61,18 +65,35 @@ class AnuncioRepositorio
             $stmt->execute();
 
             $id = $this->pdo->lastInsertId();
+
+            $sql = "select id from tbCategoriaAnuncio where categoria = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $categoria_anuncio);
+            $stmt->execute();
+            $idCategoria = $stmt->fetchColumn();
+
+            if (!$idCategoria) {
+                $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(1, $categoria_anuncio);
+                $stmt->execute();
+                $idCategoria = $this->pdo->lastInsertId();
+            }
+
             $sql = "insert into tbanuncio (id, formato_anuncio, id_categoria_anuncio) values (?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $id);
             $stmt->bindValue(2, $formato_anuncio->value);
-            $stmt->bindValue(3, $categoria_anuncio);
+            $stmt->bindValue(3, $idCategoria);
             $stmt->execute();
+
             $this->pdo->commit();
         } catch (Exception $e) {
             $this->pdo->rollBack();
             throw $e;
         }
     }
+
 
     public function atualizar(Anuncio $anuncio)
     {

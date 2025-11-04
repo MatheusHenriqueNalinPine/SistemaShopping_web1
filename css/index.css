@@ -117,8 +117,12 @@ body {
     padding: 25px;
     border-radius: 12px;
     text-align: center;
+    width: 20px;
 }
 
+.anuncio .form .img {
+    width: 200px;
+}
 
 .noticias {
     margin: 40px;

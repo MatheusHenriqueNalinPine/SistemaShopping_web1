@@ -20,7 +20,7 @@ $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 
 <header class="topbar">
     <div class="logo-header">
-        <img src="/SistemaShopping_web1/img/logoShopping.png" alt="Logo Shopping">
+        <a href="/SistemaShopping_web1/index.php"><img src="/SistemaShopping_web1/img/logoShopping.png" alt="Logo Shopping"></a>
     </div>
     <h1>Administrativo</h1>
     <div class="usuario-info">

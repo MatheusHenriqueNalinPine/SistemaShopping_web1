@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fbf7ca5-4e64-43d9-8302-2700ffabe855.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fbf7ca5-4e64-43d9-8302-2700ffabe855/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fbf7ca5-4e64-43d9-8302-2700ffabe855/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fbf7ca5-4e64-43d9-8302-2700ffabe855/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fbf7ca5-4e64-43d9-8302-2700ffabe855/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="alterações loja repo, solving merge conflicts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/cadastro/registrar_loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/cadastro/registrar_loja.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/servico/anuncio/Anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/anuncio/Anuncio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +101,24 @@
       <option name="presentableId" value="Default" />
       <updated>1760450359983</updated>
       <workItem from="1760450361083" duration="2451000" />
-      <workItem from="1762265193138" duration="1648000" />
+      <workItem from="1762265193138" duration="4803000" />
     </task>
+    <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
+      <option name="closed" value="true" />
+      <created>1762267034149</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762267034149</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="alterações loja repo, solving merge conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="alterações loja repo, solving merge conflicts" />
   </component>
 </project>

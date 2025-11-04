@@ -12,9 +12,12 @@ $anuncios = $repositorio->buscarAnunciosHorizontais($limite);
 
 <?php foreach ($anuncios as $anuncio): ?>
     <div class="anuncio">
-        <form action="#" method="post">
-            <input type="hidden" value="<?php echo $anuncio->getIdAnuncio() ?>">
-            <input type="submit"> <img src="/SistemaShopping_web1/img/noticias.png" alt="Anúncio">
-        </form>
+<!--        <form action="#" method="post">-->
+<!--            <input type="hidden" value="<input type="hidden" value="--><?php //echo $anuncio->getId() ?><!--">-->
+<!--            <input type="submit"> <img src="/SistemaShopping_web1/img/noticias.png" alt="Anúncio">-->
+<!--        </form>-->
+        <h3>Anúncio</h3>
+        <p>Esse é um exemplo de anúncio horizontal</p>
+        <p>Usado para eventos ou atrações fixas</p>
     </div>
 <?php endforeach; ?>

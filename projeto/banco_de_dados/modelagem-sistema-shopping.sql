@@ -96,7 +96,7 @@ create table tbHorarioExibicaoFilme
 
 create table tbCategoriaAnuncio
 (
-    id        int,
+    id        int auto_increment,
     categoria varchar(30) not null,
     constraint pkCategoriaAnuncio primary key (id)
 );
