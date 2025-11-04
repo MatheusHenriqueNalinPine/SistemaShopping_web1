@@ -43,7 +43,7 @@ $imagem = '';
 $tipoImagem = 'image/png';
 $nomeImagem = '';
 $urlImagem = '';
-// Salva arquivo fisicamente em img/lojas e armazena caminho curto em url_imagem
+
 if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     $tmpPath = $_FILES['imagem']['tmp_name'];
     $originalName = $_FILES['imagem']['name'];
@@ -56,14 +56,14 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     $destPath = $uploadDir . $newFilename;
 
     if (move_uploaded_file($tmpPath, $destPath)) {
-        // conteúdo binário salvo no campo imagem (armazenamos em base64 na entidade)
+        
         $fileContents = file_get_contents($destPath);
         if ($fileContents !== false) {
             $imagem = base64_encode($fileContents);
         }
         $tipoImagem = mime_content_type($destPath) ?: $tipoImagem;
         $nomeImagem = $originalName;
-        // caminho relativo curto para evitar problemas de tamanho na coluna
+     
         $urlImagem = 'img/lojas/' . $newFilename;
     }
 }
@@ -74,7 +74,7 @@ if ($id == 0) {
         header("Location: /SistemaShopping_web1/src/view/administrativo/loja/cadastrar-loja.php?erro=campos-vazios");
         exit;
     }
-    // Verifica se CNPJ já existe
+   
     if ($repositorio->cnpjExists($cnpj)) {
         header("Location: /SistemaShopping_web1/src/view/administrativo/loja/cadastrar-loja.php?erro=cnpj-repetido");
         exit;
@@ -89,7 +89,7 @@ if ($id == 0) {
     }
     $repositorio->alterarLoja(new Loja($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $posicao, $telefone, $cnpj, $categoria,
         $tipoLoja, new HorarioFuncionamento($horario_inicial, $horario_final)));
-    // redireciona para a página da loja recém-criada
+    
     header("Location: /SistemaShopping_web1/src/view/administrativo/loja/telaDeLoja.php?id=" . urlencode($novoId));
     exit;
 }

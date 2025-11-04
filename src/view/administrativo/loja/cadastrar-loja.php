@@ -80,14 +80,14 @@ $erro = $_GET['erro'] ?? null;
                 <label for="posicao">Posição</label>
                 <input type="text" id="posicao" name="posicao" placeholder="Ex.: P3L32"></input>
 
-                <label for="imagem">Imagem (.png)</label>
-                <input type="file" id="imagem" name="imagem" accept="image/png">
+                <label for="imagem">Imagem</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*">
 
                 <label for="horario">Horário Inicial de Funcionamento</label>
-                <input type="text" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10h" required>
+                <input type="time" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10h" required>
 
                 <label for="horario">Horário Final de Funcionamento</label>
-                <input type="text" id="horario_final" name="horario_final" placeholder="Ex: 22h" required>
+                <input type="time" id="horario_final" name="horario_final" placeholder="Ex: 22h" required>
 
                 <input type="hidden" id="id" name="id" value="0"/>
                 <input type="submit" value="Cadastrar"/>

@@ -96,7 +96,7 @@ echo " -->";
                     $imgSrc = '';
                     $url = $loja->getUrlImagem() ?? '';
                     $imgBase64 = $loja->getImagem() ?? '';
-                    $tipo = $loja->getTipoImagem() ?? 'image/png';
+                    $tipo = $loja->getTipoImagem() ?? 'image/*';
 
                     if ($url !== '') {
                         $imgSrc = (str_starts_with($url, 'data:') || str_starts_with($url, 'http')) ? 

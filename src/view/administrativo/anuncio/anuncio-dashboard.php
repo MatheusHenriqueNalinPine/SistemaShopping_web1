@@ -52,6 +52,7 @@ $anuncios = $repositorio->buscarTodos();
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Formato</th>
+            <th>Imagem</th>
             <th>Remover</th>
             <th>Editar</th>
         </tr>
@@ -59,7 +60,7 @@ $anuncios = $repositorio->buscarTodos();
         <tbody>
         <?php if (count($anuncios) == 0) : ?>
         <tr>
-            <td colspan="5" class="sem-dados">Nenhum anúncio cadastrado</td>
+            <td colspan="7" class="sem-dados">Nenhum anúncio cadastrado</td>
         </tr>
         <?php else: ?>
         <?php foreach ($anuncios as $anuncio) : ?>
@@ -68,6 +69,7 @@ $anuncios = $repositorio->buscarTodos();
             <td><?php echo htmlspecialchars($anuncio->getCategoriaAnuncio()) ?></td>
             <td><?php echo htmlspecialchars($anuncio->getDescricao()) ?></td>
             <td><?php echo htmlspecialchars($anuncio->getFormatoAnuncio()->value) ?></td>
+            <td><?php echo htmlspecialchars($anuncio->getNomeImagem() ?? '') ?></td>
             <td>
                 <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-anuncio.php" method="post">
                     <input type="hidden" name="id" value="<?= $anuncio->getId() ?>">

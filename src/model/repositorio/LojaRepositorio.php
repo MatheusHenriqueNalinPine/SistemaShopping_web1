@@ -34,6 +34,10 @@ class LojaRepositorio
         try {
             $this->pdo->beginTransaction();
 
+
+
+            
+
             $sql = "insert into tbservico (nome, descricao, imagem, tipo_imagem, nome_imagem, url_imagem, data_registro) values (?, ?, ?, ?, ?, ?, default)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $loja->getNome());
@@ -146,7 +150,7 @@ class LojaRepositorio
             
             return array_map(fn($result) => $this->formarObjeto($result), $result_set);
         } catch (Exception $e) {
-            // Debug temporário
+            
             error_log("Erro ao buscar lojas: " . $e->getMessage());
             return [];
         }
