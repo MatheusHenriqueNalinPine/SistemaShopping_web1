@@ -12,11 +12,6 @@ require_once __DIR__ . "/../../controller/conexao-bd.php";
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
-if (!$usuario_logado) {
-    header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=deslogado');
-    exit;
-}
-
 $repositorio = new UsuarioRepositorio($pdo);
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -27,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $nome = trim($_POST['nome'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $senha = $_POST['senha'] ?? '';
+$confirmar = $_POST['confirmar'] ?? '';
 $cpf = $_POST['cpf'] ?? '';
 $cargo = $_POST['cargo'] ?? '';
 
@@ -45,6 +41,11 @@ if ($nome === '' || $email === '' || $senha === '') {
 
 if ($repositorio->cpfExists($cpf)) {
     header("Location: /SistemaShopping_web1/src/view/sessoes/cadastrar.php?erro=cpf-repetido");
+    exit;
+}
+
+if($confirmar !== $senha){
+    header("Location: /SistemaShopping_web1/src/view/sessoes/cadastrar.php?erro=senhas-diferentes");
     exit;
 }
 

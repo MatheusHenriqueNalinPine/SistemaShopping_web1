@@ -4,11 +4,13 @@ class HorarioFuncionamento
 {
     private string $horario_inicial;
     private string $horario_final;
+    private string $dia_semana;
 
-    public function __construct(string $horario_inicial, string $horario_final)
+    public function __construct(string $horario_inicial, string $horario_final, string $dia_semana)
     {
         $this->horario_inicial = $horario_inicial;
         $this->horario_final = $horario_final;
+        $this->dia_semana = $dia_semana;
     }
 
     public function getHorarioInicial(): string
@@ -31,5 +33,15 @@ class HorarioFuncionamento
         $this->horario_final = $horario_final;
     }
 
+    public function getDiaSemana(): string
+    {
+        return $this->dia_semana;
+    }
 
+    public function setDiaSemana(string $dia_semana): void
+    {
+        $this->dia_semana = $dia_semana;
+    }
+
+    
 }

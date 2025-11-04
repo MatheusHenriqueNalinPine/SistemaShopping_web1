@@ -83,14 +83,55 @@ $erro = $_GET['erro'] ?? null;
                 <label for="imagem">Imagem</label>
                 <input type="file" id="imagem" name="imagem" accept="image/*">
 
-                <label for="horario">Horário Inicial de Funcionamento</label>
-                <input type="time" id="horario_inicial" name="horario_inicial" placeholder="Ex: 10h" required>
-
-                <label for="horario">Horário Final de Funcionamento</label>
-                <input type="time" id="horario_final" name="horario_final" placeholder="Ex: 22h" required>
+                <table class="horario">
+                    <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Abertura</th>
+                        <th>Fechamento</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="dia">Domingo</td>
+                        <td><input type="time" name="abertura[domingo]"></td>
+                        <td><input type="time" name="fechamento[domingo]"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">Segunda</td>
+                        <td><input type="time" name="abertura[segunda]"></td>
+                        <td><input type="time" name="fechamento[segunda]"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">Terça</td>
+                        <td><input type="time" name="abertura[terca]"></td>
+                        <td><input type="time" name="fechamento[terca]"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">Quarta</td>
+                        <td><input type="time" name="abertura[quarta]"></td>
+                        <td><input type="time" name="fechamento[quarta]"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">Quinta</td>
+                        <td><input type="time" name="abertura[quinta]"></td>
+                        <td><input type="time" name="fechamento[quinta]"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">Sexta</td>
+                        <td><input type="time" name="abertura[sexta]"></td>
+                        <td><input type="time" name="fechamento[sexta]"></td>
+                    </tr>
+                    <tr>
+                        <td class="dia">Sábado</td>
+                        <td><input type="time" name="abertura[sabado]"></td>
+                        <td><input type="time" name="fechamento[sabado]"></td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <input type="hidden" id="id" name="id" value="0"/>
-                <input type="submit" value="Cadastrar"/>
+                <input class="btn-cadastrar" type="submit" value="Cadastrar"/>
             </form>
         </div>
     </section>

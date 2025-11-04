@@ -11,12 +11,12 @@ class Loja extends Servico
     private string $cnpj;
     private string $categoria;
     private TipoLoja $tipoLoja;
-    private HorarioFuncionamento $horarioFuncionamento;
+    private array $horarioFuncionamento;
 
-    public function __construct(int      $id, string $nome, string $descricao, string $imagem, string $tipoImagem, string $nomeImagem, string $urlImagem, DateTime $data_registro, string $posicao, string $telefone_contato, string $cnpj, string $categoria,
-                                TipoLoja $tipoLoja, HorarioFuncionamento $horarioFuncionamento)
+    public function __construct(int      $id, string $nome, string $descricao, string $imagem, DateTime $data_registro, string $posicao, string $telefone_contato, string $cnpj, string $categoria,
+                                TipoLoja $tipoLoja, array $horarioFuncionamento)
     {
-        parent::__construct($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, $data_registro);
+        parent::__construct($id, $nome, $descricao, $imagem, $data_registro);
         $this->posicao = $posicao;
         $this->telefone_contato = $telefone_contato;
         $this->cnpj = $cnpj;
@@ -75,15 +75,13 @@ class Loja extends Servico
         $this->tipoLoja = $tipoLoja;
     }
 
-    public function getHorarioFuncionamento(): HorarioFuncionamento
+    public function getHorarioFuncionamento(): array
     {
         return $this->horarioFuncionamento;
     }
 
-    public function setHorarioFuncionamento(HorarioFuncionamento $horarioFuncionamento): void
+    public function setHorarioFuncionamento(array $horarioFuncionamento): void
     {
         $this->horarioFuncionamento = $horarioFuncionamento;
     }
-
-
 }
