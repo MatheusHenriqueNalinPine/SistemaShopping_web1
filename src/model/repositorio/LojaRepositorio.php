@@ -33,11 +33,6 @@ class LojaRepositorio
     {
         try {
             $this->pdo->beginTransaction();
-
-
-
-
-
             $sql = "insert into tbservico (nome, descricao, imagem, tipo_imagem, nome_imagem, url_imagem, data_registro) values (?, ?, ?, ?, ?, ?, default)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $loja->getNome());
@@ -71,7 +66,7 @@ class LojaRepositorio
                     $stmt->bindValue(3, $horario->getDiaSemana());
                     $stmt->execute();
 
-                    $sql = "insert into tbhorarioservico (horario_inicial, horario_final, dia_semana, id_servico) values (?, ?, ?, ?)";
+                    $sql = "insert into tbhorarioservico (id, horario_inicial, horario_final, dia_semana, id_servico) values (?, ?, ?, ?, ?)";
                     $stmt = $this->pdo->prepare($sql);
                     $stmt->bindValue(1, $horario->getHorarioInicial());
                     $stmt->bindValue(2, $horario->getHorarioFinal());
@@ -160,15 +155,21 @@ class LojaRepositorio
         $stmt->execute();
     }
 
-    public
-    function buscarLojas(): array
+    public function buscarLojas(): array
     {
-        $sql = "select tbServico.id, tbServico.nome, tbLoja.categoria, tbHorarioFuncionamento.horario_inicial, tbHorarioFUncionamento.horario_final, tbLoja.cnpj, tbLoja.loja_restaurante, tbLoja.categoria, tbLoja.telefone_contato, tbServico.descricao, tbServico.imagem, tbServico.tipo_imagem, tbLoja.posicao " .
-            "from tbloja inner join tbServico on tbLoja.id = tbServico.id " .
-            "inner join tbHorarioFuncionamento on tbHorarioFuncionamento.id_servico = tbServico.id order by tbLoja.id asc";
+        $sql = "SELECT tbServico.id, tbServico.nome, tbLoja.id_categoria, t2.horario_inicial, t2.horario_final, 
+            tbLoja.cnpj, tbLoja.loja_restaurante, tbLoja.telefone_contato, tbServico.descricao, tbServico.imagem, tbServico.tipo_imagem, 
+            tbLoja.posicao 
+            FROM tbLoja 
+            INNER JOIN tbServico ON tbLoja.id = tbServico.id 
+            INNER JOIN dbshopping.tbHorarioServico t ON tbServico.id = t.id_servico
+            INNER JOIN dbshopping.tbHorarioFuncionamento t2 ON t.horario_inicial = t2.horario_inicial AND t.horario_final = t2.horario_final AND t.dia_semana = t2.dia_semana
+            ORDER BY tbLoja.id ASC";
+
         $result_set = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
+
 
     public
     function formarObjeto(array $result): Loja

@@ -65,11 +65,11 @@ create table tbHorarioFuncionamento
 
 create table tbHorarioServico
 (
-    id              int,
+    id              int auto_increment,
     horario_inicial time,
     horario_final   time,
     dia_semana      varchar(7),
-    id_servico      int auto_increment,
+    id_servico      int,
     constraint pkHorarioServico primary key (id),
     constraint fkHorarioServicoServico foreign key (id_servico) references tbServico (id),
     constraint fkHorarioServicoHorario foreign key (horario_inicial, horario_final, dia_semana) references tbHorarioFuncionamento (horario_inicial, horario_final, dia_semana)
@@ -110,6 +110,7 @@ create table tbAnuncio
     constraint fkAnuncioServico foreign key (id) references tbServico (id),
     constraint fkAnuncioCategoria foreign key (id_categoria_anuncio) references tbCategoriaAnuncio (id)
 );
+
 
 insert into tbUsuario (nome, email, senha, cpf, cargo)
 values ('Dono do shopping', 'admin@exemplo.com', '$2y$10$n7avFbK6dB6joBDXa2hVIe4QOyxLc6VobFjqErUj57aqcb14tDYMe',
