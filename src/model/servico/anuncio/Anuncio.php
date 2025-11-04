@@ -13,9 +13,13 @@ class Anuncio extends Servico
     private string $categoria_anuncio;
 
     public function __construct(int $id, string $nome, string $descricao, string $imagem,
-                                DateTime $data_registro, FormatoAnuncio $formato_anuncio, string $categoria_anuncio)
+                                string $tipoImagem = '', string $nomeImagem = '', string $urlImagem = '',
+                                DateTime $data_registro = null, FormatoAnuncio $formato_anuncio, string $categoria_anuncio)
     {
-        parent::__construct($id, $nome, $descricao, $imagem, $data_registro);
+        if ($data_registro === null) {
+            $data_registro = new DateTime();
+        }
+        parent::__construct($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, $data_registro);
         $this->formato_anuncio = $formato_anuncio;
         $this->categoria_anuncio = $categoria_anuncio;
     }

@@ -78,7 +78,7 @@ $lojas = $repositorio->buscarLojas();
             </td>
             <td><form action="editar-loja.php" method="get">
                     <input type="hidden" name="id" value="<?= $loja->getId() ?>">
-                    <input type="submit" class="btn-cadastrar" value="Editar">
+                    <input type="submit" class="btn-editar" value="Editar">
                 </form></td>
         </tr>
         <?php endforeach; ?>

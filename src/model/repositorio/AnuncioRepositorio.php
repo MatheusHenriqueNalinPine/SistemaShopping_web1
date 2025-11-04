@@ -30,6 +30,9 @@ class AnuncioRepositorio
             $dados["nome"] ?? '',
             $dados["descricao"] ?? '',
             $dados["imagem"] ?? '',
+            $dados["tipo_imagem"] ?? '',
+            $dados["nome_imagem"] ?? '',
+            $dados["url_imagem"] ?? '',
             new DateTime($dados['data_registro'] ?? 'now'),
             FormatoAnuncio::from($dados['formato_anuncio'] ?? $dados['formato'] ?? 'quadrado'),
             $dados['categoria'] ?? '');
