@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../controller/conexao-bd.php';
 $repositorio = new LojaRepositorio($pdo);
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $loja = $id > 0 ? $repositorio->buscarPorId($id) : null;
-$todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
+$todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Restaurante) : [];
 
 ?>
 

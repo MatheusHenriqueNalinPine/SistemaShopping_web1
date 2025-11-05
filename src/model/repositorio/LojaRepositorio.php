@@ -13,12 +13,14 @@ use HorarioFuncionamento;
 use Loja;
 use PDO;
 use TipoLoja;
+use model\repositorio\HorarioFuncionamentoRepositorio;
 
 use DateTime;
 
 require_once __DIR__ . "/../servico/loja/Loja.php";
 require_once __DIR__ . "/../servico/loja/TipoLoja.php";
 require_once __DIR__ . "/../servico/HorarioFuncionamento.php";
+require_once __DIR__ . "/HorarioFuncionamentoRepositorio.php";
 
 class LojaRepositorio
 {
@@ -39,16 +41,30 @@ class LojaRepositorio
             $stmt->bindValue(2, $loja->getDescricao());
             $stmt->bindValue(3, base64_decode($loja->getImagem()), PDO::PARAM_LOB);
             $stmt->bindValue(4, $loja->getTipoImagem());
-            $stmt->bindValue(5, $loja->getNomeImagem());
+            $stmt->bindValue(5, $loja->getNomeImagem()); // <-- aqui
             $stmt->bindValue(6, $loja->getUrlImagem());
             $stmt->execute();
 
             $idServico = $this->pdo->lastInsertId();
 
+            $sql = "select id from tbCategoriaLoja where categoria = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $loja->getCategoria());
+            $stmt->execute();
+            $idCategoria = $stmt->fetchColumn();
+
+            if (!$idCategoria) {
+                $sql = "insert into tbCategoriaLoja (categoria) values (?)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(1, $loja->getCategoria());
+                $stmt->execute();
+                $idCategoria = $this->pdo->lastInsertId();
+            }
+
             $sql = "insert into tbloja (id, id_categoria ,posicao, telefone_contato, cnpj, loja_restaurante) values (?, ?, ?, ?, ?, ?);                                                                  ";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $idServico);
-            $stmt->bindValue(2, $loja->getCategoria());
+            $stmt->bindValue(2, $idCategoria);
             $stmt->bindValue(3, $loja->getPosicao());
             $stmt->bindValue(4, $loja->getTelefoneContato());
             $stmt->bindValue(5, $loja->getCnpj());
@@ -59,22 +75,25 @@ class LojaRepositorio
 
             foreach ($loja->getHorarioFuncionamento() as $horario) {
                 if (!$horarioRepositorio->verificarExistencia($horario)) {
-                    $sql = "insert into tbhorariofuncionamento values (?, ?, ?)";
+                    $sql = "insert into tbhorariofuncionamento (horario_inicial, horario_final, dia_semana)
+                values (?, ?, ?)";
                     $stmt = $this->pdo->prepare($sql);
                     $stmt->bindValue(1, $horario->getHorarioInicial());
                     $stmt->bindValue(2, $horario->getHorarioFinal());
                     $stmt->bindValue(3, $horario->getDiaSemana());
-                    $stmt->execute();
-
-                    $sql = "insert into tbhorarioservico (id, horario_inicial, horario_final, dia_semana, id_servico) values (?, ?, ?, ?, ?)";
-                    $stmt = $this->pdo->prepare($sql);
-                    $stmt->bindValue(1, $horario->getHorarioInicial());
-                    $stmt->bindValue(2, $horario->getHorarioFinal());
-                    $stmt->bindValue(3, $horario->getDiaSemana());
-                    $stmt->bindValue(4, $idServico);
                     $stmt->execute();
                 }
+
+                $sql = "insert into tbhorarioservico (horario_inicial, horario_final, dia_semana, id_servico)
+            values (?, ?, ?, ?)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(1, $horario->getHorarioInicial());
+                $stmt->bindValue(2, $horario->getHorarioFinal());
+                $stmt->bindValue(3, $horario->getDiaSemana());
+                $stmt->bindValue(4, $idServico);
+                $stmt->execute();
             }
+
 
             $this->pdo->commit();
             return (int)$idServico;
@@ -89,12 +108,15 @@ class LojaRepositorio
         try {
             $this->pdo->beginTransaction();
 
-            $sql = "update tbservico set nome = ?, descricao = ?, imagem = ? where id = ?";
+            $sql = "update tbservico set nome = ?, descricao = ?, imagem = ?, tipo_imagem = ?, nome_imagem = ?, url_imagem = ? where id = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $loja->getNome());
             $stmt->bindValue(2, $loja->getDescricao());
             $stmt->bindValue(3, $loja->getImagem());
-            $stmt->bindValue(4, $loja->getId());
+            $stmt->bindValue(4, $loja->getTipoImagem());
+            $stmt->bindValue(5, $loja->getNomeImagem());
+            $stmt->bindValue(6, $loja->getUrlImagem());
+            $stmt->bindValue(7, $loja->getId());
             $stmt->execute();
 
             $sql = "update tbloja set posicao = ?, id_categoria = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;";
@@ -141,45 +163,84 @@ class LojaRepositorio
     }
 
 
-    public
-    function excluirLoja(int $id): void
+    public function excluirLoja(int $id): void
     {
-        $sql = "delete from tbLoja where id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $id);
-        $stmt->execute();
+        try {
+            $this->pdo->beginTransaction();
 
-        $sql = "delete from tbservico where id = ?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(1, $id);
-        $stmt->execute();
+            $sql = "DELETE FROM tbhorarioservico WHERE id_servico = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+
+            $sql = "DELETE FROM tbloja WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+
+            $sql = "DELETE FROM tbservico WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+
+            $this->pdo->commit();
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            echo "Erro ao salvar loja: " . $e->getMessage();
+            throw $e;
+        }
     }
 
-    public function buscarLojas(): array
+
+    public function buscarlojas(): array
     {
-        $sql = "SELECT tbServico.id, tbServico.nome, tbLoja.id_categoria, t2.horario_inicial, t2.horario_final, 
-            tbLoja.cnpj, tbLoja.loja_restaurante, tbLoja.telefone_contato, tbServico.descricao, tbServico.imagem, tbServico.tipo_imagem, 
-            tbLoja.posicao 
-            FROM tbLoja 
-            INNER JOIN tbServico ON tbLoja.id = tbServico.id 
-            INNER JOIN dbshopping.tbHorarioServico t ON tbServico.id = t.id_servico
-            INNER JOIN dbshopping.tbHorarioFuncionamento t2 ON t.horario_inicial = t2.horario_inicial AND t.horario_final = t2.horario_final AND t.dia_semana = t2.dia_semana
-            ORDER BY tbLoja.id ASC";
+        $sql = "select tbservico.id, tbservico.nome, tbloja.id_categoria, 
+                   tbloja.cnpj, tbloja.loja_restaurante, tbloja.telefone_contato, 
+                   tbservico.descricao, tbservico.imagem, tbservico.tipo_imagem, 
+                   tbservico.nome_imagem, tbservico.url_imagem, tbservico.data_registro, 
+                   tbloja.posicao 
+            from tbloja 
+            inner join tbservico on tbloja.id = tbservico.id 
+            inner join tbCategoriaLoja on tbloja.id_categoria = tbCategoriaLoja.id 
+            order by tbloja.id asc";
 
         $result_set = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
-
-    public
-    function formarObjeto(array $result): Loja
+    public function buscarlojasFiltro(TipoLoja $tipo): array
     {
-        return new Loja($result['id'],
+        $sql = "select tbservico.id, tbservico.nome, tbloja.id_categoria, 
+                   tbloja.cnpj, tbloja.loja_restaurante, tbloja.telefone_contato, 
+                   tbservico.descricao, tbservico.imagem, tbservico.tipo_imagem, 
+                   tbservico.nome_imagem, tbservico.url_imagem, tbservico.data_registro, 
+                   tbloja.posicao 
+            from tbloja 
+            inner join tbservico on tbloja.id = tbservico.id 
+            inner join tbCategoriaLoja on tbloja.id_categoria = tbCategoriaLoja.id 
+            where tbloja.loja_restaurante = :tipo
+            order by tbloja.id asc";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['tipo' => $tipo->value]);
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function formarObjeto(array $result): Loja
+    {
+        return new Loja(
+            $result['id'],
             $result['nome'] ?? null,
             $result['descricao'] ?? null,
-            base64_encode($result['imagem'] ?? ''),
+            base64_encode($result['imagem'] !== null ? $result['imagem'] : ''),
             $result['tipo_imagem'] ?? 'image/png',
-            $result['nome_imagem'] ?? null,
+            $result['nome_imagem'] ?? '',
             $result['url_imagem'] ?? null,
             new DateTime($result['data_registro'] ?? 'now'),
             $result['posicao'] ?? null,
@@ -187,26 +248,35 @@ class LojaRepositorio
             $result['cnpj'] ?? null,
             $result['categoria'] ?? 'Acessórios',
             TipoLoja::from($result['loja_restaurante']),
-            new HorarioFuncionamento($result['horario_inicial'], $result['horario_final']),);
-
+            $result['horarios'] ?? []
+        );
     }
 
+    /**
+     * @throws Exception
+     */
     public function buscarPorId(int $id): ?Loja
     {
-        $sql = "select tbServico.id, tbServico.nome, tbLoja.categoria, tbHorarioFuncionamento.horario_inicial, tbHorarioFUncionamento.horario_final, tbLoja.cnpj, tbLoja.loja_restaurante, tbLoja.categoria, tbLoja.telefone_contato, tbServico.descricao, tbServico.imagem, tbServico.tipo_imagem, tbServico.nome_imagem, tbServico.url_imagem, tbLoja.posicao " .
-            "from tbloja inner join tbServico on tbLoja.id = tbServico.id " .
-            "inner join tbHorarioFuncionamento on tbHorarioFuncionamento.id_servico = tbServico.id " .
-            "where tbServico.id = ?";
+        $sql = "select s.id, s.nome, l.id_categoria, c.categoria, l.cnpj, 
+                       l.loja_restaurante, l.telefone_contato, s.descricao, 
+                       s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, 
+                       s.data_registro, l.posicao
+                from tbLoja l
+                inner join tbServico s on l.id = s.id
+                inner join tbCategoriaLoja c on l.id_categoria = c.id
+                where s.id = ?";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
         if (!$result) {
             return null;
         }
+
+        $horarios = $this->buscarHorariosPorLojaId($id);
+        $result['horarios'] = $horarios;
 
         return $this->formarObjeto($result);
     }

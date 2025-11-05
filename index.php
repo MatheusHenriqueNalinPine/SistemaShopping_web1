@@ -37,7 +37,7 @@
 
 
 <section class="anuncios-horizontais">
-    <?php $limite_anuncios = 4;
+    <?php $limite_anuncios = 2;
     include('src/view/sessoes/anuncios/anuncio_horizontal.php') ?>
 </section>
 

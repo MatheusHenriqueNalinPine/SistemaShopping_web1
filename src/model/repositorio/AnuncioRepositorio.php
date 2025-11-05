@@ -99,14 +99,37 @@ class AnuncioRepositorio
     {
         try {
             $this->pdo->beginTransaction();
+
+            $sql = "select id from tbCategoriaAnuncio where categoria = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $anuncio->getCategoriaAnuncio());
+            $stmt->execute();
+            $idCategoria = $stmt->fetchColumn();
+
+            if (!$idCategoria) {
+                $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(1, $anuncio->getCategoriaAnuncio());
+                $stmt->execute();
+                $idCategoria = $this->pdo->lastInsertId();
+            }
+
             $sql = "update tbanuncio set formato_anuncio = ?, id_categoria_anuncio = ? where id = ?";
-            $stmt = $this->setarDadosStatement($sql, $anuncio);
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $anuncio->getFormatoAnuncio()->value);
+            $stmt->bindValue(2, $idCategoria);
             $stmt->bindValue(3, $anuncio->getId());
             $stmt->execute();
 
             $sql = "update tbservico set nome = ?, descricao = ?, imagem = ?, data_registro = ? where id = ?";
-            $stmt = (new ServicoRepositorio($this->pdo))->setarDadosStatement($sql, $anuncio);
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $anuncio->getNome());
+            $stmt->bindValue(2, $anuncio->getDescricao());
+            $stmt->bindValue(3, $anuncio->getImagem());
+            $stmt->bindValue(4, $anuncio->getDataRegistro()->format('Y-m-d H:i:s'));
+            $stmt->bindValue(5, $anuncio->getId());
             $stmt->execute();
+
             $this->pdo->commit();
         } catch (Exception $e) {
             $this->pdo->rollBack();
@@ -194,7 +217,7 @@ class AnuncioRepositorio
 
     public function buscarPorId(int $id): ?Anuncio
     {
-        $sql = "select s.id, s.nome, a.categoria_anuncio, a.formato_anuncio, 
+        $sql = "select s.id, s.nome, a.id_categoria_anuncio, a.formato_anuncio, 
         s.descricao, s.imagem, s.data_registro " .
             "from tbanuncio a inner join tbServico s on a.id = s.id " .
             "where s.id = ?";

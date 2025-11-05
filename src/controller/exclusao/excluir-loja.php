@@ -26,5 +26,5 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 $repositorio->excluirLoja($_POST['id']);
 
-header("Location: /SistemaShopping_web1/src/view/administrativo/loja/anuncio-dashboard.php");
+header("Location: /SistemaShopping_web1/src/view/administrativo/loja/loja-dashboard.php");
 exit;

@@ -94,38 +94,38 @@ $erro = $_GET['erro'] ?? null;
                     <tbody>
                     <tr>
                         <td class="dia">Domingo</td>
-                        <td><input type="time" name="abertura[domingo]"></td>
-                        <td><input type="time" name="fechamento[domingo]"></td>
+                        <td><input type="time" name="abertura[domingo]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[domingo]" value="19:30"></td>
                     </tr>
                     <tr>
                         <td class="dia">Segunda</td>
-                        <td><input type="time" name="abertura[segunda]"></td>
-                        <td><input type="time" name="fechamento[segunda]"></td>
+                        <td><input type="time" name="abertura[segunda]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[segunda]" value="20:00"></td>
                     </tr>
                     <tr>
                         <td class="dia">Terça</td>
-                        <td><input type="time" name="abertura[terca]"></td>
-                        <td><input type="time" name="fechamento[terca]"></td>
+                        <td><input type="time" name="abertura[terca]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[terca]" value="20:00"></td>
                     </tr>
                     <tr>
                         <td class="dia">Quarta</td>
-                        <td><input type="time" name="abertura[quarta]"></td>
-                        <td><input type="time" name="fechamento[quarta]"></td>
+                        <td><input type="time" name="abertura[quarta]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[quarta]" value="20:00"></td>
                     </tr>
                     <tr>
                         <td class="dia">Quinta</td>
-                        <td><input type="time" name="abertura[quinta]"></td>
-                        <td><input type="time" name="fechamento[quinta]"></td>
+                        <td><input type="time" name="abertura[quinta]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[quinta]" value="20:00"></td>
                     </tr>
                     <tr>
                         <td class="dia">Sexta</td>
-                        <td><input type="time" name="abertura[sexta]"></td>
-                        <td><input type="time" name="fechamento[sexta]"></td>
+                        <td><input type="time" name="abertura[sexta]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[sexta]" value="20:00"></td>
                     </tr>
                     <tr>
                         <td class="dia">Sábado</td>
-                        <td><input type="time" name="abertura[sabado]"></td>
-                        <td><input type="time" name="fechamento[sabado]"></td>
+                        <td><input type="time" name="abertura[sabado]" value="10:00"></td>
+                        <td><input type="time" name="fechamento[sabado]" value="22:00"></td>
                     </tr>
                     </tbody>
                 </table>

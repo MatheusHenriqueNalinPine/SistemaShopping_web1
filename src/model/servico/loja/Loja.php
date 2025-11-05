@@ -13,10 +13,10 @@ class Loja extends Servico
     private TipoLoja $tipoLoja;
     private array $horarioFuncionamento;
 
-    public function __construct(int      $id, string $nome, string $descricao, string $imagem, DateTime $data_registro, string $posicao, string $telefone_contato, string $cnpj, string $categoria,
+    public function __construct(int      $id, string $nome, string $descricao, string $imagem, string $tipoImagem, string $nomeImagem, string $urlImagem, DateTime $data_registro, string $posicao, string $telefone_contato, string $cnpj, string $categoria,
                                 TipoLoja $tipoLoja, array $horarioFuncionamento)
     {
-        parent::__construct($id, $nome, $descricao, $imagem, $data_registro);
+        parent::__construct($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, $data_registro);
         $this->posicao = $posicao;
         $this->telefone_contato = $telefone_contato;
         $this->cnpj = $cnpj;

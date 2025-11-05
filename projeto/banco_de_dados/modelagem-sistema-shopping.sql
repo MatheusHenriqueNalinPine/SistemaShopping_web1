@@ -21,14 +21,16 @@ create table tbServico
     nome          varchar(100) not null,
     descricao     text,
     imagem        longblob     not null,
+    nome_imagem   varchar(255),
     tipo_imagem   varchar(50) default ('image/png'),
+    url_imagem    longtext,
     data_registro date        default (curdate()),
     constraint pkServico primary key (id)
 );
 
 create table tbCategoriaLoja
 (
-    id        int,
+    id        int auto_increment,
     categoria varchar(30) not null,
     constraint pkCategoriaLoja primary key (id)
 );
@@ -36,12 +38,12 @@ create table tbCategoriaLoja
 create table tbLoja
 (
     id               int         not null,
-    id_categoria     int,
+    id_categoria     int         not null,
     posicao          char(5)     not null,
     telefone_contato char(11),
     cnpj             char(14) unique,
     loja_restaurante varchar(11) not null,
-    constraint pkLoja primary key (cnpj),
+    constraint pkLoja primary key (id),
     constraint fkLojaServico foreign key (id) references tbServico (id),
     constraint fkLojaCategoria foreign key (id_categoria) references tbCategoriaLoja (id)
 );
@@ -115,3 +117,7 @@ create table tbAnuncio
 insert into tbUsuario (nome, email, senha, cpf, cargo)
 values ('Dono do shopping', 'admin@exemplo.com', '$2y$10$n7avFbK6dB6joBDXa2hVIe4QOyxLc6VobFjqErUj57aqcb14tDYMe',
         '11111111111', 'administrador');
+
+select *
+from tbLoja
+         inner join tbServico tS on tbLoja.id = tS.id

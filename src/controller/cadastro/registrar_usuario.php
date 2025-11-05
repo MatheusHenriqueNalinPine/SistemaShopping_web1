@@ -61,5 +61,5 @@ if (strlen($cpf) != 11) {
 
 $repositorio->salvar($nome, $email, $senha, $cpf, $cargo);
 
-header("Location:  /SistemaShopping_web1/src/view/sessoes/view/login.php?sucess=true");
+header("Location:  /SistemaShopping_web1/src/view/sessoes/login.php?sucess=true");
 exit;

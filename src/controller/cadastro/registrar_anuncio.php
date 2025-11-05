@@ -47,7 +47,7 @@ if ($id == 0) {
         header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/cadastrar-anuncio.php?erro=campos-vazios");
         exit;
     }
-    $repositorio->atualizar(new Anuncio($id, $nome, $descricao, $imagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria));
+    $repositorio->atualizar(new Anuncio($id, $nome, $descricao, $imagem, "null", "null", "null", new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria));
 }
 
 header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/anuncio-dashboard.php");
