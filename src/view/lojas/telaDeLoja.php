@@ -17,18 +17,24 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossas Lojas - Shopping</title>
+    <title>Lojas - SchweizerPine Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/lojas.css">
+    <link rel="stylesheet" href="/SistemaShopping_web1/css/telaDeLoja.css">
 </head>
 <body>
 
 <?php include(__DIR__ . '/../sessoes/header.html') ?>
 
-<main style="padding: 20px; margin-top: 80px;">
+<main>
+    <div class="header-container">
+        <a href="/SistemaShopping_web1/index.php" class="btn-voltar">← Voltar para Início</a>
+        <h1 class="titulo-principal">Lojas</h1>
+        <div class="espacador"></div>
+    </div>
 
     <?php if (!$loja && empty($todasLojas)) : ?>
-        <div class="sem-dados" style="max-width:900px;margin:40px auto;text-align:center;">
+        <div class="sem-dados">
             Nenhuma loja cadastrada ainda.
         </div>
     <?php elseif ($loja) : ?>
@@ -62,6 +68,12 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
                     <p><strong>Telefone:</strong> <?php echo htmlspecialchars($loja->getTelefoneContato() ?? '-') ?></p>
                     <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($loja->getCnpj() ?? '-') ?></p>
                     <p><strong>Tipo:</strong> <?php echo htmlspecialchars($loja->getTipoLoja()->value ?? '-') ?></p>
+                    <p><strong>Horário de Funcionamento:</strong> <?php 
+                        $horarioInicial = $loja->getHorarioFuncionamento()->getHorarioInicial() ?? '00:00';
+                        $horarioFinal = $loja->getHorarioFuncionamento()->getHorarioFinal() ?? '00:00';
+                        // Formata os horários para mostrar apenas hora e minuto
+                        echo substr($horarioInicial, 0, 5) . ' até ' . substr($horarioFinal, 0, 5);
+                    ?></p>
                 </div>
             </div>
         </div>

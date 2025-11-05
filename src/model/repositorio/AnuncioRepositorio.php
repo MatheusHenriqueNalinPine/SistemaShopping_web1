@@ -55,7 +55,6 @@ class AnuncioRepositorio
         try {
             $this->pdo->beginTransaction();
 
-
             $sql = "insert into tbservico (nome, descricao, imagem, data_registro) values (?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $nome);
@@ -86,14 +85,12 @@ class AnuncioRepositorio
             $stmt->bindValue(2, $formato_anuncio->value);
             $stmt->bindValue(3, $idCategoria);
             $stmt->execute();
-
             $this->pdo->commit();
         } catch (Exception $e) {
             $this->pdo->rollBack();
             throw $e;
         }
     }
-
 
     public function atualizar(Anuncio $anuncio)
     {
@@ -129,7 +126,6 @@ class AnuncioRepositorio
             $stmt->bindValue(4, $anuncio->getDataRegistro()->format('Y-m-d H:i:s'));
             $stmt->bindValue(5, $anuncio->getId());
             $stmt->execute();
-
             $this->pdo->commit();
         } catch (Exception $e) {
             $this->pdo->rollBack();

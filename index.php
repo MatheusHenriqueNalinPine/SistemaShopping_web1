@@ -18,7 +18,7 @@
         <div class="texto">
             <h2>Anúncio</h2>
             <p>Venha conhecer nosso carrosel 🎠</p>
-            <a href="#" class="btn">Conheça nossas lojas!</a>
+            <a href="/SistemaShopping_web1/src/view/lojas/telaDeLoja.php" class="btn">Conheça nossas lojas!</a>
         </div>
     </div>
     <div class="slide">

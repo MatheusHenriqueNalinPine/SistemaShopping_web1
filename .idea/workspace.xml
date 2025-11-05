@@ -4,25 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="alterações loja repo, solving merge conflicts">
-      <change afterPath="$PROJECT_DIR$/src/view/lojas/telaDeRestaurante.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/telaDeLoja.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0d1ad0862.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0e4edccaf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1451f1d37.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1bdcb6d46.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alter_url_imagem.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/crud-tabela.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/crud-tabela.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/cadastro/registrar_anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/cadastro/registrar_anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/cadastro/registrar_loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/cadastro/registrar_loja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/cadastro/registrar_usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/cadastro/registrar_usuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/exclusao/excluir-loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/exclusao/excluir-loja.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/servico/loja/Loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/loja/Loja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/usuario/Cargo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/usuario/Cargo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/cadastrar-loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/cadastrar-loja.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/lojas/telaDeLoja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +69,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -83,7 +78,7 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Merging main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/xampp/htdocs/SistemaShopping_web1/src/view/lojas",
@@ -107,6 +102,7 @@
       <recent name="C:\xampp\htdocs\SistemaShopping_web1\src\view\lojas" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\SistemaShopping_web1" />
       <recent name="C:\xampp\htdocs\SistemaShopping_web1\src\view\sessoes" />
       <recent name="C:\xampp\htdocs\SistemaShopping_web1\src\view\administrativo" />
     </key>
@@ -128,7 +124,7 @@
       <updated>1760450359983</updated>
       <workItem from="1760450361083" duration="2451000" />
       <workItem from="1762265193138" duration="4803000" />
-      <workItem from="1762376392733" duration="2148000" />
+      <workItem from="1762376392733" duration="2736000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -138,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762267034149</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php">
+      <option name="closed" value="true" />
+      <created>1762378672616</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762378672616</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="alterações loja repo, solving merge conflicts" />
-    <option name="LAST_COMMIT_MESSAGE" value="alterações loja repo, solving merge conflicts" />
+    <MESSAGE value="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php" />
   </component>
 </project>
