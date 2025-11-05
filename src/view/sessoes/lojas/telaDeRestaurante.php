@@ -20,12 +20,18 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Restaurante)
     <title>Nossas Lojas - Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/lojas.css">
+    <link rel="stylesheet" href="/SistemaShopping_web1/css/telaDeLoja.css">
 </head>
 <body>
 
 <?php include(__DIR__ . '/../sessoes/header.html') ?>
 
-<main style="padding: 20px; margin-top: 80px;">
+<main>
+    <div class="header-container">
+        <a href="/SistemaShopping_web1/index.php" class="btn-voltar">← Voltar para Início</a>
+        <h1 class="titulo-principal">Lojas</h1>
+        <div class="espacador"></div>
+    </div>
 
     <?php if (!$loja && empty($todasLojas)) : ?>
         <div class="sem-dados" style="max-width:900px;margin:40px auto;text-align:center;">

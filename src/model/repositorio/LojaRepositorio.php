@@ -209,6 +209,26 @@ class LojaRepositorio
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
+    public function buscarlojasMinimizadas(int $limite): array
+    {
+        $sql = "select tbservico.id, tbservico.nome, tbloja.id_categoria, 
+                   tbloja.cnpj, tbloja.loja_restaurante, tbloja.telefone_contato, 
+                   tbservico.descricao, tbservico.imagem, tbservico.tipo_imagem, 
+                   tbservico.nome_imagem, tbservico.url_imagem, tbservico.data_registro, 
+                   tbloja.posicao 
+            from tbloja 
+            inner join tbservico on tbloja.id = tbservico.id 
+            inner join tbCategoriaLoja on tbloja.id_categoria = tbCategoriaLoja.id 
+            order by tbloja.id asc limit :limite";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
+    }
+
     public function buscarlojasFiltro(TipoLoja $tipo): array
     {
         $sql = "select tbservico.id, tbservico.nome, tbloja.id_categoria, 

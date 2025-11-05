@@ -7,4 +7,6 @@ enum FormatoAnuncio: string
     case NoticiaCompleta = 'Noticia_completa';
     case Horizontal = 'Horizontal';
     case Quadrado = 'Quadrado';
+
+    case Carrossel = 'Carrossel';
 }

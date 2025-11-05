@@ -117,7 +117,3 @@ create table tbAnuncio
 insert into tbUsuario (nome, email, senha, cpf, cargo)
 values ('Dono do shopping', 'admin@exemplo.com', '$2y$10$n7avFbK6dB6joBDXa2hVIe4QOyxLc6VobFjqErUj57aqcb14tDYMe',
         '11111111111', 'administrador');
-
-select *
-from tbLoja
-         inner join tbServico tS on tbLoja.id = tS.id

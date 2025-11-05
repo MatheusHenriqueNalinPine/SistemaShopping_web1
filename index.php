@@ -48,22 +48,17 @@
     </div>
     <div class="grid-noticias">
         <?php $limite_anuncios = 4;
-        include('src/view/sessoes/anuncios/anuncio-minimizado.php') ?>
+        include('src/view/sessoes/anuncios/anuncio_minimizado.php') ?>
     </div>
 </section>
 
 <section class="lojas">
     <h2>Algumas de nossas lojas</h2>
     <div class="carrossel-lojas">
-        <span class="seta">❮</span>
-
         <div class="logos">
-            <div class="logo-box">Logo 1</div>
-            <div class="logo-box">Logo 2</div>
-            <div class="logo-box">Logo 3</div>
+            <?php $limite_lojas = 5;
+            include('src/view/sessoes/lojas/loja_minimizada.php'); ?>
         </div>
-
-        <span class="seta">❯</span>
     </div>
     <a href="#" class="ver-mais">VER MAIS</a>
 </section>

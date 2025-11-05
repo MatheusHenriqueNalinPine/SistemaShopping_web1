@@ -4,19 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/telaDeLoja.css" afterDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Tela de loja, anuncio">
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0d1ad0862.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0e4edccaf.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1451f1d37.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1bdcb6d46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_minimizada.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/crud-tabela.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/crud-tabela.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/telaDeLoja.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/telaDeLoja.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/lojas/telaDeLoja.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/servico/anuncio/FormatoAnuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/anuncio/FormatoAnuncio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/lojas/telaDeRestaurante.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio-minimizado.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_minimizado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,18 +49,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KlausSchweizer"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KlausSchweizer&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1",
-    "accountId": "2ed135c7-36f0-4412-9c04-625d17c02733"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1&quot;,
+    &quot;accountId&quot;: &quot;2ed135c7-36f0-4412-9c04-625d17c02733&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../xampp/php" />
@@ -67,43 +74,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "Merging main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/xampp/htdocs/SistemaShopping_web1/src/view/lojas",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/SistemaShopping_web1/src/view/lojas&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql_aurora"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\SistemaShopping_web1\src\view\lojas" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\SistemaShopping_web1" />
       <recent name="C:\xampp\htdocs\SistemaShopping_web1\src\view\sessoes" />
+      <recent name="C:\xampp\htdocs\SistemaShopping_web1" />
       <recent name="C:\xampp\htdocs\SistemaShopping_web1\src\view\administrativo" />
     </key>
   </component>
@@ -124,7 +131,8 @@
       <updated>1760450359983</updated>
       <workItem from="1760450361083" duration="2451000" />
       <workItem from="1762265193138" duration="4803000" />
-      <workItem from="1762376392733" duration="2736000" />
+      <workItem from="1762376392733" duration="3669000" />
+      <workItem from="1762384992817" duration="1620000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -142,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762378672616</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Tela de loja, anuncio">
+      <option name="closed" value="true" />
+      <created>1762380436677</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762380436677</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +167,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="alterações loja repo, solving merge conflicts" />
     <MESSAGE value="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php" />
+    <MESSAGE value="Tela de loja, anuncio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tela de loja, anuncio" />
   </component>
 </project>

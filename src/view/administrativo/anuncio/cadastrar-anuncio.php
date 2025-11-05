@@ -55,6 +55,7 @@ $erro = $_GET['erro'] ?? null;
                     <option value="Quadrado">Quadrado</option>
                     <option value="Horizontal">Horizontal</option>
                     <option value="Noticia_completa">Notícia completa</option>
+                    <option value="Carrossel">Carrossel (Menu inicial)</option>
                 </select>
 
                 <label for="descricao">Descrição</label>
