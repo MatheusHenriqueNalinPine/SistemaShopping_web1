@@ -62,8 +62,8 @@ $anuncio = $repositorio->buscarPorId($idAnuncio);
                 <label for="descricao">Descrição</label>
                 <textarea id="descricao" name="descricao" placeholder="Descreva sua loja..." rows="4"></textarea>
 
-                <label for="imagem">Imagem (.png)</label>
-                <input type="file" id="imagem" name="imagem" accept="image/png">
+                <label for="imagem">Imagem</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*">
 
                 <input type="hidden" name="id" value="<?= $anuncio->getId() ?>">
 

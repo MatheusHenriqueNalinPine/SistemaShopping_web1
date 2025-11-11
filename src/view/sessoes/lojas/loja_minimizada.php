@@ -12,7 +12,7 @@ $lojas = $repositorio->buscarLojasMinimizadas($limite);
 
 <?php foreach ($lojas as $loja): ?>
     <div class="logo-box-login">
-        <a href="telaDeLoja.php?id=<?php echo htmlspecialchars($loja->getId()) ?>"><img
+        <a href="/SistemaShopping_web1/src/view/sessoes/lojas/telaDeLoja.php?id=<?php echo htmlspecialchars($loja->getId()) ?>"><img
                     src="<?php echo htmlspecialchars($loja->getUrlImagem()) ?>"
                     alt="Logo da loja <?php echo htmlspecialchars($loja->getNome()) ?>"></a>
     </div>

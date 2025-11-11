@@ -12,7 +12,7 @@ $anuncios = $repositorio->buscarAnunciosMinimizados($limite);
 
 <?php foreach ($anuncios as $anuncio): ?>
     <div class="noticia">
-        <a href="?id=<?php echo $anuncio->getId() ?>" class="anuncio-card-small">
+        <a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=<?php echo $anuncio->getId() ?>" class="anuncio-card-small">
             <?php
             $imgSrc = '';
             $nomeArquivo = $anuncio->getNomeImagem();

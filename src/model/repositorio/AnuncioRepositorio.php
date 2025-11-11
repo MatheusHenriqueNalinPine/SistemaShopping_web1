@@ -251,4 +251,12 @@ class AnuncioRepositorio
         return $this->formarObjeto($result);
     }
 
+    public function getCategoriaById(int $id) : string {
+        $sql = "select categoria from tbcategoriaanuncio where id = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_COLUMN);
+
+    }
 }

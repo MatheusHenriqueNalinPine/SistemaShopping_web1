@@ -52,7 +52,6 @@ $lojas = $repositorio->buscarLojas();
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Localização</th>
-            <th>Imagem</th>
             <th>Remover</th>
             <th>Editar</th>
         </tr>
@@ -69,7 +68,6 @@ $lojas = $repositorio->buscarLojas();
             <td><?php echo htmlspecialchars($loja->getCategoria()) ?></td>
             <td><?php echo htmlspecialchars($loja->getDescricao()) ?></td>
             <td><?php echo htmlspecialchars($loja->getPosicao()) ?></td>
-            <td><?php echo htmlspecialchars($loja->getNomeImagem() ?? '') ?></td>
             <td>
                 <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-loja.php" method="post">
                     <input type="hidden" name="id" value="<?= $loja->getId() ?>">

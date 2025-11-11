@@ -4,56 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Remoção de evento">
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Imagens de Anúncios">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/anuncios.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/anuncios.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690975c85838b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_6909770928aea.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_6909774b5f9ed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690979de08295.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_69097a0b4f76a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_69097da524c7f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a0270c6396.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a0d1ad0862.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a0e4edccaf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a1451f1d37.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a1bdcb6d46.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a536803b99.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a54073854b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a54926fa05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a57eb05003.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a58a43b3dc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a593467521.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a59a88a7c0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a59ce732c7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a59e63197e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a61341dcae.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a633195af6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a633b05849.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a64dbd19ec.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a6520b2c09.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a654a0b302.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a6d170c849" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a6e4044bcb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a6e908cd9c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a6ea42aeba.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690a6ff1db970.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690bbaafd3453.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690bbc1a292a3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690bbd993be91.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690bbdca648c3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/lojas/loja_690bc2f4566cc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/cadastro/registrar_anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/cadastro/registrar_anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/cadastro/registrar_loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/cadastro/registrar_loja.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_minimizado.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_minimizado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/novidades.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/novidades.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_minimizada.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_minimizada.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762873246633</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Imagens de Anúncios">
+      <option name="closed" value="true" />
+      <created>1762892405766</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762892405766</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +216,7 @@
     <MESSAGE value="Loja-minimizada" />
     <MESSAGE value="Ajuste no horario de funcionamento" />
     <MESSAGE value="Remoção de evento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remoção de evento" />
+    <MESSAGE value="Imagens de Anúncios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Imagens de Anúncios" />
   </component>
 </project>

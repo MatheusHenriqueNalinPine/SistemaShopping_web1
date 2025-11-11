@@ -1,7 +1,6 @@
 <?php
 
 use model\repositorio\AnuncioRepositorio;
-use model\servico\anuncio\FormatoAnuncio;
 
 require_once __DIR__ . '/../../../model/repositorio/AnuncioRepositorio.php';
 require_once __DIR__ . '/../../../controller/conexao-bd.php';
@@ -9,6 +8,7 @@ require_once __DIR__ . '/../../../controller/conexao-bd.php';
 $repositorio = new AnuncioRepositorio($pdo);
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $anuncio = $id > 0 ? $repositorio->buscarPorId($id) : null;
+$todasAnuncios = $repositorio->buscarTodos();
 ?>
 
 <!DOCTYPE html>
@@ -52,18 +52,20 @@ $anuncio = $id > 0 ? $repositorio->buscarPorId($id) : null;
             ?>
 
             <?php if ($imgSrc !== ''): ?>
-                <img src="<?php echo $imgSrc ?>" alt="Imagem da anuncio <?php echo htmlspecialchars($anuncio->getNome()) ?>">
+                <img src="<?php echo $imgSrc ?>"
+                     alt="Imagem da anuncio <?php echo htmlspecialchars($anuncio->getNome()) ?>">
             <?php else: ?>
                 <div class="placeholder">Sem imagem</div>
             <?php endif; ?>
-
             <div class="anuncio-info">
                 <h1><?php echo htmlspecialchars($anuncio->getNome()) ?></h1>
                 <p class="descricao"><?php echo nl2br(htmlspecialchars($anuncio->getDescricao())) ?></p>
 
                 <div class="meta">
-                    <p><strong>Categoria:</strong> <?php echo htmlspecialchars($anuncio->getCategoriaAnuncio()) ?></p>
-                    <p><strong>Formato:</strong> <?php echo htmlspecialchars($anuncio->getFormatoAnuncio()->value ?? '-') ?></p>
+                    <p><strong>Categoria:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById((int) $anuncio->getCategoriaAnuncio())) ?></p>
+                    <p>
+                        <strong>Formato:</strong> <?php echo htmlspecialchars($anuncio->getFormatoAnuncio()->value ?? '-') ?>
+                    </p>
                 </div>
             </div>
         </div>
@@ -95,8 +97,8 @@ $anuncio = $id > 0 ? $repositorio->buscarPorId($id) : null;
                     <h2><?php echo htmlspecialchars($anuncio->getNome()) ?></h2>
                     <p class="descricao"><?php echo nl2br(htmlspecialchars($anuncio->getDescricao())) ?></p>
                     <div class="meta">
-                        <p><strong>Categoria:</strong> <?php echo htmlspecialchars($anuncio->getCategoria()) ?></p>
-                        <p><strong>Localização:</strong> <?php echo htmlspecialchars($anuncio->getPosicao()) ?></p>
+                        <p><strong>Categoria:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($anuncio->getCategoriaAnuncio())) ?>
+                        </p>
                     </div>
                 </a>
             <?php endforeach; ?>
