@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Novidades e Lojas maximizados e no index" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Dump criado">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762894905702</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Dump criado">
+      <option name="closed" value="true" />
+      <created>1762895285125</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762895285125</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +227,7 @@
     <MESSAGE value="Remoção de evento" />
     <MESSAGE value="Imagens de Anúncios" />
     <MESSAGE value="Novidades e Lojas maximizados e no index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Novidades e Lojas maximizados e no index" />
+    <MESSAGE value="Dump criado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dump criado" />
   </component>
 </project>
