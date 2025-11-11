@@ -60,7 +60,7 @@
             include('src/view/sessoes/lojas/loja_minimizada.php'); ?>
         </div>
     </div>
-    <a href="#" class="ver-mais">VER MAIS</a>
+    <a href="src/view/sessoes/lojas/telaDeLoja.php" class="ver-mais">VER MAIS</a>
 </section>
 
 

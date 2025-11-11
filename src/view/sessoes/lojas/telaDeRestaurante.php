@@ -2,8 +2,8 @@
 
 use model\repositorio\LojaRepositorio;
 
-require_once __DIR__ . '/../../model/repositorio/LojaRepositorio.php';
-require_once __DIR__ . '/../../controller/conexao-bd.php';
+require_once __DIR__ . '/../../../model/repositorio/LojaRepositorio.php';
+require_once __DIR__ . '/../../../controller/conexao-bd.php';
 
 $repositorio = new LojaRepositorio($pdo);
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -24,7 +24,7 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Restaurante)
 </head>
 <body>
 
-<?php include(__DIR__ . '/../sessoes/header.html') ?>
+<?php include(__DIR__ . '/../header.html'); ?>
 
 <main>
     <div class="header-container">
@@ -107,6 +107,6 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Restaurante)
         </div>
     <?php endif; ?>
 </main>
-<?php include(__DIR__ . '/../sessoes/footer.html'); ?>
+<?php include(__DIR__ . '/../footer.html'); ?>
 </body>
 </html>

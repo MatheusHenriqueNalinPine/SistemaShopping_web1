@@ -4,12 +4,11 @@ use model\repositorio\LojaRepositorio;
 
 require_once __DIR__ . '/../../../model/repositorio/LojaRepositorio.php';
 require_once __DIR__ . '/../../../controller/conexao-bd.php';
-
-$repositorio = new LojaRepositorio($pdo);
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$loja = $id > 0 ? $repositorio->buscarPorId($id) : null;
-$todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
-
+try {
+    $repositorio = new LojaRepositorio($pdo);
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    $loja = $id > 0 ? $repositorio->buscarPorId($id) : null;
+} catch (Exception $e) {}
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lojas - SchweizerPine Shopping</title>
+    <title><?php echo htmlspecialchars($loja->getNome())?> - SchweizerPine Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/lojas.css">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/telaDeLoja.css">
@@ -68,12 +67,12 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
                     <p><strong>Telefone:</strong> <?php echo htmlspecialchars($loja->getTelefoneContato() ?? '-') ?></p>
                     <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($loja->getCnpj() ?? '-') ?></p>
                     <p><strong>Tipo:</strong> <?php echo htmlspecialchars($loja->getTipoLoja()->value ?? '-') ?></p>
-                    <p><strong>Horário de Funcionamento:</strong> <?php 
+                    <p><strong>Horário de Funcionamento:</strong> <?php
                         $horarioInicial = $loja->getHorarioFuncionamento()->getHorarioInicial() ?? '00:00';
                         $horarioFinal = $loja->getHorarioFuncionamento()->getHorarioFinal() ?? '00:00';
                         // Formata os horários para mostrar apenas hora e minuto
                         echo substr($horarioInicial, 0, 5) . ' até ' . substr($horarioFinal, 0, 5);
-                    ?></p>
+                        ?></p>
                 </div>
             </div>
         </div>

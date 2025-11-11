@@ -4,26 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Tela de loja, anuncio">
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Loja-minimizada">
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0d1ad0862.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0e4edccaf.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1451f1d37.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1bdcb6d46.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_minimizada.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_maximizada.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/telaDeLoja.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/telaDeLoja.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/banco_de_dados/modelagem-sistema-shopping.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/servico/anuncio/FormatoAnuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/anuncio/FormatoAnuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/lojas/telaDeRestaurante.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio-minimizado.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_minimizado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +122,11 @@
       <workItem from="1760450361083" duration="2451000" />
       <workItem from="1762265193138" duration="4803000" />
       <workItem from="1762376392733" duration="3669000" />
-      <workItem from="1762384992817" duration="1620000" />
+      <workItem from="1762384992817" duration="2193000" />
+      <workItem from="1762387236056" duration="6000" />
+      <workItem from="1762445997261" duration="685000" />
+      <workItem from="1762547742491" duration="2909000" />
+      <workItem from="1762714158924" duration="6461000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -158,7 +152,23 @@
       <option name="project" value="LOCAL" />
       <updated>1762380436677</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Loja-minimizada">
+      <option name="closed" value="true" />
+      <created>1762386659929</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762386659929</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Loja-minimizada">
+      <option name="closed" value="true" />
+      <created>1762386667253</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762386667253</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +178,7 @@
     <MESSAGE value="alterações loja repo, solving merge conflicts" />
     <MESSAGE value="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php" />
     <MESSAGE value="Tela de loja, anuncio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tela de loja, anuncio" />
+    <MESSAGE value="Loja-minimizada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loja-minimizada" />
   </component>
 </project>
