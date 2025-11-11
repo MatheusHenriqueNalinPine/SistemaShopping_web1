@@ -29,13 +29,13 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Restaurante)
 <main>
     <div class="header-container">
         <a href="/SistemaShopping_web1/index.php" class="btn-voltar">← Voltar para Início</a>
-        <h1 class="titulo-principal">Lojas</h1>
+        <h1 class="titulo-principal">Restaurantes</h1>
         <div class="espacador"></div>
     </div>
 
     <?php if (!$loja && empty($todasLojas)) : ?>
         <div class="sem-dados" style="max-width:900px;margin:40px auto;text-align:center;">
-            Nenhuma loja cadastrada ainda.
+            Nenhum restaurante cadastrado ainda.
         </div>
     <?php elseif ($loja) : ?>
         <div class="loja-card">

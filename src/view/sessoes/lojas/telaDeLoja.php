@@ -68,12 +68,14 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
                     <p><strong>Telefone:</strong> <?php echo htmlspecialchars($loja->getTelefoneContato() ?? '-') ?></p>
                     <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($loja->getCnpj() ?? '-') ?></p>
                     <p><strong>Tipo:</strong> <?php echo htmlspecialchars($loja->getTipoLoja()->value ?? '-') ?></p>
-                    <p><strong>Horário de Funcionamento:</strong> <?php 
-                        $horarioInicial = $loja->getHorarioFuncionamento()->getHorarioInicial() ?? '00:00';
-                        $horarioFinal = $loja->getHorarioFuncionamento()->getHorarioFinal() ?? '00:00';
-                        // Formata os horários para mostrar apenas hora e minuto
-                        echo substr($horarioInicial, 0, 5) . ' até ' . substr($horarioFinal, 0, 5);
-                    ?></p>
+                    <p><strong>Horário de Funcionamento:</strong> <?php
+                        $horarios = $loja->getHorarioFuncionamento();
+                        foreach ($horarios as $horarioFuncionamento) {
+                            $horarioInicial = $horarioFuncionamento->getHorarioInicial() ?? '00:00';
+                            $horarioFinal = $horarioFuncionamento->getHorarioFinal() ?? '00:00';
+                            echo '<br/>' . substr($horarioInicial, 0, 5) . ' até ' . substr($horarioFinal, 0, 5);
+                        }
+                        ?></p>
                 </div>
             </div>
         </div>

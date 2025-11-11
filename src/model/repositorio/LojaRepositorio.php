@@ -309,4 +309,23 @@ class LojaRepositorio
         $stmt->execute();
         return (bool)$stmt->fetchColumn();
     }
+
+    private function buscarHorariosPorLojaId(int $id)
+    {
+        $sql = "select h.horario_inicial, h.horario_final, h.dia_semana from tbhorariofuncionamento h inner join tbhorarioservico hs on h. horario_inicial = hs.horario_inicial and h.horario_final = hs.horario_final and h.dia_semana = hs.dia_semana inner join dbshopping.tbloja l on hs.id_servico = l.id where l.id = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $horarios = [];
+        foreach ($result as $row) {
+            $horarios[] = new HorarioFuncionamento(
+                $row['horario_inicial'],
+                $row['horario_final'],
+                $row['dia_semana']
+            );
+        }
+
+        return $horarios;
+    }
 }

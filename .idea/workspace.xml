@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Loja-minimizada">
-      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0d1ad0862.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a0e4edccaf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1451f1d37.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/lojas/loja_690a1bdcb6d46.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_maximizada.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_maximizada.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +42,13 @@
     &quot;assignee&quot;: &quot;KlausSchweizer&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1&quot;,
-    &quot;accountId&quot;: &quot;2ed135c7-36f0-4412-9c04-625d17c02733&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1.git",
+    "accountId": "a70004f9-0bc7-4049-bf57-dc17139dc639"
   }
-}</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../php/php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../xampp/php" />
     </include_path>
@@ -107,8 +104,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.26830.95" />
-        <option value="bundled-php-predefined-a98d8de5180a-9b563d34894c-com.jetbrains.php.sharedIndexes-PS-252.26830.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.27397.112" />
+        <option value="bundled-php-predefined-a98d8de5180a-b35feea871ed-com.jetbrains.php.sharedIndexes-PS-252.27397.112" />
       </set>
     </attachedChunks>
   </component>
@@ -127,6 +124,7 @@
       <workItem from="1762445997261" duration="685000" />
       <workItem from="1762547742491" duration="2909000" />
       <workItem from="1762714158924" duration="6461000" />
+      <workItem from="1762869518531" duration="2934000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
