@@ -18,7 +18,7 @@
         <div class="texto">
             <h2>Anúncio</h2>
             <p>Venha conhecer nosso carrosel 🎠</p>
-            <a href="/SistemaShopping_web1/src/view/lojas/telaDeLoja.php" class="btn">Conheça nossas lojas!</a>
+            <a href="/SistemaShopping_web1/src/view/sessoes/lojas/telaDeLoja.php" class="btn">Conheça nossas lojas!</a>
         </div>
     </div>
     <div class="slide">
@@ -26,7 +26,7 @@
         <div class="texto">
             <h2>Anúncio</h2>
             <p>Venha acelerar seu coração com o nosso kart 🏎️</p>
-            <a href="#" class="btn">Ver mais</a>
+            <a href="src/view/sessoes/anuncios/novidades.php" class="btn">Ver mais</a>
         </div>
     </div>
     <div class="indicadores">
@@ -44,7 +44,7 @@
 <section class="noticias">
     <div class="cabecalho">
         <h2>Notícias</h2>
-        <a href="#">VER MAIS</a>
+        <a href="src/view/sessoes/anuncios/novidades.php">VER MAIS</a>
     </div>
     <div class="grid-noticias">
         <?php $limite_anuncios = 4;

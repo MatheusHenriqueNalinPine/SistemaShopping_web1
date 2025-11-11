@@ -72,7 +72,6 @@ $erro = $_GET['erro'] ?? null;
                     <option value="" disabled selected>Selecione o tipo</option>
                     <option value="administrador">Administrador Geral</option>
                     <option value="lojista">Lojista</option>
-                    <option value="gerenciadorDeEventos">Gerenciador de eventos</option>
                     <option value="cinema">Cinema</option>
                 </select>
 

@@ -166,6 +166,24 @@ class AnuncioRepositorio
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
+    public function buscaranunciosFiltro(FormatoAnuncio $tipo)
+    {
+        $sql = "select tbservico.id, tbservico.nome, tbanuncio.formato_anuncio, tbanuncio.id_categoria_anuncio,
+                   tbservico.descricao, tbservico.imagem, tbservico.tipo_imagem, 
+                   tbservico.nome_imagem, tbservico.url_imagem, tbservico.data_registro
+            from tbanuncio 
+            inner join tbservico on tbanuncio.id = tbservico.id 
+            inner join tbcategoriaanuncio on tbanuncio.id_categoria_anuncio = tbcategoriaanuncio.id 
+            where tbanuncio.formato_anuncio = :tipo
+            order by tbanuncio.id asc";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['tipo' => $tipo->value]);
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
+    }
+
     private
     function setarDadosStatement(string $sql, Anuncio $anuncio): \PDOStatement|false
     {

@@ -48,15 +48,6 @@ create table tbLoja
     constraint fkLojaCategoria foreign key (id_categoria) references tbCategoriaLoja (id)
 );
 
-create table tbEvento
-(
-    id           int,
-    data_inicial date,
-    data_final   date,
-    constraint pkEvento primary key (id),
-    constraint fkEventoServico foreign key (id) references tbServico (id)
-);
-
 create table tbHorarioFuncionamento
 (
     horario_inicial time,
