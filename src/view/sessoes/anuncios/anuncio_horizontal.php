@@ -12,13 +12,32 @@ $anuncios = $repositorio->buscarAnunciosHorizontais($limite);
 
 <?php foreach ($anuncios as $anuncio): ?>
     <div class="anuncio">
-        <!--        <form action="#" method="post">-->
-        <!--            <input type="hidden" value="<input type="hidden" value="-->
-        <?php //echo $anuncio->getId() ?><!--">-->
-        <!--            <input type="submit"> <img src="/SistemaShopping_web1/img/noticias.png" alt="Anúncio">-->
-        <!--        </form>-->
-        <h3>Anúncio</h3>
-        <p>Esse é um exemplo de anúncio horizontal</p>
-        <p>Usado para eventos ou atrações fixas</p>
+        <form action="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php" method="get">
+            <input type="hidden" name="id" value="<?php echo $anuncio->getId() ?>">
+            <?php
+            $imgSrc = '';
+            $nomeArquivo = $anuncio->getNomeImagem();
+            $tipo = $anuncio->getTipoImagem() ?? 'image/*';
+            $imgBase64 = $anuncio->getImagem() ?? '';
+
+            if (!empty($nomeArquivo)) {
+                $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
+            } elseif (!empty($imgBase64)) {
+                $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
+            }
+            ?>
+            <?php if ($imgSrc !== ''): ?>
+                <button type="submit" class="img-button">
+                    <img src="<?php echo $imgSrc ?>"
+                         alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>">
+                </button>
+            <?php else: ?>
+                <div class="placeholder">Sem imagem</div>
+            <?php endif; ?>
+        </form>
+
+        <!--        <h3>Anúncio</h3>-->
+        <!--        <p>Esse é um exemplo de anúncio horizontal</p>-->
+        <!--        <p>Usado para eventos ou atrações fixas</p>-->
     </div>
 <?php endforeach; ?>

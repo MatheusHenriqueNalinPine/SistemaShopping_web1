@@ -31,23 +31,47 @@ $nome = trim($_POST['nome'] ?? '');
 $categoria = trim($_POST['categoria'] ?? '');
 $formato_anuncio = trim($_POST['formato'] ?? '');
 $descricao = trim($_POST['descricao'] ?? '');
-$imagem = trim($_POST['imagem'] ?? '');
-$data_registro = trim($_POST['data_registro'] ?? '');
 $formatoAnuncio = FormatoAnuncio::from($formato_anuncio);
 
-if ($id == 0) {
-    if ($nome === '' || $formato_anuncio == '' || $categoria === '' || $descricao === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/cadastrar-anuncio.php?erro=campos-vazios");
-        exit;
+$imagem = '';
+$tipoImagem = 'image/png';
+$nomeImagem = '';
+$urlImagem = '';
+
+if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+    $tmpPath = $_FILES['imagem']['tmp_name'];
+
+    $ext = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
+    $newFilename = uniqid('anuncio_') . ($ext ? '.' . $ext : '');
+    $nomeImagem = $newFilename;
+
+    $uploadDir = __DIR__ . '/../../../img/anuncios/';
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
     }
-    $repositorio->salvar($nome, $descricao, $imagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria);
+    $destPath = $uploadDir . $newFilename;
+
+    if (move_uploaded_file($tmpPath, $destPath)) {
+        $fileContents = file_get_contents($destPath);
+        if ($fileContents !== false) {
+            $imagem = base64_encode($fileContents);
+        }
+        $tipoImagem = mime_content_type($destPath) ?: $tipoImagem;
+
+        $urlImagem = 'img/anuncios/' . $newFilename;
+    }
+
+}
+
+if ($nome === '' || $formato_anuncio == '' || $categoria === '' || $descricao === '') {
+    header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/cadastrar-anuncio.php?erro=campos-vazios");
+    exit;
+}
+if ($id == 0) {
+    $repositorio->salvar($nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria);
 
 } else {
-    if ($nome === '' || $formato_anuncio == '' || $categoria === '' || $descricao === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/cadastrar-anuncio.php?erro=campos-vazios");
-        exit;
-    }
-    $repositorio->atualizar(new Anuncio($id, $nome, $descricao, $imagem, "null", "null", "null", new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria));
+    $repositorio->atualizar(new Anuncio($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria));
 }
 
 header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/anuncio-dashboard.php");

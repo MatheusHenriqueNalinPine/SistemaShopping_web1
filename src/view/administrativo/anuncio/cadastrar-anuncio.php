@@ -42,7 +42,7 @@ $erro = $_GET['erro'] ?? null;
                 <p class="mensagem-erro">Não deixe os campos vazios.</p>
             <?php endif; ?>
             <h2>Cadastro de Anúncio</h2>
-            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_anuncio.php" method="post">
+            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_anuncio.php" method="post" enctype="multipart/form-data">
                 <label for="nomeAnuncio">Nome do Anúncio</label>
                 <input type="text" id="nomeAnuncio" name="nome" placeholder="Digite o nome do anúncio" required>
 

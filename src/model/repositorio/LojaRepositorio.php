@@ -41,7 +41,7 @@ class LojaRepositorio
             $stmt->bindValue(2, $loja->getDescricao());
             $stmt->bindValue(3, base64_decode($loja->getImagem()), PDO::PARAM_LOB);
             $stmt->bindValue(4, $loja->getTipoImagem());
-            $stmt->bindValue(5, $loja->getNomeImagem()); // <-- aqui
+            $stmt->bindValue(5, $loja->getNomeImagem());
             $stmt->bindValue(6, $loja->getUrlImagem());
             $stmt->execute();
 

@@ -12,9 +12,27 @@ $anuncios = $repositorio->buscarAnunciosMinimizados($limite);
 
 <?php foreach ($anuncios as $anuncio): ?>
     <div class="noticia">
-        <img src="/SistemaShopping_web1/img/noticias.png" alt="Notícia">
-        <h3><?php echo htmlspecialchars($anuncio->getNome()) ?></h3>
-        <p><?php echo htmlspecialchars($anuncio->getDescricao()) ?></p>
-        <span><?php echo htmlspecialchars($anuncio->getDataRegistro()->format('d/m/Y')) ?> - <?php echo htmlspecialchars($anuncio->getCategoriaAnuncio()) ?></span>
+        <a href="?id=<?php echo $anuncio->getId() ?>" class="anuncio-card-small">
+            <?php
+            $imgSrc = '';
+            $nomeArquivo = $anuncio->getNomeImagem();
+            $tipo = $anuncio->getTipoImagem() ?? 'image/*';
+            $imgBase64 = $anuncio->getImagem() ?? '';
+
+            if (!empty($nomeArquivo)) {
+                $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
+            } elseif (!empty($imgBase64)) {
+                $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
+            }
+            ?>
+            <?php if ($imgSrc !== ''): ?>
+                <img src="<?php echo $imgSrc ?>"
+                     alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>">
+            <?php else: ?>
+                <div class="placeholder">Sem imagem</div>
+            <?php endif; ?>
+            <h3><?php echo htmlspecialchars($anuncio->getNome()) ?></h3>
+            <p><?php echo htmlspecialchars($anuncio->getDescricao()) ?></p>
+            <span><?php echo htmlspecialchars($anuncio->getDataRegistro()->format('d/m/Y')) ?> - <?php echo htmlspecialchars($anuncio->getCategoriaAnuncio()) ?></span>
     </div>
 <?php endforeach; ?>

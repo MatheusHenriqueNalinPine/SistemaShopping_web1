@@ -52,7 +52,7 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
 
     $ext = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
     $newFilename = uniqid('loja_') . ($ext ? '.' . $ext : '');
-    $nomeImagem = $newFilename; // agora sim já existe
+    $nomeImagem = $newFilename;
 
     $uploadDir = __DIR__ . '/../../../img/lojas/';
     if (!file_exists($uploadDir)) {

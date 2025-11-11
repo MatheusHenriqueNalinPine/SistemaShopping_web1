@@ -49,18 +49,20 @@ class AnuncioRepositorio
         return $dados ? $this->formarObjeto($dados) : null;
     }
 
-    public function salvar(string   $nome, string $descricao, string $imagem,
+    public function salvar(string   $nome, string $descricao, string $imagem, string $tipoimagem, string $nomeimagem, string $urlimagem,
                            DateTime $data_registro, FormatoAnuncio $formato_anuncio, string $categoria_anuncio)
     {
         try {
             $this->pdo->beginTransaction();
 
-            $sql = "insert into tbservico (nome, descricao, imagem, data_registro) values (?, ?, ?, ?)";
+            $sql = "insert into tbservico (nome, descricao, imagem, tipo_imagem, nome_imagem, url_imagem, data_registro) values (?, ?, ?, ?, ?, ?, default)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $nome);
             $stmt->bindValue(2, $descricao);
             $stmt->bindValue(3, $imagem);
-            $stmt->bindValue(4, $data_registro->format('Y-m-d H:i:s'));
+            $stmt->bindValue(4, $tipoimagem);
+            $stmt->bindValue(5, $nomeimagem);
+            $stmt->bindValue(6, $urlimagem);
             $stmt->execute();
 
             $id = $this->pdo->lastInsertId();

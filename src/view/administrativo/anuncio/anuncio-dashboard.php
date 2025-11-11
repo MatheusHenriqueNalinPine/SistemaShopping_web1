@@ -49,10 +49,8 @@ $anuncios = $repositorio->buscarTodos();
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Categoria</th>
             <th>Descrição</th>
             <th>Formato</th>
-            <th>Imagem</th>
             <th>Remover</th>
             <th>Editar</th>
         </tr>
@@ -66,10 +64,8 @@ $anuncios = $repositorio->buscarTodos();
         <?php foreach ($anuncios as $anuncio) : ?>
         <tr>
             <td><?php echo htmlspecialchars($anuncio->getNome()) ?></td>
-            <td><?php echo htmlspecialchars($anuncio->getCategoriaAnuncio()) ?></td>
             <td><?php echo htmlspecialchars($anuncio->getDescricao()) ?></td>
             <td><?php echo htmlspecialchars($anuncio->getFormatoAnuncio()->value) ?></td>
-            <td><?php echo htmlspecialchars($anuncio->getNomeImagem() ?? '') ?></td>
             <td>
                 <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-anuncio.php" method="post">
                     <input type="hidden" name="id" value="<?= $anuncio->getId() ?>">
