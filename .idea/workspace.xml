@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Loja-minimizada">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/LojaRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/loja_maximizada.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" afterDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Ajuste no horario de funcionamento">
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/EventoRepositorio.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/servico/evento/Evento.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +120,7 @@
       <workItem from="1762445997261" duration="685000" />
       <workItem from="1762547742491" duration="2909000" />
       <workItem from="1762714158924" duration="6461000" />
-      <workItem from="1762869518531" duration="2934000" />
+      <workItem from="1762869518531" duration="3405000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -166,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762386667253</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajuste no horario de funcionamento">
+      <option name="closed" value="true" />
+      <created>1762872943183</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762872943183</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +181,7 @@
     <MESSAGE value="Correção de todos os bugs no cadastro de lojas, imagens, telaDeLoja e telaDeRestaurante.php" />
     <MESSAGE value="Tela de loja, anuncio" />
     <MESSAGE value="Loja-minimizada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loja-minimizada" />
+    <MESSAGE value="Ajuste no horario de funcionamento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajuste no horario de funcionamento" />
   </component>
 </project>
