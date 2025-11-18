@@ -73,7 +73,8 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
                         foreach ($horarios as $horarioFuncionamento) {
                             $horarioInicial = $horarioFuncionamento->getHorarioInicial() ?? '00:00';
                             $horarioFinal = $horarioFuncionamento->getHorarioFinal() ?? '00:00';
-                            echo '<br/>' . substr($horarioInicial, 0, 5) . ' até ' . substr($horarioFinal, 0, 5);
+                            $diaSemana = $horarioFuncionamento->getDiaSemana();
+                            echo '<br/>' . $diaSemana . ": " . substr($horarioInicial, 0, 5) . ' até ' . substr($horarioFinal, 0, 5);
                         }
                         ?></p>
                 </div>

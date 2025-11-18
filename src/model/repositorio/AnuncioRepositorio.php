@@ -35,7 +35,7 @@ class AnuncioRepositorio
             $dados["url_imagem"] ?? '',
             new DateTime($dados['data_registro'] ?? 'now'),
             FormatoAnuncio::from($dados['formato_anuncio'] ?? $dados['formato'] ?? 'quadrado'),
-            $dados['categoria'] ?? '');
+            $dados['id_categoria_anuncio'] ?? 0);
     }
 
     public function buscarPorNome($nome): ?Anuncio

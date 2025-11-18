@@ -12,7 +12,8 @@ $anuncios = $repositorio->buscarAnunciosMinimizados($limite);
 
 <?php foreach ($anuncios as $anuncio): ?>
     <div class="noticia">
-        <a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=<?php echo $anuncio->getId() ?>" class="anuncio-card-small">
+        <a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=<?php echo $anuncio->getId() ?>"
+           class="anuncio-card-small">
             <?php
             $imgSrc = '';
             $nomeArquivo = $anuncio->getNomeImagem();
@@ -34,5 +35,6 @@ $anuncios = $repositorio->buscarAnunciosMinimizados($limite);
             <h3><?php echo htmlspecialchars($anuncio->getNome()) ?></h3>
             <p><?php echo htmlspecialchars($anuncio->getDescricao()) ?></p>
             <span><?php echo htmlspecialchars($anuncio->getDataRegistro()->format('d/m/Y')) ?> - <?php echo htmlspecialchars($anuncio->getCategoriaAnuncio()) ?></span>
+        </a>
     </div>
 <?php endforeach; ?>

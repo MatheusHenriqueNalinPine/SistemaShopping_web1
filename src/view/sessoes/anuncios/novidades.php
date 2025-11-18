@@ -62,7 +62,9 @@ $todasAnuncios = $repositorio->buscarTodos();
                 <p class="descricao"><?php echo nl2br(htmlspecialchars($anuncio->getDescricao())) ?></p>
 
                 <div class="meta">
-                    <p><strong>Categoria:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById((int) $anuncio->getCategoriaAnuncio())) ?></p>
+                    <p>
+                        <strong>Categoria:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($anuncio->getCategoriaAnuncio())) ?>
+                    </p>
                     <p>
                         <strong>Formato:</strong> <?php echo htmlspecialchars($anuncio->getFormatoAnuncio()->value ?? '-') ?>
                     </p>
@@ -97,7 +99,8 @@ $todasAnuncios = $repositorio->buscarTodos();
                     <h2><?php echo htmlspecialchars($anuncio->getNome()) ?></h2>
                     <p class="descricao"><?php echo nl2br(htmlspecialchars($anuncio->getDescricao())) ?></p>
                     <div class="meta">
-                        <p><strong>Categoria:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($anuncio->getCategoriaAnuncio())) ?>
+                        <p>
+                            <strong>Categoria:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($anuncio->getCategoriaAnuncio())) ?>
                         </p>
                     </div>
                 </a>
