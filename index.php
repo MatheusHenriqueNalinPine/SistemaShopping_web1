@@ -13,26 +13,7 @@
 <?php include('src/view/sessoes/header.html') ?>
 
 <section class="carrossel">
-    <div class="slide ativo">
-        <img src="/SistemaShopping_web1/img/carrosel.jpg" alt="Anúncio 1">
-        <div class="texto">
-            <h2>Anúncio</h2>
-            <p>Venha conhecer nosso carrosel 🎠</p>
-            <a href="/SistemaShopping_web1/src/view/sessoes/lojas/telaDeLoja.php" class="btn">Conheça nossas lojas!</a>
-        </div>
-    </div>
-    <div class="slide">
-        <img src="/SistemaShopping_web1/img/kart.jpeg" alt="Anúncio 2">
-        <div class="texto">
-            <h2>Anúncio</h2>
-            <p>Venha acelerar seu coração com o nosso kart 🏎️</p>
-            <a href="src/view/sessoes/anuncios/novidades.php" class="btn">Ver mais</a>
-        </div>
-    </div>
-    <div class="indicadores">
-        <span class="ativo"></span>
-        <span></span>
-    </div>
+    <?php include('src/view/sessoes/anuncios/anuncio_carrossel.php') ?>
 </section>
 
 

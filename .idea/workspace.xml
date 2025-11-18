@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Novidades e Lojas maximizados e no index">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Correção bug link h2 e categoria anuncio maximixado">
+      <change afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_minimizado.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_minimizado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/novidades.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/novidades.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeLoja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/lojas/telaDeRestaurante.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +128,7 @@
       <workItem from="1762714158924" duration="6461000" />
       <workItem from="1762869518531" duration="4969000" />
       <workItem from="1763473708764" duration="2448000" />
-      <workItem from="1763476614375" duration="722000" />
+      <workItem from="1763476614375" duration="2758000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -214,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762894905702</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Correção bug link h2 e categoria anuncio maximixado">
+      <option name="closed" value="true" />
+      <created>1763477511884</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763477511884</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +233,7 @@
     <MESSAGE value="Remoção de evento" />
     <MESSAGE value="Imagens de Anúncios" />
     <MESSAGE value="Novidades e Lojas maximizados e no index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Novidades e Lojas maximizados e no index" />
+    <MESSAGE value="Correção bug link h2 e categoria anuncio maximixado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção bug link h2 e categoria anuncio maximixado" />
   </component>
 </project>

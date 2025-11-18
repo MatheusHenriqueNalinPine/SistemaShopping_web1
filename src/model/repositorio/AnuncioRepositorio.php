@@ -186,6 +186,22 @@ class AnuncioRepositorio
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
+    public function buscarAnunciosCarrossel(): array
+    {
+        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+            from tbanuncio a
+            inner join tbservico s on a.id = s.id
+            where a.formato_anuncio = 'Carrossel'
+            order by s.data_registro desc";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
+    }
+
     private
     function setarDadosStatement(string $sql, Anuncio $anuncio): \PDOStatement|false
     {

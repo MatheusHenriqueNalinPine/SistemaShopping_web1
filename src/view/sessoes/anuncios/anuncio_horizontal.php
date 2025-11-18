@@ -35,9 +35,5 @@ $anuncios = $repositorio->buscarAnunciosHorizontais($limite);
                 <div class="placeholder">Sem imagem</div>
             <?php endif; ?>
         </form>
-
-        <!--        <h3>Anúncio</h3>-->
-        <!--        <p>Esse é um exemplo de anúncio horizontal</p>-->
-        <!--        <p>Usado para eventos ou atrações fixas</p>-->
     </div>
 <?php endforeach; ?>
