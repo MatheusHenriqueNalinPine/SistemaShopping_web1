@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Anuncio carrossel">
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Permissões usuário">
+      <change afterPath="$PROJECT_DIR$/src/view/sessoes/cinema/cinema.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/usuario/Cargo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/usuario/Cargo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/administrativo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/administrativo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/cadastrar-anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/cadastrar-loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/cadastrar-loja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/editar-loja.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/editar-loja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/usuario/usuarios-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/usuario/usuarios-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/cadastrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/cadastrar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +41,12 @@
     &quot;assignee&quot;: &quot;KlausSchweizer&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1.git&quot;,
-    &quot;accountId&quot;: &quot;331c7ab2-9a82-4c88-9915-24176e024570&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1",
+    "accountId": "2ed135c7-36f0-4412-9c04-625d17c02733"
   }
-}</component>
+}]]></component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../xampp/php" />
@@ -135,6 +127,7 @@
       <workItem from="1762869518531" duration="4969000" />
       <workItem from="1763473708764" duration="2448000" />
       <workItem from="1763476614375" duration="2758000" />
+      <workItem from="1763594883699" duration="887000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -248,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763579756478</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Permissões usuário">
+      <option name="closed" value="true" />
+      <created>1763581362491</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1763581362491</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +267,7 @@
     <MESSAGE value="Correção bug link h2 e categoria anuncio maximixado" />
     <MESSAGE value="Ajuste bug categorias não aparecendo em novidades" />
     <MESSAGE value="Anuncio carrossel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Anuncio carrossel" />
+    <MESSAGE value="Permissões usuário" />
+    <option name="LAST_COMMIT_MESSAGE" value="Permissões usuário" />
   </component>
 </project>
