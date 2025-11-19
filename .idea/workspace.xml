@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Dump criado">
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Correção bug link h2 e categoria anuncio maximixado">
+      <change afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="php" />
+        <entry key="$PROJECT_DIR$" value="36ca913e1e636590b5d22cb6e8bbad5598dc3c93" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +46,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1.git&quot;,
-    &quot;accountId&quot;: &quot;a70004f9-0bc7-4049-bf57-dc17139dc639&quot;
+    &quot;accountId&quot;: &quot;331c7ab2-9a82-4c88-9915-24176e024570&quot;
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../php/php.exe">
@@ -72,7 +76,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/SistemaShopping_web1/src/view/lojas&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/SistemaShopping_web1&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -123,6 +127,8 @@
       <workItem from="1762547742491" duration="2909000" />
       <workItem from="1762714158924" duration="6461000" />
       <workItem from="1762869518531" duration="4969000" />
+      <workItem from="1763473708764" duration="2448000" />
+      <workItem from="1763476614375" duration="2758000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -204,13 +210,13 @@
       <option name="project" value="LOCAL" />
       <updated>1762894905702</updated>
     </task>
-    <task id="LOCAL-00011" summary="Dump criado">
+    <task id="LOCAL-00011" summary="Correção bug link h2 e categoria anuncio maximixado">
       <option name="closed" value="true" />
-      <created>1762895285125</created>
+      <created>1763477511884</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1762895285125</updated>
+      <updated>1763477511884</updated>
     </task>
     <option name="localTasksCounter" value="12" />
     <servers />
@@ -227,7 +233,7 @@
     <MESSAGE value="Remoção de evento" />
     <MESSAGE value="Imagens de Anúncios" />
     <MESSAGE value="Novidades e Lojas maximizados e no index" />
-    <MESSAGE value="Dump criado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dump criado" />
+    <MESSAGE value="Correção bug link h2 e categoria anuncio maximixado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção bug link h2 e categoria anuncio maximixado" />
   </component>
 </project>
