@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Correção bug link h2 e categoria anuncio maximixado">
-      <change afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_horizontal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/servico/anuncio/Anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/anuncio/Anuncio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     &quot;accountId&quot;: &quot;331c7ab2-9a82-4c88-9915-24176e024570&quot;
   }
 }</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../php/php.exe">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../xampp/php" />
     </include_path>
@@ -106,8 +105,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.27397.112" />
-        <option value="bundled-php-predefined-a98d8de5180a-b35feea871ed-com.jetbrains.php.sharedIndexes-PS-252.27397.112" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.26830.95" />
+        <option value="bundled-php-predefined-a98d8de5180a-9b563d34894c-com.jetbrains.php.sharedIndexes-PS-252.26830.95" />
       </set>
     </attachedChunks>
   </component>
