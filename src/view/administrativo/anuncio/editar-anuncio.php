@@ -22,6 +22,12 @@ $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 
 $idAnuncio = $_GET['id'] ?? null;
 $anuncio = $repositorio->buscarPorId($idAnuncio);
+
+$cargo = $usuario->getCargo();
+if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
+    header('Location: /SistemaShopping_web1/src/view/administrativo/administrativo.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

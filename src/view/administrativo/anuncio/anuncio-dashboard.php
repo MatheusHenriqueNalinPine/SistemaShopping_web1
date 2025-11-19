@@ -19,6 +19,12 @@ require_once __DIR__ . '/../../../controller/conexao-bd.php';
 $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 $repositorio = new AnuncioRepositorio($pdo);
 $anuncios = $repositorio->buscarTodos();
+
+$cargo = $usuario->getCargo();
+if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
+    header('Location: /SistemaShopping_web1/src/view/administrativo/administrativo.php');
+    exit;
+}
 ?>
 
 

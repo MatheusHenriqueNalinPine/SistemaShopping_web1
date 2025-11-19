@@ -73,6 +73,7 @@ $erro = $_GET['erro'] ?? null;
                     <option value="administrador">Administrador Geral</option>
                     <option value="lojista">Lojista</option>
                     <option value="cinema">Cinema</option>
+                    <option value="anuncio">Gerenciador de Anúncios</option>
                 </select>
 
                 <button type="submit" class="btn-cadastrar">Cadastrar</button>

@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../controller/conexao-bd.php';
 
 $usuario_logado = $_SESSION['usuario'] ?? null;
 $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
+$cargo = $usuario->getCargo();
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +22,15 @@ $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 <aside class="sidebar">
     <ul>
         <a href="/SistemaShopping_web1/src/view/administrativo/administrativo.php">Administrativo</a>
-        <a href="/SistemaShopping_web1/src/view/administrativo/loja/loja-dashboard.php">Lojas</a>
-        <a href="/SistemaShopping_web1/src/view/administrativo/anuncio/anuncio-dashboard.php">Anúncios</a>
-        <a href="#">Cinema</a>
+        <?php if ($cargo == Cargo::Administrador || $cargo == Cargo::Lojista): ?>
+            <a href="/SistemaShopping_web1/src/view/administrativo/loja/loja-dashboard.php">Lojas</a>
+        <?php endif;
+        if ($cargo == Cargo::Administrador || $cargo == Cargo::Gerenciador_anuncio): ?>
+            <a href="/SistemaShopping_web1/src/view/administrativo/anuncio/anuncio-dashboard.php">Anúncios</a>
+        <?php endif;
+        if ($cargo == Cargo::Administrador || $cargo == Cargo::Funcionario_cinema): ?>
+            <a href="#">Cinema</a>
+        <?php endif; ?>
         <a href="/SistemaShopping_web1/src/view/administrativo/usuario/usuarios-dashboard.php">Funcionários</a>
         <a href="/SistemaShopping_web1/src/controller/autenticacao/logout.php">Sair</a>
     </ul>

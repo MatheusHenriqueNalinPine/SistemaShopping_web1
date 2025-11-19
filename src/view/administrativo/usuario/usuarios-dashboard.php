@@ -17,6 +17,7 @@ require_once __DIR__ . '/../../../controller/conexao-bd.php';
 $repositorio = new UsuarioRepositorio($pdo);
 $usuario = ($repositorio->buscarPorEmail($usuario_logado));
 $usuarios = $repositorio->buscarTodos();
+
 ?>
 
 
