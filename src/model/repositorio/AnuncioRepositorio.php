@@ -160,7 +160,7 @@ class AnuncioRepositorio
     function buscarTodos(): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             order by s.data_registro desc";
