@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Correção bug link h2 e categoria anuncio maximixado">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/servico/anuncio/Anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/anuncio/Anuncio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/editar-anuncio.php" afterDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Anuncio carrossel">
+      <change beforePath="$PROJECT_DIR$/projeto/banco_de_dados/dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/banco_de_dados/dump.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="36ca913e1e636590b5d22cb6e8bbad5598dc3c93" />
+        <entry key="$PROJECT_DIR$" value="33ac4ca4860f33893179b408b03689060651209f" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -217,7 +214,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763477511884</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ajuste bug categorias não aparecendo em novidades">
+      <option name="closed" value="true" />
+      <created>1763576932278</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763576932278</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Anuncio carrossel">
+      <option name="closed" value="true" />
+      <created>1763579618386</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763579618386</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +246,8 @@
     <MESSAGE value="Imagens de Anúncios" />
     <MESSAGE value="Novidades e Lojas maximizados e no index" />
     <MESSAGE value="Correção bug link h2 e categoria anuncio maximixado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção bug link h2 e categoria anuncio maximixado" />
+    <MESSAGE value="Ajuste bug categorias não aparecendo em novidades" />
+    <MESSAGE value="Anuncio carrossel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Anuncio carrossel" />
   </component>
 </project>
