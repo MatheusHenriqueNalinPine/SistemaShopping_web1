@@ -1,5 +1,7 @@
 <?php
 
+use model\servico\Servico;
+
 class Filme extends Servico
 {
     private string $genero;

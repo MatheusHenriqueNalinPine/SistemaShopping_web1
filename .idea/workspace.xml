@@ -4,24 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Cinema filme card-small">
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css">
+      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/relatorio.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/relatorios/gerar-pdf.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/administrativo/relatorios/conteudo-pdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SistemaShopping_web1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SistemaShopping_web1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/telaDeCinema.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/telaDeCinema.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/anuncios/anuncio_carrossel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/sessoes/cinema/cinema.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/cinema/cinema.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/repositorio/ServicoRepositorio.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/servico/filme/Filme.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/filme/Filme.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/administrativo/usuario/usuarios-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/usuario/usuarios-dashboard.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="tsconfig.json" />
         <option value="PHP File" />
         <option value="CSS File" />
       </list>
@@ -41,15 +54,21 @@
     &quot;assignee&quot;: &quot;KlausSchweizer&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1",
-    "accountId": "2ed135c7-36f0-4412-9c04-625d17c02733"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MatheusHenriqueNalinPine/SistemaShopping_web1&quot;,
+    &quot;accountId&quot;: &quot;2ed135c7-36f0-4412-9c04-625d17c02733&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../xampp/php" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -128,6 +147,7 @@
       <workItem from="1763473708764" duration="2448000" />
       <workItem from="1763476614375" duration="2758000" />
       <workItem from="1763594883699" duration="7657000" />
+      <workItem from="1763656602893" duration="5138000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -265,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763645171413</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css">
+      <option name="closed" value="true" />
+      <created>1763654253939</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1763654253939</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +314,8 @@
     <MESSAGE value="Permissões usuário" />
     <MESSAGE value="Hover no carrossel" />
     <MESSAGE value="Cinema filme card-small" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cinema filme card-small" />
+    <MESSAGE value="Tela de cinema maximizado, horario exibição filmes" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css" />
   </component>
 </project>

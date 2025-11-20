@@ -4,7 +4,6 @@ namespace model\repositorio;
 require_once(__DIR__ . '/../servico/anuncio/Anuncio.php');
 require_once(__DIR__ . '/../servico/Servico.php');
 require_once(__DIR__ . '/../servico/anuncio/FormatoAnuncio.php');
-require_once(__DIR__ . '/ServicoRepositorio.php');
 
 use DateTime;
 use model\servico\anuncio\Anuncio;

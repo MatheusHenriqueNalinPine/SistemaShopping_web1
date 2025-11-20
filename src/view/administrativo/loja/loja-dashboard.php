@@ -48,7 +48,10 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
 
     <div class="acoes">
         <a href="cadastrar-loja.php" class="btn-cadastrar">Cadastrar loja</a>
-        <button class="btn-relatorio">Baixar relatório</button>
+        <form action="/SistemaShopping_web1/src/controller/relatorios/gerar-pdf.php" method="get">
+            <input type="hidden" name="tipo" id="tipo" value="lojas">
+            <input type="submit" class="btn-relatorio" value="Baixar Relatório">
+        </form>
     </div>
 
     <table class="tabela">

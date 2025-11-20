@@ -41,7 +41,10 @@ $usuarios = $repositorio->buscarTodos();
 
     <div class="acoes">
         <a href="../../sessoes/cadastrar.php" class="btn-cadastrar">Cadastrar funcionário</a>
-        <button class="btn-relatorio">Baixar relatório</button>
+        <form action="/SistemaShopping_web1/src/controller/relatorios/gerar-pdf.php" method="get">
+            <input type="hidden" name="tipo" id="tipo" value="usuarios">
+            <input type="submit" class="btn-relatorio" value="Baixar Relatório">
+        </form>
     </div>
     <?php if (isset($_GET['erro']) && $_GET['erro'] === 'exclusao'): ?>
         <p class="mensagem-erro">Você não pode excluir a si mesmo.</p>
