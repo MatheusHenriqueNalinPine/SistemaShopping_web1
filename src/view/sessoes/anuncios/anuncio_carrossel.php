@@ -1,5 +1,9 @@
 <?php
 
+//Referencias:
+//Converter array php para javascript https://pt.stackoverflow.com/questions/382826/como-passar-array-php-para-javascript
+//(primeira resposta)
+
 use model\repositorio\AnuncioRepositorio;
 
 require_once __DIR__ . "/../../../controller/conexao-bd.php";
@@ -8,21 +12,29 @@ require_once(__DIR__ . '/../../../model/repositorio/AnuncioRepositorio.php');
 $repositorio = new AnuncioRepositorio($pdo);
 $anuncios = $repositorio->buscarAnunciosCarrossel();
 $anuncioAtual = $anuncios[0] ?? null;
-$anunciosJs = array_map(function ($a) {
-    return [
-            "id" => $a->getId(),
-            "nome" => $a->getNome(),
-            "descricao" => $a->getDescricao(),
-            "img" => $a->getNomeImagem()
-                    ? '/SistemaShopping_web1/img/lojas/' . ltrim($a->getNomeImagem(), '/')
-                    : ($a->getImagem()
-                            ? 'data:' . $a->getTipoImagem() . ';base64,' . $a->getImagem()
+
+
+$anunciosJs = [];
+
+$i = 0;
+
+foreach ($anuncios as $anuncio) {
+    $anunciosJs[$i] = [
+            'id' => $anuncio->getId(),
+            'nome' => $anuncio->getNome(),
+            'descricao' => $anuncio->getDescricao(),
+            'img' => $anuncio->getNomeImagem() ? '/SistemaShopping_web1/img/lojas/' . ltrim($anuncio->getNomeImagem(), '/')
+                    : ($anuncio->getImagem()
+                            ? 'data:' . $anuncio->getTipoImagem() . ';base64,' . $anuncio->getImagem()
                             : null)
     ];
-}, $anuncios);
+    $i++;
+}
+
+$json = json_encode($anunciosJs);
 ?>
 
-<a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?<?php echo htmlspecialchars($anuncioAtual->getId()) ?>)"
+<a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=<?php echo htmlspecialchars($anuncioAtual->getId()) ?>"
    id="anuncio-a">
     <div class="slide-ativo">
         <input type="hidden" name="id" value="<?php echo $anuncioAtual->getId() ?>">
@@ -53,7 +65,7 @@ $anunciosJs = array_map(function ($a) {
 </a>
 
 <script>
-    let anuncios = <?= json_encode($anunciosJs); ?>;
+    let anuncios = <?= $json; ?>;
     let i = 0;
 
     const img = document.getElementById("anuncio-img");
@@ -64,18 +76,16 @@ $anunciosJs = array_map(function ($a) {
     function atualizarSlide() {
         let anuncio = anuncios[i];
 
-        setTimeout(() => {
-            img.src = anuncio.img;
-            titulo.innerText = anuncio.nome;
-            desc.innerText = anuncio.descricao;
-            link.href = "/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?" + anuncio.id;
+        img.src = anuncio.img;
+        titulo.innerText = anuncio.nome;
+        desc.innerText = anuncio.descricao;
+        link.href = "/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=" + anuncio.id;
 
-            if (i < anuncios.length - 1) {
-                i++;
-            } else {
-                i = 0;
-            }
-        }, 300);
+        if (i < anuncios.length - 1) {
+            i++;
+        } else {
+            i = 0;
+        }
     }
 
     atualizarSlide();
