@@ -24,6 +24,7 @@ $cargo = $usuario->getCargo();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
     <title>Painel Administrativo - SchweizerPine</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/administrativo.css">
 </head>
@@ -34,12 +35,16 @@ $cargo = $usuario->getCargo();
 
 <main class="conteudo">
     <h2>Gerenciadores</h2>
-    <?php if ($cargo == Cargo::Administrador || $cargo == Cargo::Lojista): ?>
     <div class="cards-container">
-        <a href="loja/loja-dashboard.php" class="card">
-            <div class="icon">🛒</div>
-            <span>Lojas/Restaurantes</span>
-        </a>
+        <?php if ($cargo == Cargo::Administrador || $cargo == Cargo::Lojista): ?>
+            <a href="loja/loja-dashboard.php" class="card">
+                <div class="icon">🛒</div>
+                <span>Lojas/Restaurantes</span>
+            </a>
+            <a href="loja/categoria/categoria-loja-dashboard.php" class="card">
+                <div class="icon">🛒</div>
+                <span>Categoria lojas</span>
+            </a>
         <?php endif;
         if ($cargo == Cargo::Administrador || $cargo == Cargo::Gerenciador_anuncio): ?>
             <a href="/SistemaShopping_web1/src/view/administrativo/anuncio/anuncio-dashboard.php" class="card">

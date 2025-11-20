@@ -20,6 +20,7 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
     <title>Lojas - SchweizerPine Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/lojas.css">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/telaDeLoja.css">
 </head>
 <body>

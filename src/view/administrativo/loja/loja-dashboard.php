@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../../controller/conexao-bd.php';
 
 $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 $repositorio = new LojaRepositorio($pdo);
-$lojas = $repositorio->buscarLojas();
+$categorias = $repositorio->buscarLojas();
 
 $cargo = $usuario->getCargo();
 if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
@@ -34,6 +34,7 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
     <title>Gerenciar Lojas - Administrativo</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/crud-tabela.css">
 </head>
@@ -66,12 +67,12 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
         </tr>
         </thead>
         <tbody>
-        <?php if (count($lojas) == 0) : ?>
+        <?php if (count($categorias) == 0) : ?>
         <tr>
             <td colspan="7" class="sem-dados">Nenhuma loja cadastrada</td>
         </tr>
         <?php else: ?>
-        <?php foreach ($lojas as $loja) : ?>
+        <?php foreach ($categorias as $loja) : ?>
         <tr>
             <td><?php echo htmlspecialchars($loja->getNome()) ?></td>
             <td><?php echo htmlspecialchars($loja->getCategoria()) ?></td>

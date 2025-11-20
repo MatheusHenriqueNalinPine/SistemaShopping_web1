@@ -19,6 +19,7 @@ $todasAnuncios = $repositorio->buscarTodos();
     <title>Anuncios - SchweizerPine Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/anuncios.css">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/telaDeAnuncio.css">
 </head>
 <body>
