@@ -58,12 +58,28 @@ $todasFilmes = $repositorio->buscarTodos();
             <?php endif; ?>
             <div class="filme-info">
                 <h1><?php echo htmlspecialchars($filme->getNome()) ?></h1>
-                <p class="descricao"><strong>Sinopse:</strong><br/><?php echo nl2br(htmlspecialchars($filme->getDescricao())) ?></p>
+                <p class="descricao">
+                    <strong>Sinopse:</strong><br/><?php echo nl2br(htmlspecialchars($filme->getDescricao())) ?></p>
 
                 <div class="meta">
                     <p>
                         <strong>Gênero:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($filme->getCategoriaAnuncio())) ?>
                     </p>
+                </div>
+                <p><strong>Horários:</strong></p> <br/>
+
+                <div class="horarios-filme-grid">
+                    <?php foreach ($todasFilmes as $horarioExibicao) : ?>
+                        <div class="horario-filme">
+                            <p>
+                                <strong>Data: </strong><?php echo htmlspecialchars($horarioExibicao->getDataRegistro()->format('d/m/Y')) ?>
+                            </p>
+                            <p class="horario"><?php echo htmlspecialchars($horarioExibicao->getDataRegistro()->format('H:i')) ?></p>
+                            <p><strong>Sala: </strong><?php echo htmlspecialchars($horarioExibicao->getId()) ?></p>
+                            <p class="tipo-filme"><?php echo htmlspecialchars('DUB')?></p>
+                            <p class="tipo-filme"><?php echo htmlspecialchars('IMAX')?></p>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -91,7 +107,8 @@ $todasFilmes = $repositorio->buscarTodos();
                         <?php else: ?>
                             <div class="placeholder">Sem imagem</div>
                         <?php endif; ?>
-                    </div> <br>
+                    </div>
+                    <br>
                     <h2><?php echo htmlspecialchars($filme->getNome()) ?></h2>
                     <div class="meta">
                         <p>
@@ -106,7 +123,7 @@ $todasFilmes = $repositorio->buscarTodos();
         <?php $limite_anuncios = 2;
         include('../../sessoes/anuncios/anuncio_horizontal.php');
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $filme = $id > 0 ? $repositorio->buscarPorId($id) : null;?>
+        $filme = $id > 0 ? $repositorio->buscarPorId($id) : null; ?>
     </section>
 </main>
 <?php include(__DIR__ . '/../footer.html'); ?>
