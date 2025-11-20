@@ -4,22 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css">
-      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/relatorio.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/relatorios/gerar-pdf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/administrativo/relatorios/conteudo-pdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SistemaShopping_web1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SistemaShopping_web1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/repositorio/AnuncioRepositorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/repositorio/ServicoRepositorio.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/servico/filme/Filme.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/servico/filme/Filme.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/anuncio/anuncio-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/loja/loja-dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/administrativo/usuario/usuarios-dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/administrativo/usuario/usuarios-dashboard.php" afterDir="false" />
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Geração de relatórios">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +133,7 @@
       <workItem from="1763473708764" duration="2448000" />
       <workItem from="1763476614375" duration="2758000" />
       <workItem from="1763594883699" duration="7657000" />
-      <workItem from="1763656602893" duration="5138000" />
+      <workItem from="1763656602893" duration="5480000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -293,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763654253939</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Geração de relatórios">
+      <option name="closed" value="true" />
+      <created>1763666777596</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763666777596</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,6 +310,7 @@
     <MESSAGE value="Cinema filme card-small" />
     <MESSAGE value="Tela de cinema maximizado, horario exibição filmes" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;css/telaDeCinema.css" />
+    <MESSAGE value="Geração de relatórios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Geração de relatórios" />
   </component>
 </project>
