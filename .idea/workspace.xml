@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Permissões usuário">
+    <list default="true" id="861fd6f9-4950-4694-abf7-64185f45b10f" name="Changes" comment="Hover no carrossel">
+      <change afterPath="$PROJECT_DIR$/css/telaDeCinema.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/view/sessoes/cinema/cinema.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/sessoes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/sessoes/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="PHP File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -127,7 +127,7 @@
       <workItem from="1762869518531" duration="4969000" />
       <workItem from="1763473708764" duration="2448000" />
       <workItem from="1763476614375" duration="2758000" />
-      <workItem from="1763594883699" duration="887000" />
+      <workItem from="1763594883699" duration="3225000" />
     </task>
     <task id="LOCAL-00001" summary="alterações loja repo, solving merge conflicts">
       <option name="closed" value="true" />
@@ -249,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763581362491</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Hover no carrossel">
+      <option name="closed" value="true" />
+      <created>1763595909306</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1763595909306</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +276,7 @@
     <MESSAGE value="Ajuste bug categorias não aparecendo em novidades" />
     <MESSAGE value="Anuncio carrossel" />
     <MESSAGE value="Permissões usuário" />
-    <option name="LAST_COMMIT_MESSAGE" value="Permissões usuário" />
+    <MESSAGE value="Hover no carrossel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hover no carrossel" />
   </component>
 </project>
