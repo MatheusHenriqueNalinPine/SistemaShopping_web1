@@ -57,9 +57,6 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
                 <label for="cnpj">CNPJ</label>
                 <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ (apenas números)" required>
 
-                <label for="emailLoja">E-mail da Loja</label>
-                <input type="email" id="emailLoja" name="email" placeholder="Digite o e-mail da loja" required>
-
                 <label for="telefone">Telefone</label>
                 <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
 

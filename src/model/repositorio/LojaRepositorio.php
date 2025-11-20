@@ -280,10 +280,12 @@ class LojaRepositorio
         $sql = "select s.id, s.nome, l.id_categoria, c.categoria, l.cnpj, 
                        l.loja_restaurante, l.telefone_contato, s.descricao, 
                        s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, 
-                       s.data_registro, l.posicao
+                       s.data_registro, l.posicao, hs.dia_semana, hs.horario_inicial,
+                       hs.horario_final
                 from tbLoja l
                 inner join tbServico s on l.id = s.id
                 inner join tbCategoriaLoja c on l.id_categoria = c.id
+                inner join tbhorarioservico hs on hs.id_servico = l.id
                 where s.id = ?";
 
         $stmt = $this->pdo->prepare($sql);

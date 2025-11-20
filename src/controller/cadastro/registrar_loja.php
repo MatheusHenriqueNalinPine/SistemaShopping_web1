@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $id = $_POST['id'];
 $nome = trim($_POST['nome'] ?? '');
 $cnpj = trim($_POST['cnpj'] ?? '');
-$email = trim($_POST['email'] ?? '');
 $telefone = trim($_POST['telefone'] ?? '');
 $categoria = trim($_POST['categoria'] ?? '');
 $tipo_loja = trim($_POST['tipo-loja'] ?? '');
@@ -41,39 +40,30 @@ $horarios_iniciais = array_map('trim', $_POST['abertura'] ?? []);
 $horarios_finais = array_map('trim', $_POST['fechamento'] ?? []);
 $tipoLoja = TipoLoja::from($tipo_loja);
 
-
-$imagem = '';
-$tipoImagem = 'image/png';
-$nomeImagem = '';
-$urlImagem = '';
+$imagem = $_POST['imagem_existente'] ?? '';
+$nomeImagem = $_POST['imagem_existente'] ?? '';
+$tipoImagem = $_POST['tipo_imagem_existente'] ?? 'image/png';
+$urlImagem = $_POST['url_imagem_existente'] ?? '';
 
 if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     $tmpPath = $_FILES['imagem']['tmp_name'];
-
     $ext = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
     $newFilename = uniqid('loja_') . ($ext ? '.' . $ext : '');
-    $nomeImagem = $newFilename;
-
     $uploadDir = __DIR__ . '/../../../img/lojas/';
-    if (!file_exists($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
+    if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
     $destPath = $uploadDir . $newFilename;
 
     if (move_uploaded_file($tmpPath, $destPath)) {
         $fileContents = file_get_contents($destPath);
-        if ($fileContents !== false) {
-            $imagem = base64_encode($fileContents);
-        }
+        $imagem = base64_encode($fileContents);
+        $nomeImagem = $newFilename;
         $tipoImagem = mime_content_type($destPath) ?: $tipoImagem;
-
         $urlImagem = 'img/lojas/' . $newFilename;
     }
-
 }
 
 if ($id == 0) {
-    if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
+    if ($nome === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
         header("Location: /SistemaShopping_web1/src/view/administrativo/loja/cadastrar-loja.php?erro=campos-vazios");
         exit;
     }
@@ -86,14 +76,14 @@ if ($id == 0) {
         TipoLoja::from($tipo_loja), horariosFuncionamento($horarios_iniciais, $horarios_finais)));
 
 } else {
-    if ($nome === '' || $email === '' || $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/editar-anuncio.php?erro=campos-vazios");
+    if ($nome === ''|| $cnpj === '' || $telefone === '' || $categoria === '' || $descricao === '') {
+        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/editar-loja.php?erro=campos-vazios");
         exit;
     }
     $repositorio->alterarLoja(new Loja($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $posicao, $telefone, $cnpj, $categoria,
         $tipoLoja, horariosFuncionamento($horarios_iniciais, $horarios_finais)));
 
-    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/telaDeLoja.php?id=" . urlencode($id));
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/loja-dashboard.php");
     exit;
 }
 

@@ -84,4 +84,5 @@ class Loja extends Servico
     {
         $this->horarioFuncionamento = $horarioFuncionamento;
     }
+
 }
