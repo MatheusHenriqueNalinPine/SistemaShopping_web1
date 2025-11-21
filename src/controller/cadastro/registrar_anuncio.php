@@ -5,6 +5,7 @@ use model\servico\anuncio\Anuncio;
 use model\servico\anuncio\FormatoAnuncio;
 
 require_once __DIR__ . "/../../model/repositorio/AnuncioRepositorio.php";
+require_once __DIR__ . "/../../model/repositorio/CategoriaAnuncioRepositorio.php";
 require_once __DIR__ . "/../../model/servico/anuncio/Anuncio.php";
 require_once __DIR__ . "/../../model/servico/Servico.php";
 require_once __DIR__ . "/../conexao-bd.php";
@@ -62,7 +63,7 @@ if ($nome === '' || $formato_anuncio == '' || $categoria === '' || $descricao ==
 if ($id == 0) {
     $repositorio->salvar($nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria);
 } else {
-    $repositorio->atualizar(new Anuncio($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, $categoria));
+    $repositorio->atualizar(new Anuncio($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $formatoAnuncio, (new \model\repositorio\CategoriaAnuncioRepositorio($pdo))->buscarPorId($categoria)));
 }
 
 header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/anuncio-dashboard.php");

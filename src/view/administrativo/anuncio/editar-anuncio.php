@@ -1,9 +1,11 @@
 <?php
 
 use model\repositorio\AnuncioRepositorio;
+use model\repositorio\CategoriaAnuncioRepositorio;
 use model\repositorio\UsuarioRepositorio;
 
 require_once __DIR__ . "/../../../model/repositorio/AnuncioRepositorio.php";
+require_once __DIR__ . "/../../../model/repositorio/CategoriaAnuncioRepositorio.php";
 require_once __DIR__ . "/../../../model/servico/anuncio/Anuncio.php";
 require_once __DIR__ . "/../../../model/repositorio/UsuarioRepositorio.php";
 require_once __DIR__ . "/../../../model/usuario/Usuario.php";
@@ -24,7 +26,7 @@ $idAnuncio = $_GET['id'] ?? null;
 $anuncio = $repositorio->buscarPorId($idAnuncio);
 
 $cargo = $usuario->getCargo();
-if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
+if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista) {
     header('Location: /SistemaShopping_web1/src/view/administrativo/administrativo.php');
     exit;
 }
@@ -50,24 +52,48 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
                 <p class="mensagem-erro">Não deixe os campos vazios.</p>
             <?php endif; ?>
             <h2>Editar Anúncio</h2>
-            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_anuncio.php" method="post" enctype="multipart/form-data">
+            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_anuncio.php" method="post"
+                  enctype="multipart/form-data">
                 <label for="nomeAnuncio">Nome do Anúncio</label>
-                <input type="text" id="nomeAnuncio" name="nome" placeholder="Digite o nome do anúncio" value="<?=$anuncio->getNome()?>" required>
+                <input type="text" id="nomeAnuncio" name="nome" placeholder="Digite o nome do anúncio"
+                       value="<?= $anuncio->getNome() ?>" required>
 
-                <label for="cnpj">Categoria do anúncio</label>
-                <input type="text" id="categoria" name="categoria" placeholder="Digite a categoria" required>
+                <label for="categoria">Categoria do anúncio</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="" disabled selected>Selecione a categoria</option>
+                    <?php
+                    $categorias = (new CategoriaAnuncioRepositorio($pdo))->buscarTodas();
+                    $categoriaAtual = $anuncio->getCategoriaAnuncio(); // nome da categoria
+                    foreach ($categorias as $categoria):
+                        $selected = ($categoria['categoria'] === $categoriaAtual) ? 'selected' : '';
+                        ?>
+                        <option value="<?= htmlspecialchars($categoria['id']) ?>" <?= $selected ?>>
+                            <?= htmlspecialchars($categoria['categoria']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
 
                 <label for="formato">Formato do anúncio</label>
                 <select id="formato" name="formato" required>
                     <option value="" disabled selected>Selecione o formato</option>
-                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Quadrado->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Quadrado->value ? 'selected' : '' ?>>Quadrado</option>
-                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Horizontal->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Horizontal->value ? 'selected' : '' ?>>Horizontal</option>
-                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::NoticiaCompleta->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::NoticiaCompleta->value ? 'selected' : '' ?>>Notícia completa</option>
-                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Carrossel->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Carrossel->value ? 'selected' : '' ?>>Carrossel (Menu inicial)</option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Quadrado->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Quadrado->value ? 'selected' : '' ?>>
+                        Quadrado
+                    </option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Horizontal->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Horizontal->value ? 'selected' : '' ?>>
+                        Horizontal
+                    </option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::NoticiaCompleta->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::NoticiaCompleta->value ? 'selected' : '' ?>>
+                        Notícia completa
+                    </option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Carrossel->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Carrossel->value ? 'selected' : '' ?>>
+                        Carrossel (Menu inicial)
+                    </option>
                 </select>
 
                 <label for="descricao">Descrição</label>
-                <textarea id="descricao" name="descricao" placeholder="Descreva seu anúncio..." rows="4"><?=$anuncio->getDescricao()?></textarea>
+                <textarea id="descricao" name="descricao" placeholder="Descreva seu anúncio..."
+                          rows="4"><?= $anuncio->getDescricao() ?></textarea>
 
                 <input type="file" name="imagem" accept="image/*">
 

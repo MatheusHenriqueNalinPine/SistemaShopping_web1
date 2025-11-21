@@ -50,9 +50,18 @@ class CategoriaAnuncioRepositorio
 
     public function buscarPorId(int $id)
     {
-        $sql = "select * from tbcategoriaanuncio where id = ?;";
+        $sql = "select categoria from tbcategoriaanuncio where id = ? limit 1;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function buscarPorCategoria(string $categoria)
+    {
+        $sql = "select * from tbcategoriaanuncio where categoria = ?;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $categoria);
         $stmt->execute();
         return $stmt->fetch();
     }
