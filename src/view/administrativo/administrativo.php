@@ -51,6 +51,10 @@ $cargo = $usuario->getCargo();
                 <div class="icon">📢</div>
                 <span>Anúncios</span>
             </a>
+            <a href="anuncio/categoria/categoria-anuncio-dashboard.php" class="card">
+                <div class="icon">📢</div>
+                <span>Categoria anúncios</span>
+            </a>
         <?php endif;
         if ($cargo == Cargo::Administrador || $cargo == Cargo::Funcionario_cinema): ?>
             <a href="#" class="card">
