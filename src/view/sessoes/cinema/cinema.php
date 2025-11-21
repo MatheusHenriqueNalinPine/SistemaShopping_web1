@@ -45,7 +45,7 @@ $todasFilmes = $repositorio->buscarTodos();
             $imgBase64 = $filme->getImagem() ?? '';
 
             if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/filmes/' . ltrim($nomeArquivo, '/');
+                $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
             } elseif (!empty($imgBase64)) {
                 $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
             }
@@ -95,7 +95,7 @@ $todasFilmes = $repositorio->buscarTodos();
                     $imgBase64 = $filme->getImagem() ?? '';
 
                     if (!empty($nomeArquivo)) {
-                        $imgSrc = '/SistemaShopping_web1/img/filmes/' . ltrim($nomeArquivo, '/');
+                        $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
                     } elseif (!empty($imgBase64)) {
                         $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
                     }

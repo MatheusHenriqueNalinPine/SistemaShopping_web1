@@ -158,7 +158,7 @@ class AnuncioRepositorio
     public
     function buscarTodos(): array
     {
-        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
+        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
                    a.formato_anuncio as formato, a.id_categoria_anuncio
             from tbanuncio a
             inner join tbservico s on a.id = s.id
@@ -187,7 +187,7 @@ class AnuncioRepositorio
 
     public function buscarAnunciosCarrossel(): array
     {
-        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
+        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.tipo_imagem, s.nome_imagem, s.url_imagem, s.data_registro,
                    a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
             from tbanuncio a
             inner join tbservico s on a.id = s.id
@@ -212,7 +212,7 @@ class AnuncioRepositorio
 
     public function buscarAnunciosMinimizados(int $limite): array
     {
-        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
+        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
                    a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
             from tbanuncio a
             inner join tbservico s on a.id = s.id
@@ -230,7 +230,7 @@ class AnuncioRepositorio
 
     public function buscarAnunciosHorizontais(int $limite): array
     {
-        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.data_registro,
+        $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
                    a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
             from tbanuncio a
             inner join tbservico s on a.id = s.id

@@ -46,14 +46,14 @@ $todasAnuncios = $repositorio->buscarTodos();
             $imgBase64 = $anuncio->getImagem() ?? '';
 
             if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
+                $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
             } elseif (!empty($imgBase64)) {
                 $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
             }
             ?>
             <?php if ($imgSrc !== ''): ?>
                 <img src="<?php echo $imgSrc ?>"
-                     alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>"
+                     alt="Imagem do anúncio <?php echo htmlspecialchars($anuncio->getNome()) ?>"
                      id="anuncio-img">
             <?php else: ?>
                 <div class="placeholder">Sem imagem</div>

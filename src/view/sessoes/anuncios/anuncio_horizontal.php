@@ -21,7 +21,7 @@ $anuncios = $repositorio->buscarAnunciosHorizontais($limite);
             $tipoImagem = $anuncio->getTipoImagem() ?? 'image/*';
 
             if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
+                $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
             }
             elseif (!empty($anuncio->getImagem())) {
                 $imgSrc = 'data:' . $tipoImagem . ';base64,' . $anuncio->getImagem();
@@ -31,7 +31,7 @@ $anuncios = $repositorio->buscarAnunciosHorizontais($limite);
             <?php if (!empty($imgSrc)): ?>
                 <button type="submit" class="img-button">
                     <img src="<?php echo $imgSrc ?>"
-                         alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>">
+                         alt="Imagem do anúncio <?php echo htmlspecialchars($anuncio->getNome()) ?>">
                 </button>
             <?php else: ?>
                 <div class="placeholder">Sem imagem</div>

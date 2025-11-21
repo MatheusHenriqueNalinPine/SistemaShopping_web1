@@ -20,7 +20,7 @@ $anuncios = $repositorio->buscarAnunciosMinimizados($limite);
             $tipoImagem = $anuncio->getTipoImagem() ?? 'image/*';
 
             if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
+                $imgSrc = 'img/anuncios/' . ltrim($nomeArquivo, '/');
             } elseif (!empty($anuncio->getImagem())) {
                 $imgSrc = 'data:' . $tipoImagem . ';base64,' . $anuncio->getImagem();
             }
@@ -30,10 +30,10 @@ $anuncios = $repositorio->buscarAnunciosMinimizados($limite);
             }
             ?>
             <?php if (!empty($imgSrc)): ?>
-            <img src="<?php echo $imgSrc ?>"
-                 alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>">
+                <img src="<?php echo $imgSrc ?>"
+                     alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>">
             <?php else: ?>
-            <div class="placeholder">Sem imagem</div>
+                <div class="placeholder">Sem imagem</div>
             <?php endif; ?>
             <h3><?php echo htmlspecialchars($anuncio->getNome()) ?></h3>
             <p><?php echo htmlspecialchars($anuncio->getDescricao()) ?></p>

@@ -23,7 +23,7 @@ foreach ($anuncios as $anuncio) {
             'id' => $anuncio->getId(),
             'nome' => $anuncio->getNome(),
             'descricao' => $anuncio->getDescricao(),
-            'img' => $anuncio->getNomeImagem() ? '/SistemaShopping_web1/img/lojas/' . ltrim($anuncio->getNomeImagem(), '/')
+            'img' => $anuncio->getNomeImagem() ? '/SistemaShopping_web1/img/anuncios/' . ltrim($anuncio->getNomeImagem(), '/')
                     : ($anuncio->getImagem()
                             ? 'data:' . $anuncio->getTipoImagem() . ';base64,' . $anuncio->getImagem()
                             : null)
@@ -45,7 +45,7 @@ $json = json_encode($anunciosJs);
         $imgBase64 = $anuncio->getImagem() ?? '';
 
         if (!empty($nomeArquivo)) {
-            $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
+            $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
         } elseif (!empty($imgBase64)) {
             $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
         }
