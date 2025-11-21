@@ -41,8 +41,8 @@ $urlImagem = $_POST['url_imagem_existente'] ?? '';
 if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     $tmpPath = $_FILES['imagem']['tmp_name'];
     $ext = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
-    $newFilename = uniqid('loja_') . ($ext ? '.' . $ext : '');
-    $uploadDir = __DIR__ . '/../../../img/lojas/';
+    $newFilename = uniqid('anuncio_') . ($ext ? '.' . $ext : '');
+    $uploadDir = __DIR__ . '/../../../img/anuncios/';
     if (!file_exists($uploadDir)) mkdir($uploadDir, 0777, true);
     $destPath = $uploadDir . $newFilename;
 
@@ -51,7 +51,7 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagem = base64_encode($fileContents);
         $nomeImagem = $newFilename;
         $tipoImagem = mime_content_type($destPath) ?: $tipoImagem;
-        $urlImagem = 'img/lojas/' . $newFilename;
+        $urlImagem = 'img/anuncios/' . $newFilename;
     }
 }
 if ($nome === '' || $formato_anuncio == '' || $categoria === '' || $descricao === '') {
