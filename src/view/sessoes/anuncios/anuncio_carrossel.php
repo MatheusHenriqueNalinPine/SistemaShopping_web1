@@ -11,7 +11,7 @@ require_once(__DIR__ . '/../../../model/repositorio/AnuncioRepositorio.php');
 
 $repositorio = new AnuncioRepositorio($pdo);
 $anuncios = $repositorio->buscarAnunciosCarrossel();
-$anuncioAtual = $anuncios[0] ?? null;
+$anuncio = $anuncios[0] ?? null;
 
 
 $anunciosJs = [];
@@ -34,15 +34,15 @@ foreach ($anuncios as $anuncio) {
 $json = json_encode($anunciosJs);
 ?>
 
-<a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=<?php echo htmlspecialchars($anuncioAtual->getId()) ?>"
+<a href="/SistemaShopping_web1/src/view/sessoes/anuncios/novidades.php?id=<?php echo htmlspecialchars($anuncio->getId()) ?>"
    id="anuncio-a">
     <div class="slide-ativo">
-        <input type="hidden" name="id" value="<?php echo $anuncioAtual->getId() ?>">
+        <input type="hidden" name="id" value="<?php echo $anuncio->getId() ?>">
         <?php
         $imgSrc = '';
-        $nomeArquivo = $anuncioAtual->getNomeImagem();
-        $tipo = $anuncioAtual->getTipoImagem() ?? 'image/*';
-        $imgBase64 = $anuncioAtual->getImagem() ?? '';
+        $nomeArquivo = $anuncio->getNomeImagem();
+        $tipo = $anuncio->getTipoImagem() ?? 'image/*';
+        $imgBase64 = $anuncio->getImagem() ?? '';
 
         if (!empty($nomeArquivo)) {
             $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
@@ -52,14 +52,14 @@ $json = json_encode($anunciosJs);
         ?>
         <?php if ($imgSrc !== ''): ?>
             <img src="<?php echo $imgSrc ?>"
-                 alt="Imagem da loja <?php echo htmlspecialchars($anuncioAtual->getNome()) ?>"
+                 alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>"
                  id="anuncio-img">
         <?php else: ?>
             <div class="placeholder">Sem imagem</div>
         <?php endif; ?>
         <div class="texto">
-            <h2 id="titulo-anuncio"><?php echo htmlspecialchars($anuncioAtual->getNome()) ?></h2>
-            <p id="desc-anuncio"><?php echo htmlspecialchars($anuncioAtual->getDescricao()) ?></p>
+            <h2 id="titulo-anuncio"><?php echo htmlspecialchars($anuncio->getNome()) ?></h2>
+            <p id="desc-anuncio"><?php echo htmlspecialchars($anuncio->getDescricao()) ?></p>
         </div>
     </div>
 </a>

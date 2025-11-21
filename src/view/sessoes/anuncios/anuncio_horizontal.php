@@ -16,17 +16,19 @@ $anuncios = $repositorio->buscarAnunciosHorizontais($limite);
             <input type="hidden" name="id" value="<?php echo $anuncio->getId() ?>">
             <?php
             $imgSrc = '';
+
             $nomeArquivo = $anuncio->getNomeImagem();
-            $tipo = $anuncio->getTipoImagem() ?? 'image/*';
-            $imgBase64 = $anuncio->getImagem() ?? '';
+            $tipoImagem = $anuncio->getTipoImagem() ?? 'image/*';
 
             if (!empty($nomeArquivo)) {
                 $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
-            } elseif (!empty($imgBase64)) {
-                $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
+            }
+            elseif (!empty($anuncio->getImagem())) {
+                $imgSrc = 'data:' . $tipoImagem . ';base64,' . $anuncio->getImagem();
             }
             ?>
-            <?php if ($imgSrc !== ''): ?>
+
+            <?php if (!empty($imgSrc)): ?>
                 <button type="submit" class="img-button">
                     <img src="<?php echo $imgSrc ?>"
                          alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>">

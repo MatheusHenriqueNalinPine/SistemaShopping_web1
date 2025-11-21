@@ -108,7 +108,6 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
                                value="<?= htmlspecialchars($loja->getTipoImagem()) ?>">
                         <input type="hidden" name="url_imagem_existente"
                                value="<?= htmlspecialchars($loja->getUrlImagem()) ?>">
-
                     </div>
                 <?php endif; ?>
 

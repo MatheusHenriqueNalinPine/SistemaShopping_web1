@@ -42,19 +42,19 @@ $todasAnuncios = $repositorio->buscarTodos();
             <?php
             $imgSrc = '';
             $nomeArquivo = $anuncio->getNomeImagem();
-            $tipo = $anuncio->getTipoImagem() ?? 'image/png';
+            $tipo = $anuncio->getTipoImagem() ?? 'image/*';
             $imgBase64 = $anuncio->getImagem() ?? '';
 
             if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
+                $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
             } elseif (!empty($imgBase64)) {
                 $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
             }
             ?>
-
             <?php if ($imgSrc !== ''): ?>
                 <img src="<?php echo $imgSrc ?>"
-                     alt="Imagem da anuncio <?php echo htmlspecialchars($anuncio->getNome()) ?>">
+                     alt="Imagem da loja <?php echo htmlspecialchars($anuncio->getNome()) ?>"
+                     id="anuncio-img">
             <?php else: ?>
                 <div class="placeholder">Sem imagem</div>
             <?php endif; ?>

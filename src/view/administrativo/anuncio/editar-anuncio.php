@@ -52,7 +52,7 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
             <h2>Editar Anúncio</h2>
             <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_anuncio.php" method="post" enctype="multipart/form-data">
                 <label for="nomeAnuncio">Nome do Anúncio</label>
-                <input type="text" id="nomeAnuncio" name="nome" placeholder="Digite o nome do anúncio" required>
+                <input type="text" id="nomeAnuncio" name="nome" placeholder="Digite o nome do anúncio" value="<?=$anuncio->getNome()?>" required>
 
                 <label for="cnpj">Categoria do anúncio</label>
                 <input type="text" id="categoria" name="categoria" placeholder="Digite a categoria" required>
@@ -60,18 +60,30 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
                 <label for="formato">Formato do anúncio</label>
                 <select id="formato" name="formato" required>
                     <option value="" disabled selected>Selecione o formato</option>
-                    <option value="Quadrado">Quadrado</option>
-                    <option value="Horizontal">Horizontal</option>
-                    <option value="Noticia_completa">Notícia completa</option>
-                    <option value="Carrossel">Carrossel (Menu inicial)</option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Quadrado->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Quadrado->value ? 'selected' : '' ?>>Quadrado</option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Horizontal->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Horizontal->value ? 'selected' : '' ?>>Horizontal</option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::NoticiaCompleta->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::NoticiaCompleta->value ? 'selected' : '' ?>>Notícia completa</option>
+                    <option value="<?= \model\servico\anuncio\FormatoAnuncio::Carrossel->value ?>" <?= $anuncio->getFormatoAnuncio()->value === \model\servico\anuncio\FormatoAnuncio::Carrossel->value ? 'selected' : '' ?>>Carrossel (Menu inicial)</option>
                 </select>
 
                 <label for="descricao">Descrição</label>
-                <textarea id="descricao" name="descricao" placeholder="Descreva sua loja..." rows="4"></textarea>
+                <textarea id="descricao" name="descricao" placeholder="Descreva seu anúncio..." rows="4"><?=$anuncio->getDescricao()?></textarea>
 
-                <label for="imagem">Imagem</label>
-                <input type="file" id="imagem" name="imagem" accept="image/*">
+                <input type="file" name="imagem" accept="image/*">
 
+                <?php if (!empty($anuncio->getNomeImagem())): ?>
+                    <div class="preview-imagem">
+                        <p>Imagem atual: <?= htmlspecialchars($anuncio->getNomeImagem()) ?></p>
+                        <img src="<?= htmlspecialchars('/SistemaShopping_web1/img/anuncios/' . $anuncio->getNomeImagem()) ?>"
+                             alt="Imagem do anúncio" style="max-width:200px;">
+                        <input type="hidden" name="imagem_existente"
+                               value="<?= htmlspecialchars($anuncio->getNomeImagem()) ?>">
+                        <input type="hidden" name="tipo_imagem_existente"
+                               value="<?= htmlspecialchars($anuncio->getTipoImagem()) ?>">
+                        <input type="hidden" name="url_imagem_existente"
+                               value="<?= htmlspecialchars($anuncio->getUrlImagem()) ?>">
+                    </div>
+                <?php endif; ?>
                 <input type="hidden" name="id" value="<?= $anuncio->getId() ?>">
 
                 <input type="submit" value="Editar"/>

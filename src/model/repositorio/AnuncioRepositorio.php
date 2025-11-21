@@ -248,10 +248,7 @@ class AnuncioRepositorio
 
     public function buscarPorId(int $id): ?Anuncio
     {
-        $sql = "select s.id, s.nome, a.id_categoria_anuncio, a.formato_anuncio, 
-        s.descricao, s.imagem, s.data_registro " .
-            "from tbanuncio a inner join tbServico s on a.id = s.id " .
-            "where s.id = ?";
+        $sql = "select s.id, s.nome, a.id_categoria_anuncio, a.formato_anuncio, s.descricao, s.imagem, s.url_imagem, s.tipo_imagem, s.nome_imagem, s.data_registro from tbanuncio a inner join tbServico s on a.id = s.id where s.id = ?";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
