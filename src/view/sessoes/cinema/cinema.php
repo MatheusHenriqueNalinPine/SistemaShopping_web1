@@ -18,7 +18,7 @@ $todasFilmes = $repositorio->buscarTodos();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinema - SchweizerPine Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/index.css">
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/telaDeCinema.css">
 </head>
 <body>

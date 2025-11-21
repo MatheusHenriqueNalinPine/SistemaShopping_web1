@@ -18,7 +18,7 @@ $sucesso_cadastro = $_GET['sucess'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/login.css">
 </head>
 

@@ -38,7 +38,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <title>Editar Loja - SchweizerPine Shopping</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/cadastrar.css">
 </head>

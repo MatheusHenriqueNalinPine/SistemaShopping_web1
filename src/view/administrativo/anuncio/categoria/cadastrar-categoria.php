@@ -33,7 +33,7 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Categoria de Anuncio - SchweizerPine Shopping</title>
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/cadastrar.css">
 </head>
 

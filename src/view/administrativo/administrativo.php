@@ -24,7 +24,7 @@ $cargo = $usuario->getCargo();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <title>Painel Administrativo - SchweizerPine</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/administrativo.css">
 </head>

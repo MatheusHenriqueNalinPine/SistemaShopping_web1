@@ -35,7 +35,7 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Anúncios - Administrativo</title>
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/logoShopping.png">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <link rel="stylesheet" href="/SistemaShopping_web1/css/crud-tabela.css">
 </head>
 
