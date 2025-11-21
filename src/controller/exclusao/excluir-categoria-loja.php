@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 if (!$repositorio->isCategoriaUsed($_POST['id'])) {
     $repositorio->excluir($_POST['id']);
 } else {
-    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?erro=usada");
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?erro=usada&erro_id=" . $_POST['id']);
     exit;
 }
 

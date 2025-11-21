@@ -51,7 +51,8 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
         <a href="cadastrar-categoria.php" class="btn-cadastrar">Cadastrar categoria</a>
     </div>
     <?php if (isset($_GET['erro']) && $_GET['erro'] === 'usada'): ?>
-        <p class="mensagem-erro">Essa categoria está sendo usada.</p>
+        <p class="mensagem-erro">Essa categoria está sendo usada por: <?php
+            foreach ((new CategoriaLojaRepositorio($pdo))->whoUse($_GET['erro_id']) as $nomes) echo htmlspecialchars($nomes . "; ")?></p>
     <?php endif; ?>
     <table class="tabela">
         <thead>

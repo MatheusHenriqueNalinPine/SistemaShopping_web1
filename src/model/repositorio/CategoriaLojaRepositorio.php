@@ -67,4 +67,13 @@ class CategoriaLojaRepositorio
         return (bool) $stmt->fetchColumn();
     }
 
+    public function whoUse(int $id)
+    {
+        $sql = "SELECT tbservico.nome FROM tbloja inner join tbservico on tbloja.id = tbservico.id
+                      WHERE id_categoria = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }
