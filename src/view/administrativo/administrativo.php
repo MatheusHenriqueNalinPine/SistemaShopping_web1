@@ -6,6 +6,7 @@ require_once __DIR__ . '/../../model/repositorio/UsuarioRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
+echo $usuario_logado;
 
 if (!$usuario_logado) {
     header('Location: /SistemaShopping_web1/src/view/sessoes/login.php?erro=deslogado');

@@ -39,6 +39,16 @@ class UsuarioRepositorio
         return $dados ? $this->formarObjeto($dados) : null;
     }
 
+    public function buscarPorId(int $id): ?Usuario
+    {
+        $sql = "select * from tbUsuario where id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $dados = $stmt->fetch();
+        return $dados ? $this->formarObjeto($dados) : null;
+    }
+
     public function autenticar($email, $senha): bool
     {
         $usuario = $this->buscarPorEmail($email);
@@ -91,9 +101,9 @@ class UsuarioRepositorio
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $usuario->getNome());
         $stmt->bindValue(2, $usuario->getEmail());
-        $stmt->bindValue(3, password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
+        $stmt->bindValue(3, $usuario->getSenha());
         $stmt->bindValue(4, $usuario->getCpf());
-        $stmt->bindValue(5, $usuario->getCargo());
+        $stmt->bindValue(5, $usuario->getCargo()->value);
         return $stmt;
     }
 
@@ -108,5 +118,27 @@ class UsuarioRepositorio
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$email]);
         return $stmt->fetchColumn() > 0;
+    }
+
+    public function cpfIs(string $cpf, int $id)
+    {
+        $sql = "SELECT 1 FROM tbusuario WHERE id = :id AND cpf = :cpf LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':cpf', $cpf);
+        $stmt->execute();
+
+        return (bool) $stmt->fetchColumn();
+    }
+
+    public function emailIs(string $email, int $id)
+    {
+        $sql = "SELECT 1 FROM tbusuario WHERE id = :id AND email = :email LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        return (bool) $stmt->fetchColumn();
     }
 }

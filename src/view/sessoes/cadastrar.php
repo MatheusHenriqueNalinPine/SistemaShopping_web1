@@ -77,6 +77,8 @@ $erro = $_GET['erro'] ?? null;
                     <option value="anuncio">Gerenciador de Anúncios</option>
                 </select>
 
+                <input type="hidden" name="id" value="0">
+
                 <button type="submit" class="btn-cadastrar">Cadastrar</button>
             </form>
         </div>
