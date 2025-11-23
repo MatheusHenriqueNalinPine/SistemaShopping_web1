@@ -1,4 +1,6 @@
 <?php
+//Referências:
+//usar css de arquivo externo no DomPDF: https://github.com/dompdf/dompdf/issues/1562#issuecomment-333391364
 
 use model\repositorio\AnuncioRepositorio;
 use model\repositorio\FilmeRepositorio;
