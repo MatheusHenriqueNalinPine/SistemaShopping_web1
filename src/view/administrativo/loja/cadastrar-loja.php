@@ -1,8 +1,10 @@
 <?php
 
+use model\repositorio\CategoriaLojaRepositorio;
 use model\repositorio\UsuarioRepositorio;
 
 require_once __DIR__ . "/../../../model/repositorio/UsuarioRepositorio.php";
+require_once __DIR__ . "/../../../model/repositorio/CategoriaLojaRepositorio.php";
 require_once __DIR__ . "/../../../model/usuario/Usuario.php";
 require_once __DIR__ . "/../../../controller/conexao-bd.php";
 
@@ -20,7 +22,7 @@ $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 $erro = $_GET['erro'] ?? null;
 
 $cargo = $usuario->getCargo();
-if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
+if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio) {
     header('Location: /SistemaShopping_web1/src/view/administrativo/administrativo.php');
     exit;
 }
@@ -50,7 +52,8 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
                 <p class="mensagem-erro">Apenas números (14) no CNPJ, tente novamente.</p>
             <?php endif; ?>
             <h2>Cadastro de Loja</h2>
-            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_loja.php" method="post" enctype="multipart/form-data">
+            <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_loja.php" method="post"
+                  enctype="multipart/form-data">
                 <label for="nomeLoja">Nome da Loja</label>
                 <input type="text" id="nomeLoja" name="nome" placeholder="Digite o nome da loja" required>
 
@@ -63,12 +66,10 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
                 <label for="categoria">Categoria</label>
                 <select id="categoria" name="categoria" required>
                     <option value="" disabled selected>Selecione a categoria</option>
-                    <option value="roupas">Roupas</option>
-                    <option value="calcados">Calçados</option>
-                    <option value="alimentacao">Alimentação</option>
-                    <option value="eletronicos">Eletrônicos</option>
-                    <option value="acessorios">Acessórios</option>
-                    <option value="servicos">Serviços</option>
+                    <?php $categorias = (new CategoriaLojaRepositorio($pdo))->buscarTodas();
+                    foreach ($categorias as $categoria): ?>
+                        <option value="<?= htmlspecialchars($categoria['id']) ?>"><?= htmlspecialchars($categoria['categoria']) ?></option>
+                    <?php endforeach; ?>
                 </select>
 
                 <label for="tipo-loja">Loja ou Restaurante?</label>
