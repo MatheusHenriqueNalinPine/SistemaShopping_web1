@@ -5,6 +5,7 @@ use model\repositorio\UsuarioRepositorio;
 
 require_once __DIR__ . '/../../../model/repositorio/UsuarioRepositorio.php';
 require_once __DIR__ . '/../../../model/repositorio/LojaRepositorio.php';
+require_once __DIR__ . '/../../../model/repositorio/CategoriaLojaRepositorio.php';
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
@@ -75,7 +76,7 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
         <?php foreach ($categorias as $loja) : ?>
         <tr>
             <td><?php echo htmlspecialchars($loja->getNome()) ?></td>
-            <td><?php echo htmlspecialchars($loja->getCategoria()) ?></td>
+            <td><?php echo htmlspecialchars((new \model\repositorio\CategoriaLojaRepositorio($pdo))->buscarPorId($loja->getCategoria()))?></td>
             <td><?php echo htmlspecialchars($loja->getDescricao()) ?></td>
             <td><?php echo htmlspecialchars($loja->getPosicao()) ?></td>
             <td>

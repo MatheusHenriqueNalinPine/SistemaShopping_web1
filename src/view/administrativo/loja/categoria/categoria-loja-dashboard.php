@@ -72,7 +72,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
             <?php foreach ($categorias as $categoria) : ?>
                 <tr>
                     <td><?php echo htmlspecialchars($categoria['id']) ?></td>
-                    <td><?php echo htmlspecialchars($categoria['horarios']) ?></td>
+                    <td><?php echo htmlspecialchars($categoria['categoria']) ?></td>
                     <td>
                         <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-categoria-loja.php" method="post">
                             <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
@@ -81,7 +81,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
                     </td>
                     <td>
                         <form action="editar-categoria.php" method="get">
-                            <input type="hidden" name="categoria" value="<?= $categoria['horarios'] ?>">
+                            <input type="hidden" name="categoria" value="<?= $categoria['categoria'] ?>">
                             <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
                             <input type="submit" class="btn-editar" value="Editar">
                         </form>

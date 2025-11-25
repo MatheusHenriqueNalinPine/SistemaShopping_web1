@@ -15,7 +15,7 @@ class CategoriaLojaRepositorio
 
     public function salvar(string $categoria)
     {
-        $sql = "insert into tbcategorialoja (horarios) values (?);";
+        $sql = "insert into tbcategorialoja (categoria) values (?);";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->execute();
@@ -23,7 +23,7 @@ class CategoriaLojaRepositorio
 
     public function alterar(int $id, string $categoria)
     {
-        $sql = "update tbcategorialoja set horarios = ? where id = ?;";
+        $sql = "update tbcategorialoja set categoria = ? where id = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->bindValue(2, $id);
@@ -50,11 +50,11 @@ class CategoriaLojaRepositorio
 
     public function buscarPorId(int $id)
     {
-        $sql = "select * from tbcategorialoja where id = ?;";
+        $sql = "select categoria from tbcategorialoja where id = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchColumn();
     }
 
     public function isCategoriaUsed(int $id): bool
