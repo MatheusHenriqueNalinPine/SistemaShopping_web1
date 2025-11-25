@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 $id = $_POST['id'];
 $nome = trim($_POST['nome'] ?? '');
-$categoria = trim($_POST['horarios'] ?? '');
+$categoria = trim($_POST['categoria'] ?? '');
 $formato_anuncio = trim($_POST['formato'] ?? '');
 $descricao = trim($_POST['descricao'] ?? '');
 $formatoAnuncio = FormatoAnuncio::from($formato_anuncio);

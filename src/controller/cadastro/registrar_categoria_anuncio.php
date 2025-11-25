@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 $id = $_POST['id'];
-$categoria = trim($_POST['horarios'] ?? '');
+$categoria = trim($_POST['categoria'] ?? '');
 
 if ($id == 0) {
     if ($categoria === '') {
