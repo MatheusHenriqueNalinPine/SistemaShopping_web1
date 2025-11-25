@@ -229,6 +229,37 @@ class LojaRepositorio
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
+    // novo: busca paginada das lojas (ordenadas pelos mais recentes)
+    public function buscarlojasPaginadas(int $limite, int $offset): array
+    {
+        $sql = "select s.id, s.nome, l.id_categoria, c.categoria, 
+                       l.cnpj, l.loja_restaurante, l.telefone_contato, 
+                       s.descricao, s.imagem, s.tipo_imagem, 
+                       s.nome_imagem, s.url_imagem, s.data_registro, 
+                       l.posicao 
+                from tbloja l 
+                inner join tbservico s on l.id = s.id 
+                inner join tbCategoriaLoja c on l.id_categoria = c.id 
+                order by s.data_registro desc 
+                limit :limite offset :offset";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
+    }
+
+    // novo: conta total de lojas para cálculo de páginas
+    public function contarLojas(): int
+    {
+        $sql = "select count(*) from tbloja";
+        $stmt = $this->pdo->query($sql);
+        return (int)$stmt->fetchColumn();
+    }
+
     public function buscarlojasFiltro(TipoLoja $tipo): array
     {
         $sql = "select tbservico.id, tbservico.nome, tbloja.id_categoria, 
