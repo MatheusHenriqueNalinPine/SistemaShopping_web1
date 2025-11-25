@@ -14,7 +14,19 @@
 <?php include('src/view/sessoes/header.html') ?>
 
 <section class="carrossel">
-    <?php include('src/view/sessoes/anuncios/anuncio_carrossel.php') ?>
+    <?php
+    // Substitui include direto por carregamento via iframe isolado.
+    $carrossel_file = __DIR__ . '/src/view/sessoes/anuncios/anuncio_carrossel.php';
+    if (file_exists($carrossel_file)) {
+        // src relativo para o navegador acessar via webserver
+        $iframe_src = 'src/view/sessoes/anuncios/anuncio_carrossel.php';
+        echo '<iframe src="' . htmlspecialchars($iframe_src, ENT_QUOTES, 'UTF-8') . '" '
+            . 'style="width:100%;height:420px;border:0;display:block;" '
+            . 'title="Carrossel" frameborder="0" loading="lazy"></iframe>';
+    } else {
+        echo '<div class="carrossel-placeholder">Carrossel temporariamente indisponível.</div>';
+    }
+    ?>
 </section>
 
 

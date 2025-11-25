@@ -68,12 +68,26 @@ create table tbHorarioServico
     constraint fkHorarioServicoHorario foreign key (horario_inicial, horario_final, dia_semana) references tbHorarioFuncionamento (horario_inicial, horario_final, dia_semana)
 );
 
+create table tbCategoriaFilme
+(
+    id        int auto_increment,
+    categoria varchar(30) not null,
+    constraint pkCategoriaFilme primary key (id)
+);
+
 create table tbFilme
 (
-    id     int not null,
-    genero varchar(50),
+    id                 int auto_increment,
+    nome               varchar(100) not null,
+    id_categoria_filme int,
+    sala               varchar(50),
+    formato            varchar(30),
+    horarios           longtext,
+    nome_imagem        varchar(255),
+    tipo_imagem        varchar(50) default ('image/png'),
+    imagem             longblob,
     constraint pkFilme primary key (id),
-    constraint fkFilmeServico foreign key (id) references tbServico (id)
+    constraint fkFilmeCategoria foreign key (id_categoria_filme) references tbCategoriaFilme (id)
 );
 
 create table tbHorarioExibicaoFilme
@@ -108,3 +122,6 @@ create table tbAnuncio
 insert into tbUsuario (nome, email, senha, cpf, cargo)
 values ('Dono do shopping', 'admin@exemplo.com', '$2y$10$n7avFbK6dB6joBDXa2hVIe4QOyxLc6VobFjqErUj57aqcb14tDYMe',
         '11111111111', 'administrador');
+
+-- inserts de exemplo para categorias de filme
+insert into tbCategoriaFilme (categoria) values ('Ação'), ('Comédia'), ('Drama'), ('Infantil');

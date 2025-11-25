@@ -10,6 +10,41 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $loja = $id > 0 ? $repositorio->buscarPorId($id) : null;
 $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
 
+// novo: manter seleção atual de limite (opcional)
+$selectedLimit = isset($_GET['limit']) ? (int)$_GET['limit'] : 0;
+
+// novo: busca os últimos anúncios usando PDO (tenta nomes de tabela comuns)
+$anunciosUltimos = [];
+if ($selectedLimit > 0) {
+    function fetchLatestAds(PDO $pdo, int $limit): array {
+        $tables = ['anuncio', 'anuncios', 'anuncios_anuncio'];
+        foreach ($tables as $t) {
+            try {
+                $sql = "SELECT id, nome, descricao, imagem, tipo_imagem, nome_imagem, url_imagem, data_registro
+                        FROM {$t}
+                        ORDER BY data_registro DESC
+                        LIMIT :limit";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+                $stmt->execute();
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if (!empty($rows)) {
+                    return $rows;
+                }
+            } catch (\Throwable $e) {
+                // tenta próxima tabela
+                continue;
+            }
+        }
+        return [];
+    }
+
+    try {
+        $anunciosUltimos = fetchLatestAds($pdo, $selectedLimit);
+    } catch (\Throwable $e) {
+        $anunciosUltimos = [];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +66,19 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
     <div class="header-container">
         <a href="/SistemaShopping_web1/index.php" class="btn-voltar">← Voltar para Início</a>
         <h1 class="titulo-principal">Lojas</h1>
+
+        <!-- select redireciona para a mesma página com ?limit= -->
+        <div class="select-container" style="margin-left:16px;">
+            <label for="limitSelect" style="margin-right:8px;">Ver últimos anúncios:</label>
+            <select id="limitSelect" name="limit"
+                    onchange="if(this.value>0){ window.location.href='?limit='+this.value; } else { window.location.href='?'; }">
+                <option value="0" <?php echo $selectedLimit === 0 ? 'selected' : '' ?>>Selecione...</option>
+                <option value="5" <?php echo $selectedLimit === 5 ? 'selected' : '' ?>>Últimos 5</option>
+                <option value="10" <?php echo $selectedLimit === 10 ? 'selected' : '' ?>>Últimos 10</option>
+                <option value="15" <?php echo $selectedLimit === 15 ? 'selected' : '' ?>>Últimos 15</option>
+            </select>
+        </div>
+
         <div class="espacador"></div>
     </div>
 
@@ -115,6 +163,42 @@ $todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
                 </a>
             <?php endforeach; ?>
         </div>
+    <?php endif; ?>
+
+    <?php if ($selectedLimit > 0): ?>
+        <section class="ultimos-anuncios" style="padding:16px; border:1px solid #ddd; margin:16px;">
+            <h2>Últimos <?php echo htmlspecialchars($selectedLimit); ?> anúncios</h2>
+            <?php if (empty($anunciosUltimos)): ?>
+                <p>Nenhum anúncio encontrado.</p>
+            <?php else: ?>
+                <div class="anuncios-list" style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <?php foreach ($anunciosUltimos as $anuncio): 
+                        $imgSrc = '';
+                        $nomeArquivo = $anuncio['nome_imagem'] ?? '';
+                        $tipo = $anuncio['tipo_imagem'] ?? 'image/png';
+                        $imgBase64 = $anuncio['imagem'] ?? '';
+                        if (!empty($nomeArquivo)) {
+                            $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
+                        } elseif (!empty($imgBase64)) {
+                            $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
+                        }
+                        $anuncioId = $anuncio['id'] ?? 0;
+                    ?>
+                        <div class="anuncio-item" style="width:200px; border:1px solid #eee; padding:8px;">
+                            <?php if ($imgSrc !== ''): ?>
+                                <img src="<?php echo $imgSrc ?>" alt="<?php echo htmlspecialchars($anuncio['nome'] ?? '') ?>" style="width:100%; height:120px; object-fit:cover;">
+                            <?php else: ?>
+                                <div style="width:100%; height:120px; background:#f4f4f4; display:flex;align-items:center;justify-content:center;">Sem imagem</div>
+                            <?php endif; ?>
+                            <h3 style="font-size:14px; margin:8px 0;"><?php echo htmlspecialchars($anuncio['nome'] ?? '') ?></h3>
+                            <p style="font-size:12px; color:#666; height:36px; overflow:hidden;"><?php echo nl2br(htmlspecialchars(substr($anuncio['descricao'] ?? '', 0, 150))) ?></p>
+                            <!-- link para detalhe (ajuste se houver rota pública de detalhe) -->
+                            <a href="/SistemaShopping_web1/src/view/administrativo/anuncio/visualizar-anuncio.php?id=<?php echo (int)$anuncioId ?>" style="font-size:12px; color:#007bff;">Ver anúncio</a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </section>
     <?php endif; ?>
 </main>
 <?php include(__DIR__ . '/../footer.html'); ?>

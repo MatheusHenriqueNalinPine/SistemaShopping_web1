@@ -32,7 +32,8 @@ $cargo = $usuario->getCargo();
             <a href="/SistemaShopping_web1/src/view/administrativo/anuncio/categoria/categoria-anuncio-dashboard.php">Categoria Anúncios</a>
         <?php endif;
         if ($cargo == Cargo::Administrador || $cargo == Cargo::Funcionario_cinema): ?>
-            <a href="#">Cinema</a>
+            <a href="/SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php">Filmes</a>
+            <a href="/SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php">Categoria Filmes</a>
         <?php endif; ?>
         <a href="/SistemaShopping_web1/src/view/administrativo/usuario/usuarios-dashboard.php">Funcionários</a>
         <a href="/SistemaShopping_web1/src/controller/autenticacao/logout.php">Sair</a>
