@@ -3,7 +3,7 @@
 //usar css de arquivo externo no DomPDF: https://github.com/dompdf/dompdf/issues/1562#issuecomment-333391364
 
 use model\repositorio\AnuncioRepositorio;
-use model\repositorio\FilmeRepositorio;
+use model\repositorio\CinemaRepositorio;
 use model\repositorio\LojaRepositorio;
 use model\repositorio\UsuarioRepositorio;
 
@@ -14,7 +14,7 @@ require "../../../src/Model/servico/filme/Filme.php";
 require "../../../src/Model/servico/anuncio/Anuncio.php";
 require "../../../src/Model/Repositorio/AnuncioRepositorio.php";
 require "../../../src/Model/Repositorio/LojaRepositorio.php";
-require "../../../src/Model/Repositorio/FilmeRepositorio.php";
+require "../../../src/Model/Repositorio/CinemaRepositorio.php";
 require "../../../src/Model/Repositorio/UsuarioRepositorio.php";
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -30,7 +30,7 @@ if ($tipo == "usuarios") {
     $repositorio = new LojaRepositorio($pdo);
     $itens = $repositorio->buscarlojas();
 } else if ($tipo == "filmes") {
-    $repositorio = new FilmeRepositorio($pdo);
+    $repositorio = new CinemaRepositorio($pdo);
     $itens = $repositorio->buscarTodos();
 } else if ($tipo == "anuncios") {
     $repositorio = new AnuncioRepositorio($pdo);
@@ -101,7 +101,7 @@ echo "<style>$css</style>"; ?>
                     <td><?= $item->getCategoria() ?></td>
                 <?php elseif ($tipo == "filmes"): ?>
                     <td><?= $item->getGenero() ?></td>
-                    <td><?= $item->getHorariosExibicao()->lenght ?></td>
+                    <td><?= $repositorio->numeroHorariosExibicao($item->getId()) ?></td>
                 <?php elseif ($tipo == "anuncios"): ?>
                     <td><?= $item->getFormatoAnuncio()->value ?></td>
                     <td><?= $repositorio->getCategoriaById(intval($item->getCategoriaAnuncio())) ?></td>

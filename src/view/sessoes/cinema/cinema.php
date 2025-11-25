@@ -63,20 +63,6 @@ $horariosRepo = new HorarioFilmeRepositorio($pdo);
         <div class="espacador"></div>
     </div>
 
-    <div style="margin:12px 0;">
-        <form method="get" action="" id="limitForm">
-            <?php if ($id > 0): ?>
-                <input type="hidden" name="id" value="<?php echo (int)$id; ?>">
-            <?php endif; ?>
-            <label for="limitSelect">Mostrar:</label>
-            <select id="limitSelect" name="limit" onchange="document.getElementById('limitForm').submit()">
-                <option value="0" <?php echo ($limit === 0) ? 'selected' : ''; ?>>Todos</option>
-                <option value="5" <?php echo ($limit === 5) ? 'selected' : ''; ?>>Últimos 5 filmes</option>
-                <option value="10" <?php echo ($limit === 10) ? 'selected' : ''; ?>>Últimos 10 filmes</option>
-                <option value="15" <?php echo ($limit === 15) ? 'selected' : ''; ?>>Últimos 15 filmes</option>
-            </select>
-        </form>
-    </div>
 
     <?php if (!$filme && empty($todasFilmes)) : ?>
         <div class="sem-dados">

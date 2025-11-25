@@ -139,4 +139,12 @@ class CinemaRepositorio
 
         return $this->formarObjeto($result);
     }
+
+    public function numeroHorariosExibicao(int $id): int {
+        $sql = "select count(*) from tbhorarioexibicaofilme inner join tbfilme on tbHorarioeXIBICAOfilme.id_filme=tbfilme.id where tbfilme.id = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
 }

@@ -42,6 +42,10 @@ $filmes = $repositorio->buscarTodos();
 
     <div class="acoes">
         <a href="cadastrar-filme.php" class="btn-cadastrar">Cadastrar filme</a>
+        <form action="/SistemaShopping_web1/src/controller/relatorios/gerar-pdf.php" method="get">
+            <input type="hidden" name="tipo" id="tipo" value="filmes">
+            <input type="submit" class="btn-relatorio" value="Baixar Relatório">
+        </form>
     </div>
     <?php if (isset($_GET['erro']) && $_GET['erro'] === 'exclusao'): ?>
         <p class="mensagem-erro">Erro ao excluir <?=$_GET['id']?>.</p>
