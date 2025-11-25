@@ -47,19 +47,27 @@ class LojaRepositorio
 
             $idServico = $this->pdo->lastInsertId();
 
-            $sql = "select id from tbCategoriaLoja where categoria = ?";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(1, $loja->getCategoria());
-            $stmt->execute();
-            $idCategoria = $stmt->fetchColumn();
-
-            if (!$idCategoria) {
-                $sql = "insert into tbCategoriaLoja (categoria) values (?)";
+           
+            $categoriaVal = $loja->getCategoria();
+            if (is_numeric($categoriaVal)) {
+                
+                $idCategoria = (int)$categoriaVal;
+            } else {
+                $sql = "select id from tbCategoriaLoja where categoria = ?";
                 $stmt = $this->pdo->prepare($sql);
-                $stmt->bindValue(1, $loja->getCategoria());
+                $stmt->bindValue(1, $categoriaVal);
                 $stmt->execute();
-                $idCategoria = $this->pdo->lastInsertId();
+                $idCategoria = $stmt->fetchColumn();
+
+                if (!$idCategoria) {
+                    $sql = "insert into tbCategoriaLoja (categoria) values (?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $categoriaVal);
+                    $stmt->execute();
+                    $idCategoria = $this->pdo->lastInsertId();
+                }
             }
+    
 
             $sql = "insert into tbloja (id, id_categoria ,posicao, telefone_contato, cnpj, loja_restaurante) values (?, ?, ?, ?, ?, ?);                                                                  ";
             $stmt = $this->pdo->prepare($sql);
@@ -119,15 +127,36 @@ class LojaRepositorio
             $stmt->bindValue(7, $loja->getId());
             $stmt->execute();
 
+            
+            $categoriaVal = $loja->getCategoria();
+            if (is_numeric($categoriaVal)) {
+                $idCategoria = (int)$categoriaVal;
+            } else {
+                $sql = "select id from tbCategoriaLoja where categoria = ?";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(1, $categoriaVal);
+                $stmt->execute();
+                $idCategoria = $stmt->fetchColumn();
+
+                if (!$idCategoria) {
+                    $sql = "insert into tbCategoriaLoja (categoria) values (?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $categoriaVal);
+                    $stmt->execute();
+                    $idCategoria = $this->pdo->lastInsertId();
+                }
+            }
+
             $sql = "update tbloja set posicao = ?, id_categoria = ?, telefone_contato = ?, cnpj = ?, loja_restaurante = ? where id = ?;";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $loja->getPosicao());
-            $stmt->bindValue(2, $loja->getCategoria());
+            $stmt->bindValue(2, $idCategoria);
             $stmt->bindValue(3, $loja->getTelefoneContato());
             $stmt->bindValue(4, $loja->getCnpj());
             $stmt->bindValue(5, $loja->getTipoLoja()->value);
             $stmt->bindValue(6, $loja->getId());
             $stmt->execute();
+         
 
             $horarioRepositorio = new HorarioFuncionamentoRepositorio($this->pdo);
 
@@ -229,7 +258,7 @@ class LojaRepositorio
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
-    // novo: busca paginada das lojas (ordenadas pelos mais recentes)
+    
     public function buscarlojasPaginadas(int $limite, int $offset): array
     {
         $sql = "select s.id, s.nome, l.id_categoria, c.categoria, 
@@ -252,12 +281,47 @@ class LojaRepositorio
         return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
-    // novo: conta total de lojas para cálculo de páginas
+    
     public function contarLojas(): int
     {
         $sql = "select count(*) from tbloja";
         $stmt = $this->pdo->query($sql);
         return (int)$stmt->fetchColumn();
+    }
+
+    
+    public function contarLojasPorTipo(TipoLoja $tipo): int
+    {
+        $sql = "select count(*) from tbloja where loja_restaurante = :tipo";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':tipo', $tipo->value);
+        $stmt->execute();
+        return (int)$stmt->fetchColumn();
+    }
+
+    
+    public function buscarlojasPaginadasPorTipo(TipoLoja $tipo, int $limite, int $offset): array
+    {
+        $sql = "select s.id, s.nome, l.id_categoria, c.categoria, 
+                       l.cnpj, l.loja_restaurante, l.telefone_contato, 
+                       s.descricao, s.imagem, s.tipo_imagem, 
+                       s.nome_imagem, s.url_imagem, s.data_registro, 
+                       l.posicao 
+                from tbloja l 
+                inner join tbservico s on l.id = s.id 
+                inner join tbCategoriaLoja c on l.id_categoria = c.id 
+                where l.loja_restaurante = :tipo
+                order by s.data_registro desc 
+                limit :limite offset :offset";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':tipo', $tipo->value);
+        $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
     }
 
     public function buscarlojasFiltro(TipoLoja $tipo): array

@@ -52,19 +52,25 @@ class AnuncioRepositorio
 
             $id = $this->pdo->lastInsertId();
 
-            $sql = "select id from tbCategoriaAnuncio where categoria = ?";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(1, $categoria_anuncio);
-            $stmt->execute();
-            $idCategoria = $stmt->fetchColumn();
-
-            if (!$idCategoria) {
-                $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+            
+            if (is_numeric($categoria_anuncio)) {
+                $idCategoria = (int)$categoria_anuncio;
+            } else {
+                $sql = "select id from tbCategoriaAnuncio where categoria = ?";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindValue(1, $categoria_anuncio);
                 $stmt->execute();
-                $idCategoria = $this->pdo->lastInsertId();
+                $idCategoria = $stmt->fetchColumn();
+
+                if (!$idCategoria) {
+                    $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $categoria_anuncio);
+                    $stmt->execute();
+                    $idCategoria = $this->pdo->lastInsertId();
+                }
             }
+           
 
             $sql = "insert into tbanuncio (id, formato_anuncio, id_categoria_anuncio) values (?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
@@ -84,19 +90,26 @@ class AnuncioRepositorio
         try {
             $this->pdo->beginTransaction();
 
-            $sql = "select id from tbCategoriaAnuncio where categoria = ?";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->bindValue(1, $anuncio->getCategoriaAnuncio());
-            $stmt->execute();
-            $idCategoria = $stmt->fetchColumn();
-
-            if (!$idCategoria) {
-                $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+            
+            $categoriaVal = $anuncio->getCategoriaAnuncio();
+            if (is_numeric($categoriaVal)) {
+                $idCategoria = (int)$categoriaVal;
+            } else {
+                $sql = "select id from tbCategoriaAnuncio where categoria = ?";
                 $stmt = $this->pdo->prepare($sql);
-                $stmt->bindValue(1, $anuncio->getCategoriaAnuncio());
+                $stmt->bindValue(1, $categoriaVal);
                 $stmt->execute();
-                $idCategoria = $this->pdo->lastInsertId();
+                $idCategoria = $stmt->fetchColumn();
+
+                if (!$idCategoria) {
+                    $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->bindValue(1, $categoriaVal);
+                    $stmt->execute();
+                    $idCategoria = $this->pdo->lastInsertId();
+                }
             }
+           
 
             $sql = "update tbanuncio set formato_anuncio = ?, id_categoria_anuncio = ? where id = ?";
             $stmt = $this->pdo->prepare($sql);

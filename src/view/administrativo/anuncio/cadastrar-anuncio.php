@@ -2,12 +2,13 @@
 
 use model\repositorio\AnuncioRepositorio;
 use model\repositorio\UsuarioRepositorio;
+use model\repositorio\CategoriaAnuncioRepositorio;
 
 require_once __DIR__ . "/../../../model/repositorio/UsuarioRepositorio.php";
 require_once __DIR__ . "/../../../model/repositorio/AnuncioRepositorio.php";
 require_once __DIR__ . "/../../../model/usuario/Usuario.php";
-require_once __DIR__ . "/../../../model/servico/anuncio/Anuncio.php";
 require_once __DIR__ . "/../../../controller/conexao-bd.php";
+require_once __DIR__ . "/../../../model/repositorio/CategoriaAnuncioRepositorio.php";
 
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
@@ -20,13 +21,14 @@ if (!$usuario_logado) {
 $repositorio = new AnuncioRepositorio($pdo);
 $usuario = (new UsuarioRepositorio($pdo))->buscarPorEmail($usuario_logado);
 
-$erro = $_GET['erro'] ?? null;
-
 $cargo = $usuario->getCargo();
 if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
     header('Location: /SistemaShopping_web1/src/view/administrativo/administrativo.php');
     exit;
 }
+
+$categoriaRepo = new CategoriaAnuncioRepositorio($pdo);
+$categorias = $categoriaRepo->buscarTodas();
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +55,13 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista){
                 <label for="nomeAnuncio">Nome do Anúncio</label>
                 <input type="text" id="nomeAnuncio" name="nome" placeholder="Digite o nome do anúncio" required>
 
-                <label for="cnpj">Categoria do anúncio</label>
-                <input type="text" id="categoria" name="categoria" placeholder="Digite a categoria" required>
+                <label for="categoria">Categoria do anúncio</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="" disabled selected>Selecione uma categoria</option>
+                    <?php foreach ($categorias as $categoria): ?>
+                        <option value="<?= htmlspecialchars($categoria['id']) ?>"><?= htmlspecialchars($categoria['categoria']) ?></option>
+                    <?php endforeach; ?>
+                </select>
 
                 <label for="formato">Formato do anúncio</label>
                 <select id="formato" name="formato" required>

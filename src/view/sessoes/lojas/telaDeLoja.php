@@ -8,14 +8,33 @@ require_once __DIR__ . '/../../../controller/conexao-bd.php';
 $repositorio = new LojaRepositorio($pdo);
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $loja = $id > 0 ? $repositorio->buscarPorId($id) : null;
-$todasLojas = $id === 0 ? $repositorio->buscarlojasFiltro(TipoLoja::Loja) : [];
+
+
+$todasLojas = []; 
+
+
+$selectedShopLimit = isset($_GET['shop_limit']) ? (int)$_GET['shop_limit'] : 5;
+$selectedShopPage = isset($_GET['shop_page']) ? max(1, (int)$_GET['shop_page']) : 1;
+$ultimasLojas = [];
+$totalShopPages = 0;
+$totalLojas = 0;
+if ($selectedShopLimit > 0) {
+    try {
+        $totalLojas = $repositorio->contarLojas();
+        $offset = ($selectedShopPage - 1) * $selectedShopLimit;
+        $ultimasLojas = $repositorio->buscarlojasPaginadas($selectedShopLimit, $offset);
+        $totalShopPages = (int)ceil($totalLojas / $selectedShopLimit);
+    } catch (\Throwable $e) {
+        $ultimasLojas = [];
+        $totalShopPages = 0;
+    }
+}
 
 
 $selectedLimit = isset($_GET['limit']) ? (int)$_GET['limit'] : 0;
-
-
 $anunciosUltimos = [];
 if ($selectedLimit > 0) {
+    
     function fetchLatestAds(PDO $pdo, int $limit): array {
         $tables = ['anuncio', 'anuncios', 'anuncios_anuncio'];
         foreach ($tables as $t) {
@@ -32,7 +51,6 @@ if ($selectedLimit > 0) {
                     return $rows;
                 }
             } catch (\Throwable $e) {
-                // tenta próxima tabela
                 continue;
             }
         }
@@ -46,23 +64,6 @@ if ($selectedLimit > 0) {
     }
 }
 
-
-$selectedShopLimit = isset($_GET['shop_limit']) ? (int)$_GET['shop_limit'] : 0;
-$selectedShopPage = isset($_GET['shop_page']) ? max(1, (int)$_GET['shop_page']) : 1;
-$ultimasLojas = [];
-$totalShopPages = 0;
-$totalLojas = 0;
-if ($selectedShopLimit > 0) {
-    try {
-        $totalLojas = $repositorio->contarLojas();
-        $offset = ($selectedShopPage - 1) * $selectedShopLimit;
-        $ultimasLojas = $repositorio->buscarlojasPaginadas($selectedShopLimit, $offset);
-        $totalShopPages = (int)ceil($totalLojas / $selectedShopLimit);
-    } catch (\Throwable $e) {
-        $ultimasLojas = [];
-        $totalShopPages = 0;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -85,50 +86,40 @@ if ($selectedShopLimit > 0) {
         <a href="/SistemaShopping_web1/index.php" class="btn-voltar">← Voltar para Início</a>
         <h1 class="titulo-principal">Lojas</h1>
 
-        
-        <div class="select-container" style="margin-left:16px;">
-            <label for="limitSelect" style="margin-right:8px;">Ver últimos anúncios:</label>
-            <select id="limitSelect" name="limit"
-                    onchange="if(this.value>0){ window.location.href='?limit='+this.value; } else { window.location.href='?'; }">
-                <option value="0" <?php echo $selectedLimit === 0 ? 'selected' : '' ?>>Selecione...</option>
-                <option value="5" <?php echo $selectedLimit === 5 ? 'selected' : '' ?>>Últimos 5</option>
-                <option value="10" <?php echo $selectedLimit === 10 ? 'selected' : '' ?>>Últimos 10</option>
-                <option value="15" <?php echo $selectedLimit === 15 ? 'selected' : '' ?>>Últimos 15</option>
-            </select>
-        </div>
-
-        
-        <div class="select-container" style="margin-left:16px;">
-            <label for="shopLimitSelect" style="margin-right:8px;">Ver últimos cadastros de lojas:</label>
-            <select id="shopLimitSelect" name="shop_limit"
-                    onchange="{
-                        const limit = this.value;
-                        if(limit>0){
-                            
+        <div class="toolbar">
+            <div class="ordenacao">
+                <label for="shopLimitSelect" class="label-compact">Mostrar</label>
+                <select id="shopLimitSelect" name="shop_limit" class="select-compact"
+                        onchange="(function(){
+                            const limit = parseInt(this.value,10) || 0;
                             const params = new URLSearchParams(window.location.search);
-                            params.set('shop_limit', limit);
-                            params.set('shop_page', 1);
-                            
-                            window.location.href = window.location.pathname + '?' + params.toString();
-                        } else {
-                            window.location.href = window.location.pathname;
-                        }
-                    }">
-                <option value="0" <?php echo $selectedShopLimit === 0 ? 'selected' : '' ?>>Selecione...</option>
-                <option value="5" <?php echo $selectedShopLimit === 5 ? 'selected' : '' ?>>Últimos 5</option>
-                <option value="10" <?php echo $selectedShopLimit === 10 ? 'selected' : '' ?>>Últimos 10</option>
-                <option value="15" <?php echo $selectedShopLimit === 15 ? 'selected' : '' ?>>Últimos 15</option>
-            </select>
-        </div>
+                            if(limit>0){
+                                params.set('shop_limit', limit);
+                                params.set('shop_page', 1);
+                            } else {
+                                params.delete('shop_limit');
+                                params.delete('shop_page');
+                            }
+                            window.location.href = window.location.pathname + (params.toString() ? ('?'+params.toString()) : '');
+                        }).call(this);">
+                    <option value="0" <?php echo $selectedShopLimit === 0 ? 'selected' : '' ?>>Padrão</option>
+                    <option value="5" <?php echo $selectedShopLimit === 5 ? 'selected' : '' ?>>5 por página</option>
+                    <option value="10" <?php echo $selectedShopLimit === 10 ? 'selected' : '' ?>>10 por página</option>
+                    <option value="15" <?php echo $selectedShopLimit === 15 ? 'selected' : '' ?>>15 por página</option>
+                </select>
+            </div>
 
+            <div class="info-pages">
+                <?php if ($selectedShopLimit > 0): ?>
+                    <span class="page-summary">Página <?php echo $selectedShopPage; ?> de <?php echo max(1, $totalShopPages); ?> — <?php echo (int)$totalLojas; ?> restaurantes</span>
+                <?php endif; ?>
+            </div>
+        </div>
         <div class="espacador"></div>
     </div>
 
-    <?php if (!$loja && empty($todasLojas)) : ?>
-        <div class="sem-dados">
-            Nenhuma loja cadastrada ainda.
-        </div>
-    <?php elseif ($loja) : ?>
+    
+    <?php if ($loja) : ?>
         <div class="loja-card">
             <?php
             $imgSrc = '';
@@ -159,7 +150,7 @@ if ($selectedShopLimit > 0) {
                     <p><strong>Telefone:</strong> <?php echo htmlspecialchars($loja->getTelefoneContato() ?? '-') ?></p>
                     <p><strong>CNPJ:</strong> <?php echo htmlspecialchars($loja->getCnpj() ?? '-') ?></p>
                     <p><strong>Tipo:</strong> <?php echo htmlspecialchars($loja->getTipoLoja()->value ?? '-') ?></p>
-                    <p><strong>Horário de Funcionamento:</strong> <?php
+                    <p><strong>Horário de Funcionamento: </strong> <?php
                         $horarios = $loja->getHorarioFuncionamento();
                         foreach ($horarios as $horarioFuncionamento) {
                             $horarioInicial = $horarioFuncionamento->getHorarioInicial() ?? '00:00';
@@ -171,43 +162,8 @@ if ($selectedShopLimit > 0) {
                 </div>
             </div>
         </div>
-    <?php else : ?>
-        <div class="lojas-grid">
-            <?php foreach ($todasLojas as $loja) : ?>
-                <a href="?id=<?php echo $loja->getId() ?>" class="loja-card-small">
-                    <?php
-                    $imgSrc = '';
-                    $nomeArquivo = $loja->getNomeImagem();
-                    $tipo = $loja->getTipoImagem() ?? 'image/*';
-                    $imgBase64 = $loja->getImagem() ?? '';
-
-                    if (!empty($nomeArquivo)) {
-                        $imgSrc = '/SistemaShopping_web1/img/lojas/' . ltrim($nomeArquivo, '/');
-                    } elseif (!empty($imgBase64)) {
-                        $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
-                    }
-                    ?>
-
-                    <div class="img-container">
-                        <?php if ($imgSrc !== ''): ?>
-                            <img src="<?php echo $imgSrc ?>"
-                                 alt="Imagem da loja <?php echo htmlspecialchars($loja->getNome()) ?>">
-                        <?php else: ?>
-                            <div class="placeholder">Sem imagem</div>
-                        <?php endif; ?>
-                    </div>
-                    <h2><?php echo htmlspecialchars($loja->getNome()) ?></h2>
-                    <p class="descricao"><?php echo nl2br(htmlspecialchars($loja->getDescricao())) ?></p>
-                    <div class="meta">
-                        <p><strong>Categoria:</strong> <?php echo htmlspecialchars($loja->getCategoria()) ?></p>
-                        <p><strong>Localização:</strong> <?php echo htmlspecialchars($loja->getPosicao()) ?></p>
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
     <?php endif; ?>
 
-    <!-- NOVO: seção para mostrar as últimas lojas selecionadas (paginada) -->
     <?php if ($selectedShopLimit > 0): ?>
         <section class="ultimas-lojas" style="padding:16px; border:1px solid #ddd; margin:16px;">
             <h2>Últimas <?php echo htmlspecialchars($selectedShopLimit); ?> lojas cadastradas (página <?php echo $selectedShopPage; ?> de <?php echo max(1, $totalShopPages); ?>)</h2>
@@ -245,11 +201,9 @@ if ($selectedShopLimit > 0) {
                     <?php endforeach; ?>
                 </div>
 
-                <!-- PAGINAÇÃO -->
                 <?php if ($totalShopPages > 1): ?>
-                    <nav class="paginacao" style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+                    <nav class="paginacao" aria-label="Paginação de lojas">
                         <?php
-                        // função auxiliar para montar querystring preservando limit de anúncios (limit)
                         $buildPageUrl = function($page) use ($selectedShopLimit, $selectedLimit) {
                             $params = [];
                             $params['shop_limit'] = $selectedShopLimit;
@@ -257,27 +211,28 @@ if ($selectedShopLimit > 0) {
                             if (!empty($selectedLimit)) $params['limit'] = $selectedLimit;
                             return '?' . http_build_query($params);
                         };
-                        ?>
-
-                        <?php if ($selectedShopPage > 1): ?>
-                            <a href="<?php echo $buildPageUrl($selectedShopPage - 1); ?>">« Anterior</a>
-                        <?php endif; ?>
-
-                        <?php
-                        // exibir páginas (limitar visualização se muitas páginas)
                         $start = max(1, $selectedShopPage - 3);
                         $end = min($totalShopPages, $selectedShopPage + 3);
-                        for ($p = $start; $p <= $end; $p++): ?>
-                            <?php if ($p == $selectedShopPage): ?>
-                                <strong><?php echo $p; ?></strong>
-                            <?php else: ?>
-                                <a href="<?php echo $buildPageUrl($p); ?>"><?php echo $p; ?></a>
+                        ?>
+                        <ul class="pagination-list">
+                            <?php if ($selectedShopPage > 1): ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo $buildPageUrl($selectedShopPage - 1); ?>">&laquo; Anterior</a></li>
                             <?php endif; ?>
-                        <?php endfor; ?>
 
-                        <?php if ($selectedShopPage < $totalShopPages): ?>
-                            <a href="<?php echo $buildPageUrl($selectedShopPage + 1); ?>">Próximo »</a>
-                        <?php endif; ?>
+                            <?php for ($p = $start; $p <= $end; $p++): ?>
+                                <li class="page-item <?php echo ($p == $selectedShopPage) ? 'active' : '' ?>">
+                                    <?php if ($p == $selectedShopPage): ?>
+                                        <span class="page-link current"><?php echo $p; ?></span>
+                                    <?php else: ?>
+                                        <a class="page-link" href="<?php echo $buildPageUrl($p); ?>"><?php echo $p; ?></a>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endfor; ?>
+
+                            <?php if ($selectedShopPage < $totalShopPages): ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo $buildPageUrl($selectedShopPage + 1); ?>">Próximo &raquo;</a></li>
+                            <?php endif; ?>
+                        </ul>
                     </nav>
                 <?php endif; ?>
             <?php endif; ?>
@@ -311,7 +266,7 @@ if ($selectedShopLimit > 0) {
                             <?php endif; ?>
                             <h3 style="font-size:14px; margin:8px 0;"><?php echo htmlspecialchars($anuncio['nome'] ?? '') ?></h3>
                             <p style="font-size:12px; color:#666; height:36px; overflow:hidden;"><?php echo nl2br(htmlspecialchars(substr($anuncio['descricao'] ?? '', 0, 150))) ?></p>
-                            <!-- link para detalhe (ajuste se houver rota pública de detalhe) -->
+                           
                             <a href="/SistemaShopping_web1/src/view/administrativo/anuncio/visualizar-anuncio.php?id=<?php echo (int)$anuncioId ?>" style="font-size:12px; color:#007bff;">Ver anúncio</a>
                         </div>
                     <?php endforeach; ?>
