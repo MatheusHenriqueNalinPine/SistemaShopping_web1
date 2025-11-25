@@ -47,14 +47,14 @@ class LojaRepositorio
 
             $idServico = $this->pdo->lastInsertId();
 
-            $sql = "select id from tbCategoriaLoja where categoria = ?";
+            $sql = "select id from tbCategoriaLoja where horarios = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $loja->getCategoria());
             $stmt->execute();
             $idCategoria = $stmt->fetchColumn();
 
             if (!$idCategoria) {
-                $sql = "insert into tbCategoriaLoja (categoria) values (?)";
+                $sql = "insert into tbCategoriaLoja (horarios) values (?)";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindValue(1, $loja->getCategoria());
                 $stmt->execute();
@@ -266,7 +266,7 @@ class LojaRepositorio
             $result['posicao'] ?? null,
             $result['telefone_contato'] ?? null,
             $result['cnpj'] ?? null,
-            $result['categoria'] ?? 'Acessórios',
+            $result['horarios'] ?? 'Acessórios',
             TipoLoja::from($result['loja_restaurante']),
             $result['horarios'] ?? []
         );
@@ -277,7 +277,7 @@ class LojaRepositorio
      */
     public function buscarPorId(int $id): ?Loja
     {
-        $sql = "select s.id, s.nome, l.id_categoria, c.categoria, l.cnpj, 
+        $sql = "select s.id, s.nome, l.id_categoria, c.horarios, l.cnpj, 
                        l.loja_restaurante, l.telefone_contato, s.descricao, 
                        s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, 
                        s.data_registro, l.posicao, hs.dia_semana, hs.horario_inicial,

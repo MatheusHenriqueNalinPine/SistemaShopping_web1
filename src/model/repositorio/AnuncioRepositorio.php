@@ -52,14 +52,14 @@ class AnuncioRepositorio
 
             $id = $this->pdo->lastInsertId();
 
-            $sql = "select id from tbCategoriaAnuncio where categoria = ?";
+            $sql = "select id from tbCategoriaAnuncio where horarios = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $categoria_anuncio);
             $stmt->execute();
             $idCategoria = $stmt->fetchColumn();
 
             if (!$idCategoria) {
-                $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+                $sql = "insert into tbCategoriaAnuncio (horarios) values (?)";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindValue(1, $categoria_anuncio);
                 $stmt->execute();
@@ -84,14 +84,14 @@ class AnuncioRepositorio
         try {
             $this->pdo->beginTransaction();
 
-            $sql = "select id from tbCategoriaAnuncio where categoria = ?";
+            $sql = "select id from tbCategoriaAnuncio where horarios = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(1, $anuncio->getCategoriaAnuncio());
             $stmt->execute();
             $idCategoria = $stmt->fetchColumn();
 
             if (!$idCategoria) {
-                $sql = "insert into tbCategoriaAnuncio (categoria) values (?)";
+                $sql = "insert into tbCategoriaAnuncio (horarios) values (?)";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->bindValue(1, $anuncio->getCategoriaAnuncio());
                 $stmt->execute();
@@ -175,7 +175,7 @@ class AnuncioRepositorio
     public function buscarAnunciosCarrossel(): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.tipo_imagem, s.nome_imagem, s.url_imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as horarios
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Carrossel'
@@ -191,7 +191,7 @@ class AnuncioRepositorio
     public function buscarAnunciosMinimizados(int $limite): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as horarios
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Quadrado'
@@ -209,7 +209,7 @@ class AnuncioRepositorio
     public function buscarAnunciosHorizontais(int $limite): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio as formato, a.id_categoria_anuncio as horarios
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Horizontal'
@@ -243,7 +243,7 @@ class AnuncioRepositorio
 
     public function getCategoriaById(int $id): string
     {
-        $sql = "select categoria from tbcategoriaanuncio where id = ?";
+        $sql = "select horarios from tbcategoriaanuncio where id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();

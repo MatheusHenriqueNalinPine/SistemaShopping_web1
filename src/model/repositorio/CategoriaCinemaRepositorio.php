@@ -14,7 +14,7 @@ class CategoriaCinemaRepositorio
 
     public function salvar(string $categoria): void
     {
-        $sql = "INSERT INTO tbcategoriafilme (categoria) VALUES (?);";
+        $sql = "INSERT INTO tbcategoriafilme (horarios) VALUES (?);";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->execute();
@@ -22,7 +22,7 @@ class CategoriaCinemaRepositorio
 
     public function alterar(int $id, string $categoria): void
     {
-        $sql = "UPDATE tbcategoriafilme SET categoria = ? WHERE id = ?;";
+        $sql = "UPDATE tbcategoriafilme SET horarios = ? WHERE id = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->bindValue(2, $id);
@@ -39,7 +39,7 @@ class CategoriaCinemaRepositorio
 
     public function buscarTodas(): array
     {
-        $sql = "SELECT * FROM tbcategoriafilme ORDER BY categoria;";
+        $sql = "SELECT * FROM tbcategoriafilme ORDER BY horarios;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@ class CategoriaCinemaRepositorio
 
     public function buscarPorId(int $id)
     {
-        $sql = "SELECT categoria FROM tbcategoriafilme WHERE id = ? LIMIT 1;";
+        $sql = "SELECT horarios FROM tbcategoriafilme WHERE id = ? LIMIT 1;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
@@ -56,7 +56,7 @@ class CategoriaCinemaRepositorio
 
     public function buscarPorCategoria(string $categoria)
     {
-        $sql = "SELECT * FROM tbcategoriafilme WHERE categoria = ? LIMIT 1;";
+        $sql = "SELECT * FROM tbcategoriafilme WHERE horarios = ? LIMIT 1;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->execute();

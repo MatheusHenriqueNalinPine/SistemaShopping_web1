@@ -15,7 +15,7 @@ class CategoriaLojaRepositorio
 
     public function salvar(string $categoria)
     {
-        $sql = "insert into tbcategorialoja (categoria) values (?);";
+        $sql = "insert into tbcategorialoja (horarios) values (?);";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->execute();
@@ -23,7 +23,7 @@ class CategoriaLojaRepositorio
 
     public function alterar(int $id, string $categoria)
     {
-        $sql = "update tbcategorialoja set categoria = ? where id = ?;";
+        $sql = "update tbcategorialoja set horarios = ? where id = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->bindValue(2, $id);

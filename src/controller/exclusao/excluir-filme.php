@@ -1,5 +1,7 @@
 <?php
 
+use model\repositorio\CinemaRepositorio;
+
 session_start();
 $usuario_logado = $_SESSION['usuario'] ?? null;
 
@@ -20,8 +22,8 @@ if (empty($id)) {
 }
 
 
-$srcDir = dirname(__DIR__, 2); 
-$repoPath = $srcDir . '/model/repositorio/FilmeRepositorio.php';
+$srcDir = dirname(__DIR__, 2);
+$repoPath = $srcDir . '/model/repositorio/CinemaRepositorio.php';
 $filmePath = $srcDir . '/model/servico/filme/Filme.php';
 $conexaoPath = $srcDir . '/controller/conexao-bd.php';
 
@@ -45,48 +47,14 @@ if (file_exists($filmePath)) {
     error_log("Filme.php não encontrado em: $filmePath");
 }
 
-$repositorio = null;
-$sucesso = false;
+$repositorio = new CinemaRepositorio($pdo);
+$sucesso = $repositorio->excluir($id);
 
-try {
-    // tenta instanciar repositório se disponível
-    if (class_exists('\model\repositorio\FilmeRepositorio')) {
-        $repositorio = new \model\repositorio\FilmeRepositorio($pdo);
-    } elseif (class_exists('FilmeRepositorio')) {
-        $repositorio = new FilmeRepositorio($pdo);
-    }
+if(!$sucesso) {
 
-    if ($repositorio) {
-        // tenta métodos comuns em ordem
-        if (method_exists($repositorio, 'excluir')) {
-            $sucesso = (bool)$repositorio->excluir($id);
-        } elseif (method_exists($repositorio, 'excluirFilme')) {
-            $sucesso = (bool)$repositorio->excluirFilme($id);
-        } elseif (method_exists($repositorio, 'delete') ) {
-            $sucesso = (bool)$repositorio->delete($id);
-        } elseif (method_exists($repositorio, 'deletar') ) {
-            $sucesso = (bool)$repositorio->deletar($id);
-        } elseif (method_exists($repositorio, 'deleteById') ) {
-            $sucesso = (bool)$repositorio->deleteById($id);
-        } else {
-            // nenhum método conhecido: tentar fallback PDO abaixo
-            $repositorio = null;
-        }
-    }
-
-    // fallback direto via PDO se repositório não forneceu exclusão
-    if (!$sucesso && !$repositorio) {
-        $stmt = $pdo->prepare("DELETE FROM tbfilme WHERE id = :id");
-        $sucesso = $stmt->execute([':id' => $id]);
-    }
-} catch (Throwable $e) {
-    error_log("Erro ao excluir filme id={$id}: " . $e->getMessage());
-    $sucesso = false;
+    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php?erro=exclusao&id=".$id);
+    exit;
 }
 
-if ($sucesso) {
-    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php?sucesso=1");
-} else {
-    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php?erro=sql");
-}
+header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php");
 exit;

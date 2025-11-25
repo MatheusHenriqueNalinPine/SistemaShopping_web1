@@ -31,7 +31,7 @@ class CinemaRepositorio
 
     private function formarObjeto(array $dados): Filme
     {
-        return new Filme($dados['id'] ?? null, $dados["nome"] ?? '', $dados["descricao"] ?? '', $dados["imagem"] ?? '', $dados["imagem"] ?? '', $dados["nome_imagem"] ?? '', $dados["url_imagem"] ?? '', new DateTime($dados['data_registro'] ?? 'now'), FormatoFilme::from($dados['formato_filme'] ?? $dados['formato'] ?? 'quadrado'), $dados['id_categoria_filme'] ?? 0);
+        return new Filme($dados['id'] ?? null, $dados["nome"] ?? '', $dados["descricao"] ?? '', $dados["imagem"] ?? '', $dados["tipo_imagem"] ?? '', $dados["nome_imagem"] ?? '', $dados["url_imagem"] ?? '', new DateTime($dados['data_registro'] ?? 'now'), $dados['genero'] ?? '');
     }
 
     public function salvar(string $nome, string $descricao, string $imagem, string $tipoimagem, string $nomeimagem, string $urlimagem, string $genero)
@@ -115,7 +115,7 @@ class CinemaRepositorio
     public function buscarTodos(): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
-                   a.genero as formato
+                   a.genero
             from tbfilme a
             inner join tbservico s on a.id = s.id
             order by s.data_registro desc";

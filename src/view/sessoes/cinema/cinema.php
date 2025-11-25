@@ -106,7 +106,7 @@ function get_val($item, $key, $default = '') {
             }
             $imgSrc = '';
             if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
+                $imgSrc = '/SistemaShopping_web1/img/filmes/' . ltrim($nomeArquivo, '/');
             } elseif (!empty($imgBase64)) {
                 $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
             }
@@ -156,7 +156,7 @@ function get_val($item, $key, $default = '') {
                 $imgBase64 = get_val($item, 'imagem', '') ?: '';
                 $imgSrc = '';
                 if (!empty($nomeArquivo)) {
-                    $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
+                    $imgSrc = '/SistemaShopping_web1/img/filmes/' . ltrim($nomeArquivo, '/');
                 } elseif (!empty($imgBase64)) {
                     $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
                 }

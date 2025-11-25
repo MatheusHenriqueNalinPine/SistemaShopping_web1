@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 $id = (int)($_POST['id'] ?? 0);
-$categoria = trim($_POST['categoria'] ?? '');
+$categoria = trim($_POST['horarios'] ?? '');
 
 if ($id == 0) {
     if ($categoria === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/cadastrar-categoria.php?erro=campos-vazios");
+        header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/cadastrar-horarios.php?erro=campos-vazios");
         exit;
     }
 
@@ -36,22 +36,22 @@ if ($id == 0) {
         if (class_exists('\model\repositorio\CategoriaFilmeRepositorio')) {
             $repositorio = new \model\repositorio\CategoriaFilmeRepositorio($pdo);
             $repositorio->salvar($categoria);
-            header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php");
+            header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/horarios-filme-dashboard.php");
             exit;
         }
     }
 
     // fallback direto com PDO
-    $sql = "INSERT INTO tbcategoriafilme (categoria) VALUES (?);";
+    $sql = "INSERT INTO tbcategoriafilme (horarios) VALUES (?);";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$categoria]);
 
-    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php");
+    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/horarios-filme-dashboard.php");
     exit;
 
 } else {
     if ($categoria === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/editar-categoria.php?erro=campos-vazios&id=" . urlencode($id) . "&categoria=" . urlencode($categoria));
+        header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/editar-horarios.php?erro=campos-vazios&id=" . urlencode($id) . "&horarios=" . urlencode($categoria));
         exit;
     }
 
@@ -62,19 +62,19 @@ if ($id == 0) {
         if (class_exists('\model\repositorio\CategoriaFilmeRepositorio')) {
             $repositorio = new \model\repositorio\CategoriaFilmeRepositorio($pdo);
             $repositorio->alterar($id, $categoria);
-            header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php?id=" . urlencode($id));
+            header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/horarios-filme-dashboard.php?id=" . urlencode($id));
             exit;
         }
     }
 
     // fallback direto com PDO
-    $sql = "UPDATE tbcategoriafilme SET categoria = ? WHERE id = ?;";
+    $sql = "UPDATE tbcategoriafilme SET horarios = ? WHERE id = ?;";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$categoria, $id]);
 
-    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php?id=" . urlencode($id));
+    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/horarios-filme-dashboard.php?id=" . urlencode($id));
     exit;
 }
 
-header("Location: /SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php");
+header("Location: /SistemaShopping_web1/src/view/administrativo/filme/horarios/horarios-filme-dashboard.php");
 exit;

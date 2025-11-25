@@ -24,25 +24,25 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 $id = $_POST['id'];
-$categoria = trim($_POST['categoria'] ?? '');
+$categoria = trim($_POST['horarios'] ?? '');
 
 if ($id == 0) {
     if ($categoria === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/cadastrar-categoria.php?erro=campos-vazios");
+        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/cadastrar-horarios.php?erro=campos-vazios");
         exit;
     }
     $repositorio->salvar($categoria);
 
 } else {
     if ($categoria === '') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/editar-categoria.php?erro=campos-vazios");
+        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/editar-horarios.php?erro=campos-vazios");
         exit;
     }
     $repositorio->alterar($id, $categoria);
 
-    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?id=" . urlencode($id));
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php?id=" . urlencode($id));
     exit;
 }
 
-header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php");
+header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php");
 exit;

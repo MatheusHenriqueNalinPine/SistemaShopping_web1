@@ -26,7 +26,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
 }
 
 // valores passados via GET (preenchimento do form)
-$nome = $_GET['categoria'] ?? '';
+$nome = $_GET['horarios'] ?? '';
 $id = $_GET['id'] ?? 0;
 ?>
 

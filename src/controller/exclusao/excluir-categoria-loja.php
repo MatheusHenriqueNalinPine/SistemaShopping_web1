@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 $id = (int)($_POST['id'] ?? 0);
 if ($id <= 0) {
-    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php");
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php");
     exit;
 }
 
@@ -27,18 +27,18 @@ if (file_exists($repoFile)) {
     if (class_exists('\model\repositorio\CategoriaLojaRepositorio')) {
         $repositorio = new \model\repositorio\CategoriaLojaRepositorio($pdo);
         if (method_exists($repositorio, 'isCategoriaUsed') && $repositorio->isCategoriaUsed($id)) {
-            header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?erro=usada&erro_id=" . urlencode($id));
+            header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php?erro=usada&erro_id=" . urlencode($id));
             exit;
         }
         try {
             if (method_exists($repositorio, 'excluir')) {
                 $repositorio->excluir($id);
-                header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php");
+                header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php");
                 exit;
             }
         } catch (Throwable $e) {
-            error_log("Falha ao excluir categoria via repositório: " . $e->getMessage());
-            header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?erro=usada&erro_id=" . urlencode($id));
+            error_log("Falha ao excluir horarios via repositório: " . $e->getMessage());
+            header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php?erro=usada&erro_id=" . urlencode($id));
             exit;
         }
     }
@@ -48,15 +48,15 @@ if (file_exists($repoFile)) {
 try {
     $del = $pdo->prepare("DELETE FROM tbcategorialoja WHERE id = ?;");
     $del->execute([$id]);
-    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php");
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php");
     exit;
 } catch (PDOException $e) {
     
     if (isset($e->errorInfo[0]) && $e->errorInfo[0] === '23000') {
-        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?erro=usada&erro_id=" . urlencode($id));
+        header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php?erro=usada&erro_id=" . urlencode($id));
         exit;
     }
-    error_log("Erro ao excluir categoria-loja (PDO): " . $e->getMessage());
-    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/categoria/categoria-loja-dashboard.php?erro=sql");
+    error_log("Erro ao excluir horarios-loja (PDO): " . $e->getMessage());
+    header("Location: /SistemaShopping_web1/src/view/administrativo/loja/horarios/horarios-loja-dashboard.php?erro=sql");
     exit;
 }

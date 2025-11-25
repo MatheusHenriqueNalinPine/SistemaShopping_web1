@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 use model\repositorio\CinemaRepositorio;
 use model\servico\filme\Filme;
@@ -61,6 +58,7 @@ if ($id == 0) {
         exit;
     }
 
+    $repositorio->salvar($nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem,$genero);
 } else {
     if ($nome === ''|| $genero === '' || $descricao === '') {
         header("Location: /SistemaShopping_web1/src/view/administrativo/filme/editar-filme.php?erro=campos-vazios");
@@ -74,14 +72,3 @@ if ($id == 0) {
 
 header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php");
 exit;
-
-
-function horariosFuncionamento(array $aberturas, array $fechamentos): array
-{
-    $horarios_funcionamento = [];
-    foreach ($aberturas as $dia => $horario_inicial) {
-        $hora_fechamento = $fechamentos[$dia] ?? '';
-        $horarios_funcionamento[] = new HorarioFuncionamento($horario_inicial, $hora_fechamento, $dia);
-    }
-    return $horarios_funcionamento;
-}

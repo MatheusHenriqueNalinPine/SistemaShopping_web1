@@ -41,7 +41,7 @@ if (file_exists($categoriaRepoFile)) {
 // Fallback direto: se não obteve categorias via repositório, buscar diretamente na tabela
 if (empty($categorias)) {
     try {
-        $stmt = $pdo->query("SELECT id, categoria FROM tbcategoriafilme ORDER BY categoria");
+        $stmt = $pdo->query("SELECT id, horarios FROM tbcategoriafilme ORDER BY horarios");
         $fetched = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (is_array($fetched) && count($fetched) > 0) {
             $categorias = $fetched;
@@ -72,7 +72,7 @@ if (empty($categorias)) {
     <h2>Gerenciamento de Categorias (filme)</h2>
 
     <div class="acoes">
-        <a href="cadastrar-categoria.php" class="btn-cadastrar">Cadastrar categoria</a>
+        <a href="cadastrar-horario.php" class="btn-cadastrar">Cadastrar categoria</a>
     </div>
 
     <table class="tabela">
@@ -93,7 +93,7 @@ if (empty($categorias)) {
             <?php foreach ($categorias as $categoria) : ?>
                 <tr>
                     <td><?php echo htmlspecialchars($categoria['id']) ?></td>
-                    <td><?php echo htmlspecialchars($categoria['categoria']) ?></td>
+                    <td><?php echo htmlspecialchars($categoria['horarios']) ?></td>
                     <td>
                         <form action="/SistemaShopping_web1/src/controller/exclusao/excluir-categoria-filme.php" method="post">
                             <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
@@ -101,8 +101,8 @@ if (empty($categorias)) {
                         </form>
                     </td>
                     <td>
-                        <form action="editar-categoria.php" method="get">
-                            <input type="hidden" name="categoria" value="<?= htmlspecialchars($categoria['categoria']) ?>">
+                        <form action="editar-horario.php" method="get">
+                            <input type="hidden" name="categoria" value="<?= htmlspecialchars($categoria['horarios']) ?>">
                             <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
                             <input type="submit" class="btn-editar" value="Editar">
                         </form>
