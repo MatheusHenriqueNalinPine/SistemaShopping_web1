@@ -48,7 +48,7 @@ if($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio){
             <h2>Cadastro de Categoria (Anuncio)</h2>
             <form action="/SistemaShopping_web1/src/controller/cadastro/registrar_categoria_anuncio.php" method="post" enctype="multipart/form-data">
                 <label for="nomeCategoria">Categoria</label>
-                <input type="text" id="nomeCategoria" name="categoria" placeholder="Digite o nome da categoria" value="<?= $_GET['horarios'] ?>" required>
+                <input type="text" id="nomeCategoria" name="categoria" placeholder="Digite o nome da categoria" value="<?= $_GET['categoria'] ?>" required>
                 <input type="hidden" id="id" name="id" value="<?= $_GET['id'] ?>"/>
                 <input class="btn-cadastrar" type="submit" value="Cadastrar"/>
             </form>

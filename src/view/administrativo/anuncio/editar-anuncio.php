@@ -59,11 +59,11 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista) {
                 <label for="categoria">Categoria do anúncio</label>
                 <select id="categoria" name="categoria" required>
                     <option value="">Selecione uma categoria</option>
-                    <?php foreach ($categorias as $c): ?>
+                    <?php foreach ((new CategoriaAnuncioRepositorio($pdo))->buscarTodas() as $c): ?>
                         <?php
                             
                             $catId = $c['id'] ?? ($c[0] ?? '');
-                            $catNome = $c['horarios'] ?? ($c['nome'] ?? ($c[1] ?? ''));
+                            $catNome = $c['categoria'] ?? ($c['nome'] ?? ($c[1] ?? ''));
                         ?>
                         <option value="<?php echo htmlspecialchars($catId, ENT_QUOTES, 'UTF-8'); ?>">
                             <?php echo htmlspecialchars($catNome, ENT_QUOTES, 'UTF-8'); ?>

@@ -268,7 +268,7 @@ class LojaRepositorio
             $result['cnpj'] ?? null,
             $result['id_categoria'] ?? '0',
             TipoLoja::from($result['loja_restaurante']),
-            $result['horarios'] ?? []
+            $result['categoria'] ?? []
         );
     }
 
