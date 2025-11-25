@@ -1,8 +1,8 @@
 <?php
-// Conexão com o banco
+
 require_once "conexao.php";
 
-// Verifica se o formulário foi enviado
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $titulo = trim($_POST["titulo"]);
@@ -11,13 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $classificacao = trim($_POST["classificacao"]);
     $sinopse = trim($_POST["sinopse"]);
 
-    // Verifica campos vazios
+   
     if (empty($titulo) || empty($genero) || empty($duracao) || empty($classificacao)) {
         echo "Erro: Preencha todos os campos obrigatórios.";
         exit;
     }
 
-    // Prepara o comando SQL de forma segura
+  
     $sql = "INSERT INTO tbFilme (titulo, genero, duracao, classificacao, sinopse) 
             VALUES (?, ?, ?, ?, ?)";
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     );
 
     if ($stmt->execute()) {
-        // Redireciona ao cadastrar com sucesso
+       
         header("Location: sucesso_filme.html");
         exit;
     } else {
