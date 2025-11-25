@@ -1,14 +1,44 @@
 <?php
 
-use model\repositorio\AnuncioRepositorio;
-
-require_once __DIR__ . '/../../../model/repositorio/AnuncioRepositorio.php';
 require_once __DIR__ . '/../../../controller/conexao-bd.php';
+require_once __DIR__ . '/../../../model/repositorio/CinemaRepositorio.php';
+require_once __DIR__ . '/../../../model/repositorio/CategoriaCinemaRepositorio.php';
 
-$repositorio = new AnuncioRepositorio($pdo);
+$repositorio = new \model\repositorio\CinemaRepositorio($pdo);
+$categoriaRepo = new \model\repositorio\CategoriaCinemaRepositorio($pdo);
+
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$filme = $id > 0 ? $repositorio->buscarPorId($id) : null;
-$todasFilmes = $repositorio->buscarTodos();
+
+// --- Início: inicializar para evitar "Undefined variable" warnings ---
+$filme = null;
+$todasFilmes = [];
+// --- Fim: inicialização ---
+
+// ler limite de filmes (0 = todos)
+$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 0;
+if ($id > 0) {
+    $filme = $repositorio->buscarPorId($id);
+    $todasFilmes = $repositorio->buscarTodos();
+} else {
+    if ($limit > 0) {
+        $todasFilmes = $repositorio->buscarUltimos($limit);
+    } else {
+        $todasFilmes = $repositorio->buscarTodos();
+    }
+}
+
+// helper para acessar campos de registro (array ou objeto)
+function get_val($item, $key, $default = '') {
+    if (is_array($item)) {
+        return $item[$key] ?? $default;
+    }
+    if (is_object($item)) {
+        $method = 'get' . str_replace(' ', '', ucwords(str_replace(['_', '-'], ' ', $key)));
+        if (method_exists($item, $method)) return $item->$method();
+        return $item->$key ?? $default;
+    }
+    return $default;
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,99 +62,129 @@ $todasFilmes = $repositorio->buscarTodos();
         <div class="espacador"></div>
     </div>
 
+    <!-- Select de ordenação/limite -->
+    <div style="margin:12px 0;">
+        <form method="get" action="" id="limitForm">
+            <?php if ($id > 0): ?>
+                <!-- mantém o id na query se estiver vendo detalhe -->
+                <input type="hidden" name="id" value="<?php echo (int)$id; ?>">
+            <?php endif; ?>
+            <label for="limitSelect">Mostrar:</label>
+            <select id="limitSelect" name="limit" onchange="document.getElementById('limitForm').submit()">
+                <option value="0" <?php echo ($limit === 0) ? 'selected' : ''; ?>>Todos</option>
+                <option value="5" <?php echo ($limit === 5) ? 'selected' : ''; ?>>Últimos 5 filmes</option>
+                <option value="10" <?php echo ($limit === 10) ? 'selected' : ''; ?>>Últimos 10 filmes</option>
+                <option value="15" <?php echo ($limit === 15) ? 'selected' : ''; ?>>Últimos 15 filmes</option>
+            </select>
+        </form>
+    </div>
+
     <?php if (!$filme && empty($todasFilmes)) : ?>
         <div class="sem-dados">
             Nenhum filme cadastrado ainda.
         </div>
-    <?php elseif ($filme) : ?>
-        <div class="filme-card">
-            <?php
-            $imgSrc = '';
-            $nomeArquivo = $filme->getNomeImagem();
-            $tipo = $filme->getTipoImagem() ?? 'image/png';
-            $imgBase64 = $filme->getImagem() ?? '';
 
+    <?php elseif ($filme) : ?>
+        <?php
+            $nomeArquivo = get_val($filme, 'nome_imagem', '') ?: get_val($filme, 'nomeImagem', '');
+            $tipo = get_val($filme, 'tipo_imagem', '') ?: get_val($filme, 'tipoImagem', 'image/png');
+            $imgBase64 = get_val($filme, 'imagem', '') ?: get_val($filme, 'imagem_base64', '');
+            $nome = get_val($filme, 'nome', '') ?: get_val($filme, 'titulo', '');
+            $descricao = get_val($filme, 'descricao', '');
+            $categoria_nome = get_val($filme, 'categoria_nome', '');
+            if (empty($categoria_nome)) {
+                $catId = (int)(get_val($filme, 'id_categoria_filme', 0));
+                if ($catId) $categoria_nome = $categoriaRepo->buscarPorId($catId) ?: $categoria_nome;
+            }
+            $sala = get_val($filme, 'sala', '') ?: get_val($filme, 'posicao', '');
+            $formato = get_val($filme, 'formato', '');
+            $horariosRaw = get_val($filme, 'horarios', '');
+            $horarios = [];
+            if (!empty($horariosRaw)) {
+                $decoded = json_decode($horariosRaw, true);
+                if (is_array($decoded)) $horarios = $decoded;
+            }
+            $imgSrc = '';
             if (!empty($nomeArquivo)) {
                 $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
             } elseif (!empty($imgBase64)) {
                 $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
             }
-            ?>
-
+        ?>
+        <div class="filme-card">
             <?php if ($imgSrc !== ''): ?>
                 <img src="<?php echo $imgSrc ?>"
-                     alt="Imagem da filme <?php echo htmlspecialchars($filme->getNome()) ?>">
+                     alt="Imagem do filme <?php echo htmlspecialchars($nome) ?>">
             <?php else: ?>
                 <div class="placeholder">Sem imagem</div>
             <?php endif; ?>
             <div class="filme-info">
-                <h1><?php echo htmlspecialchars($filme->getNome()) ?></h1>
+                <h1><?php echo htmlspecialchars($nome) ?></h1>
                 <p class="descricao">
-                    <strong>Sinopse:</strong><br/><?php echo nl2br(htmlspecialchars($filme->getDescricao())) ?></p>
+                    <strong>Sinopse:</strong><br/><?php echo nl2br(htmlspecialchars($descricao)) ?></p>
 
                 <div class="meta">
-                    <p>
-                        <strong>Gênero:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($filme->getCategoriaAnuncio())) ?>
-                    </p>
+                    <p><strong>Categoria:</strong> <?php echo htmlspecialchars($categoria_nome) ?></p>
+                    <p><strong>Sala:</strong> <?php echo htmlspecialchars($sala) ?></p>
+                    <p><strong>Formato:</strong> <?php echo htmlspecialchars($formato) ?></p>
                 </div>
-                <p><strong>Horários:</strong></p> <br/>
 
-                <div class="horarios-filme-grid">
-                    <?php foreach ($todasFilmes as $horarioExibicao) : ?>
-                        <div class="horario-filme">
-                            <p>
-                                <strong>Data: </strong><?php echo htmlspecialchars($horarioExibicao->getDataRegistro()->format('d/m/Y')) ?>
-                            </p>
-                            <p class="horario"><?php echo htmlspecialchars($horarioExibicao->getDataRegistro()->format('H:i')) ?></p>
-                            <p><strong>Sala: </strong><?php echo htmlspecialchars($horarioExibicao->getId()) ?></p>
-                            <p class="tipo-filme"><?php echo htmlspecialchars('DUB')?></p>
-                            <p class="tipo-filme"><?php echo htmlspecialchars('IMAX')?></p>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                <?php if (!empty($horarios)): ?>
+                    <p><strong>Horários:</strong></p>
+                    <div class="horarios-filme-grid">
+                        <?php foreach ($horarios as $dia => $h):
+                            $ab = $h['abertura'] ?? '';
+                            $fe = $h['fechamento'] ?? '';
+                        ?>
+                            <div class="horario-filme">
+                                <p><strong><?php echo ucfirst($dia) ?>:</strong></p>
+                                <p class="horario"><?php echo htmlspecialchars($ab) ?> — <?php echo htmlspecialchars($fe) ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
+
     <?php else : ?>
         <div class="filmes-grid">
-            <?php foreach ($todasFilmes as $filme) : ?>
-                <a href="?id=<?php echo $filme->getId() ?>" class="filme-card-small">
-                    <?php
-                    $imgSrc = '';
-                    $nomeArquivo = $filme->getNomeImagem();
-                    $tipo = $filme->getTipoImagem() ?? 'image/*';
-                    $imgBase64 = $filme->getImagem() ?? '';
-
-                    if (!empty($nomeArquivo)) {
-                        $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
-                    } elseif (!empty($imgBase64)) {
-                        $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
-                    }
-                    ?>
-
+            <?php foreach ($todasFilmes as $item) :
+                $fid = get_val($item, 'id', get_val($item, 'Id', 0));
+                $nome = get_val($item, 'nome', '');
+                $nomeArquivo = get_val($item, 'nome_imagem', '') ?: get_val($item, 'nomeImagem', '');
+                $tipo = get_val($item, 'tipo_imagem', '') ?: get_val($item, 'tipoImagem', 'image/*');
+                $imgBase64 = get_val($item, 'imagem', '') ?: '';
+                $imgSrc = '';
+                if (!empty($nomeArquivo)) {
+                    $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
+                } elseif (!empty($imgBase64)) {
+                    $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
+                }
+                $categoria_nome = get_val($item, 'categoria_nome', '');
+            ?>
+                <a href="?id=<?php echo (int)$fid ?>" class="filme-card-small">
                     <div class="img-container">
                         <?php if ($imgSrc !== ''): ?>
                             <img src="<?php echo $imgSrc ?>"
-                                 alt="Imagem do filme <?php echo htmlspecialchars($filme->getNome()) ?>">
+                                 alt="Imagem do filme <?php echo htmlspecialchars($nome) ?>">
                         <?php else: ?>
                             <div class="placeholder">Sem imagem</div>
                         <?php endif; ?>
                     </div>
                     <br>
-                    <h2><?php echo htmlspecialchars($filme->getNome()) ?></h2>
+                    <h2><?php echo htmlspecialchars($nome) ?></h2>
                     <div class="meta">
-                        <p>
-                            <strong>Gênero:</strong> <?php echo htmlspecialchars($repositorio->getCategoriaById($filme->getCategoriaAnuncio())) ?>
-                        </p>
+                        <p><strong>Categoria:</strong> <?php echo htmlspecialchars($categoria_nome) ?></p>
                     </div>
                 </a>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+
     <section class="anuncios-horizontais">
         <?php $limite_anuncios = 2;
         include('../../sessoes/anuncios/anuncio_horizontal.php');
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $filme = $id > 0 ? $repositorio->buscarPorId($id) : null; ?>
+        ?>
     </section>
 </main>
 <?php include(__DIR__ . '/../footer.html'); ?>

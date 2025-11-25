@@ -58,9 +58,9 @@ $cargo = $usuario->getCargo();
             </a>
         <?php endif;
         if ($cargo == Cargo::Administrador || $cargo == Cargo::Funcionario_cinema): ?>
-            <a href="#" class="card">
+            <a href="filme/filme-dashboard.php" class="card">
                 <div class="icon">🎬</div>
-                <span>Cinema</span>
+                <span>Filme</span>
             </a>
         <?php endif; ?>
         <a href="usuario/usuarios-dashboard.php" class="card">
