@@ -1,20 +1,19 @@
 <?php
 
+use model\repositorio\HorarioFilmeRepositorio;
+
 require_once __DIR__ . '/../../../controller/conexao-bd.php';
 require_once __DIR__ . '/../../../model/repositorio/CinemaRepositorio.php';
-require_once __DIR__ . '/../../../model/repositorio/CategoriaCinemaRepositorio.php';
+require_once __DIR__ . '/../../../model/repositorio/HorarioFilmeRepositorio.php';
 
 $repositorio = new \model\repositorio\CinemaRepositorio($pdo);
-$categoriaRepo = new \model\repositorio\CategoriaCinemaRepositorio($pdo);
+$categoriaRepo = new \model\repositorio\HorarioFilmeRepositorio($pdo);
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// --- Início: inicializar para evitar "Undefined variable" warnings ---
 $filme = null;
 $todasFilmes = [];
-// --- Fim: inicialização ---
 
-// ler limite de filmes (0 = todos)
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 0;
 if ($id > 0) {
     $filme = $repositorio->buscarPorId($id);
@@ -27,8 +26,8 @@ if ($id > 0) {
     }
 }
 
-// helper para acessar campos de registro (array ou objeto)
-function get_val($item, $key, $default = '') {
+function get_val($item, $key, $default = '')
+{
     if (is_array($item)) {
         return $item[$key] ?? $default;
     }
@@ -39,6 +38,8 @@ function get_val($item, $key, $default = '') {
     }
     return $default;
 }
+
+$horariosRepo = new HorarioFilmeRepositorio($pdo);
 ?>
 
 <!DOCTYPE html>
@@ -62,22 +63,6 @@ function get_val($item, $key, $default = '') {
         <div class="espacador"></div>
     </div>
 
-    <!-- Select de ordenação/limite -->
-    <div style="margin:12px 0;">
-        <form method="get" action="" id="limitForm">
-            <?php if ($id > 0): ?>
-                <!-- mantém o id na query se estiver vendo detalhe -->
-                <input type="hidden" name="id" value="<?php echo (int)$id; ?>">
-            <?php endif; ?>
-            <label for="limitSelect">Mostrar:</label>
-            <select id="limitSelect" name="limit" onchange="document.getElementById('limitForm').submit()">
-                <option value="0" <?php echo ($limit === 0) ? 'selected' : ''; ?>>Todos</option>
-                <option value="5" <?php echo ($limit === 5) ? 'selected' : ''; ?>>Últimos 5 filmes</option>
-                <option value="10" <?php echo ($limit === 10) ? 'selected' : ''; ?>>Últimos 10 filmes</option>
-                <option value="15" <?php echo ($limit === 15) ? 'selected' : ''; ?>>Últimos 15 filmes</option>
-            </select>
-        </form>
-    </div>
 
     <?php if (!$filme && empty($todasFilmes)) : ?>
         <div class="sem-dados">
@@ -86,30 +71,30 @@ function get_val($item, $key, $default = '') {
 
     <?php elseif ($filme) : ?>
         <?php
-            $nomeArquivo = get_val($filme, 'nome_imagem', '') ?: get_val($filme, 'nomeImagem', '');
-            $tipo = get_val($filme, 'tipo_imagem', '') ?: get_val($filme, 'tipoImagem', 'image/png');
-            $imgBase64 = get_val($filme, 'imagem', '') ?: get_val($filme, 'imagem_base64', '');
-            $nome = get_val($filme, 'nome', '') ?: get_val($filme, 'titulo', '');
-            $descricao = get_val($filme, 'descricao', '');
-            $categoria_nome = get_val($filme, 'categoria_nome', '');
-            if (empty($categoria_nome)) {
-                $catId = (int)(get_val($filme, 'id_categoria_filme', 0));
-                if ($catId) $categoria_nome = $categoriaRepo->buscarPorId($catId) ?: $categoria_nome;
-            }
-            $sala = get_val($filme, 'sala', '') ?: get_val($filme, 'posicao', '');
-            $formato = get_val($filme, 'formato', '');
-            $horariosRaw = get_val($filme, 'horarios', '');
-            $horarios = [];
-            if (!empty($horariosRaw)) {
-                $decoded = json_decode($horariosRaw, true);
-                if (is_array($decoded)) $horarios = $decoded;
-            }
-            $imgSrc = '';
-            if (!empty($nomeArquivo)) {
-                $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
-            } elseif (!empty($imgBase64)) {
-                $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
-            }
+        $nomeArquivo = get_val($filme, 'nome_imagem', '') ?: get_val($filme, 'nomeImagem', '');
+        $tipo = get_val($filme, 'tipo_imagem', '') ?: get_val($filme, 'tipoImagem', 'image/png');
+        $imgBase64 = get_val($filme, 'imagem', '') ?: get_val($filme, 'imagem_base64', '');
+        $nome = get_val($filme, 'nome', '') ?: get_val($filme, 'titulo', '');
+        $descricao = get_val($filme, 'descricao', '');
+        $categoria_nome = get_val($filme, 'categoria_nome', '');
+        if (empty($categoria_nome)) {
+            $catId = (int)(get_val($filme, 'id_categoria_filme', 0));
+            if ($catId) $categoria_nome = $categoriaRepo->buscarPorId($catId) ?: $categoria_nome;
+        }
+        $sala = get_val($filme, 'sala', '') ?: get_val($filme, 'posicao', '');
+        $formato = get_val($filme, 'formato', '');
+        $horariosRaw = get_val($filme, 'horarios', '');
+        $horarios = [];
+        if (!empty($horariosRaw)) {
+            $decoded = json_decode($horariosRaw, true);
+            if (is_array($decoded)) $horarios = $decoded;
+        }
+        $imgSrc = '';
+        if (!empty($nomeArquivo)) {
+            $imgSrc = '/SistemaShopping_web1/img/filmes/' . ltrim($nomeArquivo, '/');
+        } elseif (!empty($imgBase64)) {
+            $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
+        }
         ?>
         <div class="filme-card">
             <?php if ($imgSrc !== ''): ?>
@@ -124,25 +109,30 @@ function get_val($item, $key, $default = '') {
                     <strong>Sinopse:</strong><br/><?php echo nl2br(htmlspecialchars($descricao)) ?></p>
 
                 <div class="meta">
-                    <p><strong>Categoria:</strong> <?php echo htmlspecialchars($categoria_nome) ?></p>
-                    <p><strong>Sala:</strong> <?php echo htmlspecialchars($sala) ?></p>
-                    <p><strong>Formato:</strong> <?php echo htmlspecialchars($formato) ?></p>
+                    <p><strong>Gênero:</strong> <?php echo htmlspecialchars($filme->getGenero()) ?></p>
                 </div>
 
-                <?php if (!empty($horarios)): ?>
+                <?php if (!empty($filme)): ?>
                     <p><strong>Horários:</strong></p>
                     <div class="horarios-filme-grid">
-                        <?php foreach ($horarios as $dia => $h):
-                            $ab = $h['abertura'] ?? '';
-                            $fe = $h['fechamento'] ?? '';
-                        ?>
+                        <?php foreach ($horariosRepo->buscarPorIdFilme($id) as $horario) : ?>
+                            <?php
+                            $dataHora = $horario->getDataHora();
+                            $sala = $horario->getSala();
+                            $formato = $horario->getFormatoFilme()->value ?? '';
+                            $modo = $horario->getModoExibicao() ?? '';
+                            ?>
                             <div class="horario-filme">
-                                <p><strong><?php echo ucfirst($dia) ?>:</strong></p>
-                                <p class="horario"><?php echo htmlspecialchars($ab) ?> — <?php echo htmlspecialchars($fe) ?></p>
+                                <p><strong>Data: </strong><?php echo htmlspecialchars($dataHora->format('d/m/Y')) ?></p>
+                                <p class="horario"><?php echo htmlspecialchars($dataHora->format('H:i')) ?></p>
+                                <p><strong>Sala: </strong><?php echo htmlspecialchars($sala) ?></p>
+                                <p class="tipo-filme"><?php echo htmlspecialchars(strtoupper($formato)) ?></p>
+                                <p class="tipo-filme"><?php echo htmlspecialchars(strtoupper($modo)) ?></p>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
+
             </div>
         </div>
 
@@ -156,12 +146,12 @@ function get_val($item, $key, $default = '') {
                 $imgBase64 = get_val($item, 'imagem', '') ?: '';
                 $imgSrc = '';
                 if (!empty($nomeArquivo)) {
-                    $imgSrc = '/SistemaShopping_web1/img/anuncios/' . ltrim($nomeArquivo, '/');
+                    $imgSrc = '/SistemaShopping_web1/img/filmes/' . ltrim($nomeArquivo, '/');
                 } elseif (!empty($imgBase64)) {
                     $imgSrc = 'data:' . $tipo . ';base64,' . $imgBase64;
                 }
                 $categoria_nome = get_val($item, 'categoria_nome', '');
-            ?>
+                ?>
                 <a href="?id=<?php echo (int)$fid ?>" class="filme-card-small">
                     <div class="img-container">
                         <?php if ($imgSrc !== ''): ?>

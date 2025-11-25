@@ -50,11 +50,11 @@ class CategoriaLojaRepositorio
 
     public function buscarPorId(int $id)
     {
-        $sql = "select * from tbcategorialoja where id = ?;";
+        $sql = "select categoria from tbcategorialoja where id = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchColumn();
     }
 
     public function isCategoriaUsed(int $id): bool

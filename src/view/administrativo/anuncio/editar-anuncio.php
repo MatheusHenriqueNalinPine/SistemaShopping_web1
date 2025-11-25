@@ -63,7 +63,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Lojista) {
                         <?php
                             
                             $catId = $c['id'] ?? ($c[0] ?? '');
-                            $catNome = $c['categoria'] ?? ($c['nome'] ?? ($c[1] ?? ''));
+                            $catNome = $c['horarios'] ?? ($c['nome'] ?? ($c[1] ?? ''));
                         ?>
                         <option value="<?php echo htmlspecialchars($catId, ENT_QUOTES, 'UTF-8'); ?>">
                             <?php echo htmlspecialchars($catNome, ENT_QUOTES, 'UTF-8'); ?>

@@ -73,7 +73,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
                     foreach ($categorias as $categoria): ?>
                         <option value="<?= htmlspecialchars($categoria['id']) ?>"
                                 <?= $categoria['id'] == $loja->getCategoria() ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($categoria['categoria']) ?>
+                            <?= htmlspecialchars($categoria['horarios']) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>

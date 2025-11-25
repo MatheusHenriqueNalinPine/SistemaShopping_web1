@@ -52,7 +52,7 @@ class AnuncioRepositorio
 
             $id = $this->pdo->lastInsertId();
 
-            
+
             if (is_numeric($categoria_anuncio)) {
                 $idCategoria = (int)$categoria_anuncio;
             } else {
@@ -70,7 +70,6 @@ class AnuncioRepositorio
                     $idCategoria = $this->pdo->lastInsertId();
                 }
             }
-           
 
             $sql = "insert into tbanuncio (id, formato_anuncio, id_categoria_anuncio) values (?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
@@ -90,7 +89,7 @@ class AnuncioRepositorio
         try {
             $this->pdo->beginTransaction();
 
-            
+
             $categoriaVal = $anuncio->getCategoriaAnuncio();
             if (is_numeric($categoriaVal)) {
                 $idCategoria = (int)$categoriaVal;
@@ -109,7 +108,6 @@ class AnuncioRepositorio
                     $idCategoria = $this->pdo->lastInsertId();
                 }
             }
-           
 
             $sql = "update tbanuncio set formato_anuncio = ?, id_categoria_anuncio = ? where id = ?";
             $stmt = $this->pdo->prepare($sql);
@@ -188,7 +186,7 @@ class AnuncioRepositorio
     public function buscarAnunciosCarrossel(): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.tipo_imagem, s.nome_imagem, s.url_imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio, a.id_categoria_anuncio as horarios
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Carrossel'
@@ -204,7 +202,7 @@ class AnuncioRepositorio
     public function buscarAnunciosMinimizados(int $limite): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio, a.id_categoria_anuncio as horarios
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Quadrado'
@@ -222,7 +220,7 @@ class AnuncioRepositorio
     public function buscarAnunciosHorizontais(int $limite): array
     {
         $sql = "select a.id, s.nome, s.descricao, s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, s.data_registro,
-                   a.formato_anuncio as formato, a.id_categoria_anuncio as categoria
+                   a.formato_anuncio, a.id_categoria_anuncio as horarios
             from tbanuncio a
             inner join tbservico s on a.id = s.id
             where a.formato_anuncio = 'Horizontal'

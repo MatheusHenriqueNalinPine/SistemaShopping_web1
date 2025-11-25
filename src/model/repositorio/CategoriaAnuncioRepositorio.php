@@ -15,7 +15,7 @@ class CategoriaAnuncioRepositorio
 
     public function salvar(string $categoria)
     {
-        $sql = "insert into tbcategoriaanuncio (categoria) values (?);";
+        $sql = "insert into tbcategoriaanuncio (horarios) values (?);";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->execute();
@@ -23,7 +23,7 @@ class CategoriaAnuncioRepositorio
 
     public function alterar(int $id, string $categoria)
     {
-        $sql = "update tbcategoriaanuncio set categoria = ? where id = ?;";
+        $sql = "update tbcategoriaanuncio set horarios = ? where id = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->bindValue(2, $id);
@@ -50,7 +50,7 @@ class CategoriaAnuncioRepositorio
 
     public function buscarPorId(int $id)
     {
-        $sql = "select categoria from tbcategoriaanuncio where id = ? limit 1;";
+        $sql = "select horarios from tbcategoriaanuncio where id = ? limit 1;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();
@@ -59,7 +59,7 @@ class CategoriaAnuncioRepositorio
 
     public function buscarPorCategoria(string $categoria)
     {
-        $sql = "select * from tbcategoriaanuncio where categoria = ?;";
+        $sql = "select * from tbcategoriaanuncio where horarios = ?;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $categoria);
         $stmt->execute();

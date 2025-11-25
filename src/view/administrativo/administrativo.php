@@ -25,9 +25,9 @@ $cargo = $usuario->getCargo();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
     <title>Painel Administrativo - SchweizerPine</title>
     <link rel="stylesheet" href="/SistemaShopping_web1/css/administrativo.css">
+    <link rel="icon" type="image/png" href="/SistemaShopping_web1/img/iconShopping.png">
 </head>
 
 <body>
@@ -61,6 +61,10 @@ $cargo = $usuario->getCargo();
             <a href="filme/filme-dashboard.php" class="card">
                 <div class="icon">🎬</div>
                 <span>Filme</span>
+            </a>
+            <a href="filme/horarios/horarios-filme-dashboard.php" class="card">
+                <div class="icon">🕰️</div>
+                <span>Horários Filmes</span>
             </a>
         <?php endif; ?>
         <a href="usuario/usuarios-dashboard.php" class="card">

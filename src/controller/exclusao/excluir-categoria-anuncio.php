@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 if (!$repositorio->isCategoriaUsed($_POST['id'])) {
     $repositorio->excluir($_POST['id']);
 } else {
-    header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/categoria/categoria-anuncio-dashboard.php?erro=usada&erro_id=" . $_POST['id']);
+    header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/horarios/horarios-anuncio-dashboard.php?erro=usada&erro_id=" . $_POST['id']);
     exit;
 }
 
-header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/categoria/categoria-anuncio-dashboard.php");
+header("Location: /SistemaShopping_web1/src/view/administrativo/anuncio/horarios/horarios-anuncio-dashboard.php");
 exit;

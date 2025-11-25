@@ -68,7 +68,7 @@ if ($cargo == Cargo::Funcionario_cinema || $cargo == Cargo::Gerenciador_anuncio)
                     <option value="" disabled selected>Selecione a categoria</option>
                     <?php $categorias = (new CategoriaLojaRepositorio($pdo))->buscarTodas();
                     foreach ($categorias as $categoria): ?>
-                        <option value="<?= htmlspecialchars($categoria['id']) ?>"><?= htmlspecialchars($categoria['categoria']) ?></option>
+                        <option value="<?= htmlspecialchars($categoria['id']) ?>"><?= htmlspecialchars($categoria['horarios']) ?></option>
                     <?php endforeach; ?>
                 </select>
 

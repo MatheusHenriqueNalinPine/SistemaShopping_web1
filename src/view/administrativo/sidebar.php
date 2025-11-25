@@ -33,7 +33,7 @@ $cargo = $usuario->getCargo();
         <?php endif;
         if ($cargo == Cargo::Administrador || $cargo == Cargo::Funcionario_cinema): ?>
             <a href="/SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php">Filmes</a>
-            <a href="/SistemaShopping_web1/src/view/administrativo/filme/categoria/categoria-filme-dashboard.php">Categoria Filmes</a>
+            <a href="/SistemaShopping_web1/src/view/administrativo/filme/horarios/horarios-filme-dashboard.php">Horários Filmes</a>
         <?php endif; ?>
         <a href="/SistemaShopping_web1/src/view/administrativo/usuario/usuarios-dashboard.php">Funcionários</a>
         <a href="/SistemaShopping_web1/src/controller/autenticacao/logout.php">Sair</a>
