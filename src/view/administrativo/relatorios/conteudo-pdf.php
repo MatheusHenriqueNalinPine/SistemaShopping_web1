@@ -16,6 +16,7 @@ require "../../../src/Model/Repositorio/AnuncioRepositorio.php";
 require "../../../src/Model/Repositorio/LojaRepositorio.php";
 require "../../../src/Model/Repositorio/CinemaRepositorio.php";
 require "../../../src/Model/Repositorio/UsuarioRepositorio.php";
+require "../../../src/Model/Repositorio/CategoriaLojaRepositorio.php";
 
 date_default_timezone_set('America/Sao_Paulo');
 $rodapeDataHora = date('d/m/Y H:i');
@@ -98,7 +99,7 @@ echo "<style>$css</style>"; ?>
                     <td><?= $item->getTelefoneContato() ?></td>
                     <td><?= $item->getPosicao() ?></td>
                     <td><?= $item->getTipoLoja()->value ?></td>
-                    <td><?= $item->getCategoria() ?></td>
+                    <td><?= (new \model\repositorio\CategoriaLojaRepositorio($pdo))->buscarPorId($item->getCategoria()) ?></td>
                 <?php elseif ($tipo == "filmes"): ?>
                     <td><?= $item->getGenero() ?></td>
                     <td><?= $repositorio->numeroHorariosExibicao($item->getId()) ?></td>
