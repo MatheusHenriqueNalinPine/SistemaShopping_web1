@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-use model\repositorio\FilmeRepositorio;
+use model\repositorio\CinemaRepositorio;
 use model\servico\filme\Filme;
-use model\servico\filme\FormatoFilme;
 
-require_once __DIR__ . "/../../model/repositorio/FilmeRepositorio.php";
-require_once __DIR__ . "/../../model/repositorio/CategoriaFilmeRepositorio.php";
+require_once __DIR__ . "/../../model/repositorio/CinemaRepositorio.php";
 require_once __DIR__ . "/../../model/servico/filme/Filme.php";
 require_once __DIR__ . "/../../model/servico/Servico.php";
 require_once __DIR__ . "/../conexao-bd.php";
@@ -19,22 +20,18 @@ if (!$usuario_logado) {
     exit;
 }
 
-$repositorio = new FilmeRepositorio($pdo);
+$repositorio = new CinemaRepositorio($pdo);
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: /SistemaShopping_web1/src/view/sessoes/login.php");
     exit;
 }
 
-$id = intval($_POST['id'] ?? 0);
-$titulo = trim($_POST['titulo'] ?? '');
-$categoria = trim($_POST['categoria'] ?? '');
-$formato_filme = trim($_POST['formato'] ?? '');
+$id = $_POST['id'];
+$nome = trim($_POST['nome'] ?? '');
+$genero = trim($_POST['genero'] ?? '');
 $descricao = trim($_POST['descricao'] ?? '');
-$data_lancamento = trim($_POST['data_lancamento'] ?? '');
-$duracao = trim($_POST['duracao'] ?? '');
-$formatoFilme = FormatoFilme::from($formato_filme);
-
+$data_registro = trim($_POST['data_registro'] ?? '');
 
 $imagem = $_POST['imagem_existente'] ?? '';
 $nomeImagem = $_POST['imagem_existente'] ?? '';
@@ -58,26 +55,33 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     }
 }
 
+if ($id == 0) {
+    if ($nome === '' || $genero === '' || $descricao === '') {
+        header("Location: /SistemaShopping_web1/src/view/administrativo/filme/cadastrar-filme.php?erro=campos-vazios");
+        exit;
+    }
 
-if ($titulo === '' || $formato_filme === '' || $categoria === '' || $descricao === '') {
-    $redirect = $id === 0
-        ? "/SistemaShopping_web1/src/view/administrativo/filme/cadastrar-filme.php?erro=campos-vazios"
-        : "/SistemaShopping_web1/src/view/administrativo/filme/editar-filme.php?erro=campos-vazios";
-    header("Location: $redirect");
-    exit;
-}
-
-
-if ($id === 0) {
-   
-    $filmeObj = new Filme(0, $titulo, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_lancamento ?: 'now'), $duracao, $formatoFilme, $categoria);
-    $repositorio->salvar($filmeObj);
 } else {
-    
-    $categoriaObj = (new \model\repositorio\CategoriaFilmeRepositorio($pdo))->buscarPorId($categoria);
-    $filmeObj = new Filme($id, $titulo, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_lancamento ?: 'now'), $duracao, $formatoFilme, $categoriaObj);
-    $repositorio->atualizar($filmeObj);
+    if ($nome === ''|| $genero === '' || $descricao === '') {
+        header("Location: /SistemaShopping_web1/src/view/administrativo/filme/editar-filme.php?erro=campos-vazios");
+        exit;
+    }
+    $repositorio->atualizar(new Filme($id, $nome, $descricao, $imagem, $tipoImagem, $nomeImagem, $urlImagem, new DateTime($data_registro ?? 'now'), $genero));
+
+    header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php");
+    exit;
 }
 
 header("Location: /SistemaShopping_web1/src/view/administrativo/filme/filme-dashboard.php");
 exit;
+
+
+function horariosFuncionamento(array $aberturas, array $fechamentos): array
+{
+    $horarios_funcionamento = [];
+    foreach ($aberturas as $dia => $horario_inicial) {
+        $hora_fechamento = $fechamentos[$dia] ?? '';
+        $horarios_funcionamento[] = new HorarioFuncionamento($horario_inicial, $hora_fechamento, $dia);
+    }
+    return $horarios_funcionamento;
+}

@@ -1,5 +1,11 @@
 <?php
 
+namespace model\servico\filme;
+use DateTime;
+use model\servico\filme\FormatoFilme;
+
+require_once(__DIR__ . '/FormatoFilme.php');
+
 class HorarioExibicaoFilme
 {
     private DateTime $data_hora;
