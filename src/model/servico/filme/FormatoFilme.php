@@ -1,8 +1,8 @@
 <?php
 
 namespace model\servico\filme;
-enum FormatoFilme
+enum FormatoFilme: string
 {
-    case Legendado;
-    case Dublado;
+    case Legendado = "leg";
+    case Dublado = "dub";
 }

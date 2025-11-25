@@ -266,7 +266,7 @@ class LojaRepositorio
             $result['posicao'] ?? null,
             $result['telefone_contato'] ?? null,
             $result['cnpj'] ?? null,
-            $result['horarios'] ?? 'Acessórios',
+            $result['id_categoria'] ?? '0',
             TipoLoja::from($result['loja_restaurante']),
             $result['horarios'] ?? []
         );
@@ -277,7 +277,7 @@ class LojaRepositorio
      */
     public function buscarPorId(int $id): ?Loja
     {
-        $sql = "select s.id, s.nome, l.id_categoria, c.horarios, l.cnpj, 
+        $sql = "select s.id, s.nome, l.id_categoria, c.categoria, l.cnpj, 
                        l.loja_restaurante, l.telefone_contato, s.descricao, 
                        s.imagem, s.nome_imagem, s.tipo_imagem, s.url_imagem, 
                        s.data_registro, l.posicao, hs.dia_semana, hs.horario_inicial,

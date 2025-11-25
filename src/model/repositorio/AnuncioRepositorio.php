@@ -243,7 +243,7 @@ class AnuncioRepositorio
 
     public function getCategoriaById(int $id): string
     {
-        $sql = "select horarios from tbcategoriaanuncio where id = ?";
+        $sql = "select categoria from tbcategoriaanuncio where id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(1, $id);
         $stmt->execute();

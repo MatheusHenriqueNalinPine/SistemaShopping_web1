@@ -62,6 +62,10 @@ $cargo = $usuario->getCargo();
                 <div class="icon">🎬</div>
                 <span>Filme</span>
             </a>
+            <a href="filme/horarios/horarios-filme-dashboard.php" class="card">
+                <div class="icon">⏱️</div>
+                <span>Horários Filmes</span>
+            </a>
         <?php endif; ?>
         <a href="usuario/usuarios-dashboard.php" class="card">
             <div class="icon">👥</div>
