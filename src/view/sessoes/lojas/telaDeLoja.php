@@ -20,9 +20,9 @@ $totalShopPages = 0;
 $totalLojas = 0;
 if ($selectedShopLimit > 0) {
     try {
-        $totalLojas = $repositorio->contarLojas();
+        $totalLojas = $repositorio->contarLojasPorTipo(TipoLoja::Loja);
         $offset = ($selectedShopPage - 1) * $selectedShopLimit;
-        $ultimasLojas = $repositorio->buscarlojasPaginadas($selectedShopLimit, $offset);
+        $ultimasLojas = $repositorio->buscarlojasPaginadasPorTipo(TipoLoja::Loja, $selectedShopLimit, $offset);
         $totalShopPages = (int)ceil($totalLojas / $selectedShopLimit);
     } catch (\Throwable $e) {
         $ultimasLojas = [];
@@ -111,7 +111,7 @@ if ($selectedLimit > 0) {
 
             <div class="info-pages">
                 <?php if ($selectedShopLimit > 0): ?>
-                    <span class="page-summary">Página <?php echo $selectedShopPage; ?> de <?php echo max(1, $totalShopPages); ?> — <?php echo (int)$totalLojas; ?> restaurantes</span>
+                    <span class="page-summary">Página <?php echo $selectedShopPage; ?> de <?php echo max(1, $totalShopPages); ?> — <?php echo (int)$totalLojas; ?> lojas</span>
                 <?php endif; ?>
             </div>
         </div>

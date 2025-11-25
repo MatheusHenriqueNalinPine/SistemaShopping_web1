@@ -330,4 +330,38 @@ class LojaRepositorio
 
         return $horarios;
     }
+
+    public function contarLojasPorTipo(TipoLoja $tipo): int
+    {
+        $sql = "select count(*) from tbloja where loja_restaurante = :tipo";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':tipo', $tipo->value);
+        $stmt->execute();
+        return (int)$stmt->fetchColumn();
+    }
+
+
+    public function buscarlojasPaginadasPorTipo(TipoLoja $tipo, int $limite, int $offset): array
+    {
+        $sql = "select s.id, s.nome, l.id_categoria, c.categoria, 
+                       l.cnpj, l.loja_restaurante, l.telefone_contato, 
+                       s.descricao, s.imagem, s.tipo_imagem, 
+                       s.nome_imagem, s.url_imagem, s.data_registro, 
+                       l.posicao 
+                from tbloja l 
+                inner join tbservico s on l.id = s.id 
+                inner join tbCategoriaLoja c on l.id_categoria = c.id 
+                where l.loja_restaurante = :tipo
+                order by s.data_registro desc 
+                limit :limite offset :offset";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':tipo', $tipo->value);
+        $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result_set = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($result) => $this->formarObjeto($result), $result_set);
+    }
 }
